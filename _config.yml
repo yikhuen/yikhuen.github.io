@@ -13,13 +13,13 @@ title_separator          : "-"
 name                     : &name "Yi Khuen"
 description              : &description "I'm Yi Khuen, a Computer Science and Business Freshman"
 url                      : https://yikhuen.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
-baseurl                  : "" # the subpath of your site, e.g. "/blog"
+baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "academicpages/yikhuen.github.io"
 
 # Site Author - The following control what appear as part of the author content on the side bar.
 #               If a field is blank the icon and link will not appear, otherwise it will be shown.
 #               Additional customization can be done by editing /_includes/author-profile.html
-author: "Yi Khuen"
+author: 
   # Biographic information
   avatar           : "profile.png"
   name             : "Yi Khuen"
