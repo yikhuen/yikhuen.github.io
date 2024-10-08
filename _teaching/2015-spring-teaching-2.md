@@ -1,11 +1,11 @@
 ---
-title: "Teaching experience 2"
+title: "TA for Pre-Course Introduction to Financial Engineering"
 collection: teaching
 type: "Workshop"
 permalink: /teaching/2015-spring-teaching-1
-venue: "University 1, Department"
+venue: "SMU, Lee Kong Chian School of Business"
 date: 2015-01-01
-location: "City, Country"
+location: "Singapore, Singapore"
 ---
 
 This is a description of a teaching experience. You can use markdown like any other post.
