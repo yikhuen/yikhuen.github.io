@@ -1,14 +1,14 @@
 ---
 title: "Incoming TA for Introduction to Data Science in Finance (with Python) for Master in Applied Finance Students"
 collection: teaching
-type: "Graduate course"
+type: "Graduate Course"
 permalink: /teaching/2014-spring-teaching-1
 venue: "SMU, Lee Kong Chian School of Business"
-date: 2024-11-29
+date: 2024-11 - 2024-12
 location: "Singapore, Singapore"
 ---
 
-This is a description of a teaching experience. You can use markdown like any other post.
+Incoming TA for Master in Applied Finance course under Prof. Sungjung Roh.
 
 Heading 1
 ======

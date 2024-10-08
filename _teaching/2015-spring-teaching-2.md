@@ -1,14 +1,14 @@
 ---
 title: "TA for Pre-Course Introduction to Financial Engineering"
 collection: teaching
-type: "Workshop"
+type: "Graduate Course Workshop"
 permalink: /teaching/2015-spring-teaching-1
 venue: "SMU, Lee Kong Chian School of Business"
-date: 2015-01-01
+date: 2024-06 - 2024-07
 location: "Singapore, Singapore"
 ---
 
-This is a description of a teaching experience. You can use markdown like any other post.
+Under Prof. Sungjung Roh's supervision, assisted students in learning how to use Anaconda Distribution and Jupyter Notebook for basic financial data analysis in Python. Assisted students in syntax and implementation problems, dealing with data wrangling, data visualisation, and deriving insights from data.
 
 Heading 1
 ======
