@@ -6,8 +6,8 @@ permalink: /projects/2010-10-01-paper-title-number-2
 excerpt: 'This project is about helping people with mental health struggles find timely support'
 date: 2024-10-08
 venue: 'Journal 1'
-slidesurl: 'http://academicpages.github.io/files/slides2.pdf'
-paperurl: 'http://academicpages.github.io/files/paper2.pdf'
+slidesurl: 
+paperurl: 
 citation: 
 ---
 

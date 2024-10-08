@@ -6,8 +6,8 @@ permalink: /projects/2015-10-01-paper-title-number-3
 excerpt: 'This project looks into the black box behind recommendation algorithms, examining the entire deployment pipeline, from the kinds of data that are collected, what kind of algorithms are deployed, and the strategies behind maximum customer engagement.'
 date: 2024-10-08
 venue: 'Journal 1'
-slidesurl: 'http://academicpages.github.io/files/slides3.pdf'
-paperurl: 'http://academicpages.github.io/files/paper3.pdf'
+slidesurl: 
+paperurl: 
 citation: 
 ---
 
