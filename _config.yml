@@ -78,9 +78,9 @@ publication_category:
   books:
     title: 'ML Projects'
   manuscripts:
-    title: 'Quant Finance Projects'    
+    title: 'Projects'    
   conferences:
-    title: 'Full Stack Projects'
+    title: 'Project Diaries'
 
 # Site Settings
 teaser                   :  # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
