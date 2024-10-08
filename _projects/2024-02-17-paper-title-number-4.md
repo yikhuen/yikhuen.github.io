@@ -1,9 +1,9 @@
 ---
-title: "Paper Title Number 4"
+title: "Just In Time Mental Health Intervention Application"
 collection: projects
 category: conferences
 permalink: /projects/2024-02-17-paper-title-number-4
-excerpt: 'This paper is about fixing template issue #693.'
+excerpt: 'In today's society, many people need mental support, but there are often obstacles.When people are in their most vulnerable states, providing timely assistance is of the utmost priority. I believe in using technology to resolve this issue.'
 date: 2024-02-17
 venue: 'GitHub Journal of Bugs'
 paperurl: 'http://academicpages.github.io/files/paper3.pdf'
