@@ -1,9 +1,9 @@
 ---
-title: "Leveraging the LMAX disruptor: Recreating high performance trading architecture"
+title: "Mental health intervention application"
 collection: projects
 category: manuscripts
 permalink: /projects/2010-10-01-paper-title-number-2
-excerpt: This project is about examining the use of the ring buffer to execute low latency trades at a high volume in Java.'
+excerpt: 'This project is about helping people with mental health struggles find timely support'
 date: 2024-10-08
 venue: 'Journal 1'
 slidesurl: 'http://academicpages.github.io/files/slides2.pdf'
