@@ -4,7 +4,7 @@ collection: teaching
 type: "Graduate Course Workshop"
 permalink: /teaching/2015-spring-teaching-1
 venue: "SMU, Lee Kong Chian School of Business"
-date: 2024-06 - 2024-07
+date: 2024-06-12
 location: "Singapore, Singapore"
 ---
 
