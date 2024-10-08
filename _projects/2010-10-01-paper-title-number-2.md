@@ -1,5 +1,5 @@
 ---
-title: "Mental health intervention application"
+title: "Mental Health Intervention Application"
 collection: projects
 category: manuscripts
 permalink: /projects/2010-10-01-paper-title-number-2
