@@ -4,7 +4,7 @@ collection: projects
 category: manuscripts
 permalink: /projects/2010-10-01-paper-title-number-2
 excerpt: 'In today's society, many people need mental support, but there are often obstacles.When people are in their most vulnerable states, providing timely assistance is of the utmost priority. I believe in using technology to resolve this issue.'
-date: 2010-10-01
+date: 2024-10-08
 venue: 'Journal 1'
 slidesurl: 'http://academicpages.github.io/files/slides2.pdf'
 paperurl: 'http://academicpages.github.io/files/paper2.pdf'
