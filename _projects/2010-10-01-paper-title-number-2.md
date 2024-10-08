@@ -1,9 +1,9 @@
 ---
-title: "Project 2"
+title: "Just-In-Time Mental Health Intervention Application"
 collection: projects
 category: manuscripts
 permalink: /projects/2010-10-01-paper-title-number-2
-excerpt: 'This paper is about the number 2. The number 3 is left for future work.'
+excerpt: 'In today's society, many people need mental support, but there are often obstacles, such as expensive hospital fees, overwhelmed social workers, and poor infrastructure that hinder the provision of support those who are mentally struggling. When people are in their most vulnerable states, providing timely assistance is of the utmost priority, especially when they are in an altered state of mind that might spur them to take drastic and irreversible actions. I believe in using technology to resolve this issue, to ensure that there is support for these people in their darkest moments, and help them to live another day.'
 date: 2010-10-01
 venue: 'Journal 1'
 slidesurl: 'http://academicpages.github.io/files/slides2.pdf'

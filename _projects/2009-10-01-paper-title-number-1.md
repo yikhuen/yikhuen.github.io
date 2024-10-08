@@ -1,10 +1,10 @@
 ---
-title: "Project 1"
+title: "Leveraging the LMAX disruptor: Recreating high performance trading architecture"
 collection: projects
 category: manuscripts
 permalink: /projects/2009-10-01-paper-title-number-1
-excerpt: 'This project is about machine learning.'
-date: 2009-10-01
+excerpt: 'This project is about examining the use of the ring buffer to execute low latency trades at a high volume in Java.'
+date: 2024-10-08
 venue: 'Journal 1'
 slidesurl: 'http://academicpages.github.io/files/slides1.pdf'
 paperurl: 'http://academicpages.github.io/files/paper1.pdf'
