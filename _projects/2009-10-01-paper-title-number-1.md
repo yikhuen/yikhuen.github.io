@@ -1,7 +1,7 @@
 ---
 title: "Project 1"
 collection: projects
-category: manuscripts
+category: projects
 permalink: /projects/2009-10-01-paper-title-number-1
 excerpt: 'This project is about machine learning.'
 date: 2009-10-01

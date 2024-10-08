@@ -73,7 +73,7 @@ author:
   youtube          : # Username
   zhihu            : # Username
 
-# Publication Category - The following the list of publication categories and their headings
+# Projects Category - The following the list of project categories and their headings
 projects_category:
   books:
     title: 'ML Projects'
