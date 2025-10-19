@@ -10,18 +10,18 @@
 <meta name="description" content="
 In the Part 2 tutorial, I would like to continue the topic on stock price prediction and to endow the recurrent neural network that I have built in Part 1 with the capability of responding to multiple stocks. In order to distinguish the patterns associated with different price sequences, I use the stock symbol embedding vectors as part of the input.">
 <meta name="author" content="Lilian Weng">
-<link rel="canonical" href="https://lilianweng.github.io/posts/2017-07-22-stock-rnn-part-2/" />
+<link rel="canonical" href="https://yikhuen.github.io/posts/2017-07-22-stock-rnn-part-2/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.51b2420ff5ea1215cdf584af7ba59d5fea94201c33f25109d6448c7271631316.css" integrity="sha256-UbJCD/XqEhXN9YSve6WdX&#43;qUIBwz8lEJ1kSMcnFjExY=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.2eadbb982468c11a433a3e291f01326f2ba43f065e256bf792dbd79640a92316.js" integrity="sha256-Lq27mCRowRpDOj4pHwEybyukPwZeJWv3ktvXlkCpIxY="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://lilianweng.github.io/favicon_wine.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://lilianweng.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://lilianweng.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://lilianweng.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://lilianweng.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="https://yikhuen.github.io/favicon_wine.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://yikhuen.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://yikhuen.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://yikhuen.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://yikhuen.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://lilianweng.github.io/posts/2017-07-22-stock-rnn-part-2/" />
+<link rel="alternate" hreflang="en" href="https://yikhuen.github.io/posts/2017-07-22-stock-rnn-part-2/" />
 <noscript>
     <style>
         #theme-toggle,
@@ -180,7 +180,7 @@ In the Part 2 tutorial, I would like to continue the topic on stock price predic
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://lilianweng.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
+            <a href="https://yikhuen.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -208,27 +208,27 @@ In the Part 2 tutorial, I would like to continue the topic on stock price predic
         </div>
         <ul id="menu">
             <li>
-                <a href="https://lilianweng.github.io/" title="Posts">
+                <a href="https://yikhuen.github.io/" title="Posts">
                     <span>Posts</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/archives" title="Archive">
+                <a href="https://yikhuen.github.io/archives" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="https://yikhuen.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/tags/" title="Tags">
+                <a href="https://yikhuen.github.io/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/faq" title="FAQ">
+                <a href="https://yikhuen.github.io/faq" title="FAQ">
                     <span>FAQ</span>
                 </a>
             </li>
@@ -283,7 +283,7 @@ In the Part 2 tutorial, I would like to continue the topic on stock price predic
 </div>
 
   <div class="post-content"><!-- This post is a continued tutorial for how to build a recurrent neural network using Tensorflow to predict stock market prices. Part 2 attempts to predict prices of multiple stocks using embeddings. The full working code is available in [lilianweng/stock-rnn](https://github.com/lilianweng/stock-rnn). -->
-<p>In the Part 2 tutorial, I would like to continue the topic on stock price prediction and to endow the recurrent neural network that I have built in <a href="https://lilianweng.github.io/posts/2017-07-08-stock-rnn-part-1/">Part 1</a> with the capability of responding to multiple stocks. In order to distinguish the patterns associated with different price sequences, I use the stock symbol embedding vectors as part of the input.</p>
+<p>In the Part 2 tutorial, I would like to continue the topic on stock price prediction and to endow the recurrent neural network that I have built in <a href="https://yikhuen.github.io/posts/2017-07-08-stock-rnn-part-1/">Part 1</a> with the capability of responding to multiple stocks. In order to distinguish the patterns associated with different price sequences, I use the stock symbol embedding vectors as part of the input.</p>
 <hr>
 <h1 id="dataset">Dataset<a hidden class="anchor" aria-hidden="true" href="#dataset">#</a></h1>
 <p>During the search, I found <a href="https://github.com/lukaszbanasiak/yahoo-finance">this library</a> for querying Yahoo! Finance API. It would be very useful if Yahoo hasn’t shut down the historical data fetch API. You may find it useful for querying other information though. Here I pick the Google Finance link, among <a href="https://www.quantshare.com/sa-43-10-ways-to-download-historical-stock-quotes-data-for-free">a couple of free data sources</a> for downloading historical stock prices.</p>
@@ -321,14 +321,14 @@ In the Part 2 tutorial, I would like to continue the topic on stock price predic
 <li><code>embedding_size</code> controls the size of each embedding vector;</li>
 <li><code>stock_count</code> refers to the number of unique stocks in the dataset.</li>
 </ul>
-<p>Together they define the size of the embedding matrix, for which the model has to learn <code>embedding_size</code> $\times$ <code>stock_count</code> additional variables compared to the model in <a href="https://lilianweng.github.io/posts/2017-07-08-stock-rnn-part-1/">Part 1</a>.</p>
+<p>Together they define the size of the embedding matrix, for which the model has to learn <code>embedding_size</code> $\times$ <code>stock_count</code> additional variables compared to the model in <a href="https://yikhuen.github.io/posts/2017-07-08-stock-rnn-part-1/">Part 1</a>.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RNNConfig</span>():
 </span></span><span style="display:flex;"><span>   <span style="color:#75715e"># ... old ones</span>
 </span></span><span style="display:flex;"><span>   embedding_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
 </span></span><span style="display:flex;"><span>   stock_count <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span>
 </span></span></code></pre></div><h2 id="define-the-graph">Define the Graph<a hidden class="anchor" aria-hidden="true" href="#define-the-graph">#</a></h2>
 <p><strong>&mdash; Let&rsquo;s start going through some code &mdash;</strong></p>
-<p>(1) As demonstrated in tutorial <a href="https://lilianweng.github.io/posts/2017-07-08-stock-rnn-part-1/#define-graph">Part 1: Define the Graph</a>, let us define a <code>tf.Graph()</code> named <code>lstm_graph</code> and a set of tensors to hold input data, <code>inputs</code>, <code>targets</code>, and <code>learning_rate</code> in the same way. One more placeholder to define is a list of stock symbols associated with the input prices. Stock symbols have been mapped to unique integers beforehand with <a href="http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html">label encoding</a>.</p>
+<p>(1) As demonstrated in tutorial <a href="https://yikhuen.github.io/posts/2017-07-08-stock-rnn-part-1/#define-graph">Part 1: Define the Graph</a>, let us define a <code>tf.Graph()</code> named <code>lstm_graph</code> and a set of tensors to hold input data, <code>inputs</code>, <code>targets</code>, and <code>learning_rate</code> in the same way. One more placeholder to define is a list of stock symbols associated with the input prices. Stock symbols have been mapped to unique integers beforehand with <a href="http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html">label encoding</a>.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Mapped to an integer. one label refers to one stock symbol.</span>
 </span></span><span style="display:flex;"><span>stock_labels <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>placeholder(tf<span style="color:#f92672">.</span>int32, [<span style="color:#66d9ef">None</span>, <span style="color:#ae81ff">1</span>])
 </span></span></code></pre></div><p>(2) Then we need to set up an embedding matrix to play as a lookup table, containing the embedding vectors of all the stocks. The matrix is initialized with random numbers in the interval [-1, 1] and gets updated during training.</p>
@@ -349,9 +349,9 @@ tiling it by <code>[1, 5]</code> produces <code>[[0 0 0 0 0], [0 0 0 0 0], [2 2 
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># stock_label_embeds.get_shape() = (?, num_steps, embedding_size)</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># inputs_with_embeds.get_shape() = (?, num_steps, input_size + embedding_size)</span>
 </span></span><span style="display:flex;"><span>inputs_with_embeds <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>concat([inputs, stock_label_embeds], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
-</span></span></code></pre></div><p>The rest of code runs the dynamic RNN, extracts the last state of the LSTM cell, and handles weights and bias in the output layer. See <a href="https://lilianweng.github.io/posts/2017-07-08-stock-rnn-part-1/#define-graph">Part 1: Define the Graph</a> for the details.</p>
+</span></span></code></pre></div><p>The rest of code runs the dynamic RNN, extracts the last state of the LSTM cell, and handles weights and bias in the output layer. See <a href="https://yikhuen.github.io/posts/2017-07-08-stock-rnn-part-1/#define-graph">Part 1: Define the Graph</a> for the details.</p>
 <h2 id="training-session">Training Session<a hidden class="anchor" aria-hidden="true" href="#training-session">#</a></h2>
-<p>Please read <a href="https://lilianweng.github.io/posts/2017-07-08-stock-rnn-part-1/#start-training-session">Part 1: Start Training Session</a> if you haven&rsquo;t for how to run a training session in Tensorflow.</p>
+<p>Please read <a href="https://yikhuen.github.io/posts/2017-07-08-stock-rnn-part-1/#start-training-session">Part 1: Start Training Session</a> if you haven&rsquo;t for how to run a training session in Tensorflow.</p>
 <p>Before feeding the data into the graph, the stock symbols should be transformed to unique integers with <a href="http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html">label encoding</a>.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> sklearn.preprocessing <span style="color:#f92672">import</span> LabelEncoder
 </span></span><span style="display:flex;"><span>label_encoder <span style="color:#f92672">=</span> LabelEncoder()
@@ -409,7 +409,7 @@ init_epoch = 5
 	<img src="rnn_embedding_MSFT.png"  />
 <figure>
 	<img src="rnn_embedding_GOOG.png"  />
-	<figcaption>True and predicted stock prices of AAPL, MSFT and GOOG in the test set. The prices are normalized across consecutive prediction sliding windows (See <a href="https://lilianweng.github.io/posts/2017-07-08-stock-rnn-part-1/#normalization" target="_blank">Part 1: Normalization</a>. The y-axis values get multiplied by 5 for a better comparison between true and predicted trends.</figcaption>
+	<figcaption>True and predicted stock prices of AAPL, MSFT and GOOG in the test set. The prices are normalized across consecutive prediction sliding windows (See <a href="https://yikhuen.github.io/posts/2017-07-08-stock-rnn-part-1/#normalization" target="_blank">Part 1: Normalization</a>. The y-axis values get multiplied by 5 for a better comparison between true and predicted trends.</figcaption>
 </figure>
 <h2 id="embedding-visualization">Embedding Visualization<a hidden class="anchor" aria-hidden="true" href="#embedding-visualization">#</a></h2>
 <p>One common technique to visualize the clusters in embedding space is <a href="https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding">t-SNE</a> (<a href="http://www.jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf">Maaten and Hinton, 2008</a>), which is well supported in Tensorboard. t-SNE, short for “t-Distributed Stochastic Neighbor Embedding, is a variation of Stochastic Neighbor Embedding (<a href="http://www.cs.toronto.edu/~fritz/absps/sne.pdf">Hinton and Roweis, 2002</a>), but with a modified cost function that is easier to optimize.</p>
@@ -439,17 +439,17 @@ init_epoch = 5
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://lilianweng.github.io/tags/tutorial/">Tutorial</a></li>
-      <li><a href="https://lilianweng.github.io/tags/rnn/">Rnn</a></li>
-      <li><a href="https://lilianweng.github.io/tags/tensorflow/">Tensorflow</a></li>
+      <li><a href="https://yikhuen.github.io/tags/tutorial/">Tutorial</a></li>
+      <li><a href="https://yikhuen.github.io/tags/rnn/">Rnn</a></li>
+      <li><a href="https://yikhuen.github.io/tags/tensorflow/">Tensorflow</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://lilianweng.github.io/posts/2017-08-01-interpretation/">
+  <a class="prev" href="https://yikhuen.github.io/posts/2017-08-01-interpretation/">
     <span class="title">« </span>
     <br>
     <span>How to Explain the Prediction of a Machine Learning Model?</span>
   </a>
-  <a class="next" href="https://lilianweng.github.io/posts/2017-07-08-stock-rnn-part-1/">
+  <a class="next" href="https://yikhuen.github.io/posts/2017-07-08-stock-rnn-part-1/">
     <span class="title"> »</span>
     <br>
     <span>Predict Stock Prices Using RNN: Part 1</span>
@@ -507,7 +507,7 @@ init_epoch = 5
     </main>
     
 <footer class="footer">
-    <span>&copy; 2025 <a href="https://lilianweng.github.io/">YK's Log</a></span>
+    <span>&copy; 2025 <a href="https://yikhuen.github.io/">YK's Log</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

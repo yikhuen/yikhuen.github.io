@@ -10,18 +10,18 @@
 <meta name="description" content="
 This is part 2 of what to do when facing a limited amount of labeled data for supervised learning tasks. This time we will get some amount of human labeling work involved, but within a budget limit, and therefore we need to be smart when selecting which samples to label.">
 <meta name="author" content="Lilian Weng">
-<link rel="canonical" href="https://lilianweng.github.io/posts/2022-02-20-active-learning/" />
+<link rel="canonical" href="https://yikhuen.github.io/posts/2022-02-20-active-learning/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.51b2420ff5ea1215cdf584af7ba59d5fea94201c33f25109d6448c7271631316.css" integrity="sha256-UbJCD/XqEhXN9YSve6WdX&#43;qUIBwz8lEJ1kSMcnFjExY=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.2eadbb982468c11a433a3e291f01326f2ba43f065e256bf792dbd79640a92316.js" integrity="sha256-Lq27mCRowRpDOj4pHwEybyukPwZeJWv3ktvXlkCpIxY="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://lilianweng.github.io/favicon_wine.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://lilianweng.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://lilianweng.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://lilianweng.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://lilianweng.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="https://yikhuen.github.io/favicon_wine.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://yikhuen.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://yikhuen.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://yikhuen.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://yikhuen.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://lilianweng.github.io/posts/2022-02-20-active-learning/" />
+<link rel="alternate" hreflang="en" href="https://yikhuen.github.io/posts/2022-02-20-active-learning/" />
 <noscript>
     <style>
         #theme-toggle,
@@ -180,7 +180,7 @@ This is part 2 of what to do when facing a limited amount of labeled data for su
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://lilianweng.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
+            <a href="https://yikhuen.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -208,27 +208,27 @@ This is part 2 of what to do when facing a limited amount of labeled data for su
         </div>
         <ul id="menu">
             <li>
-                <a href="https://lilianweng.github.io/" title="Posts">
+                <a href="https://yikhuen.github.io/" title="Posts">
                     <span>Posts</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/archives" title="Archive">
+                <a href="https://yikhuen.github.io/archives" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="https://yikhuen.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/tags/" title="Tags">
+                <a href="https://yikhuen.github.io/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/faq" title="FAQ">
+                <a href="https://yikhuen.github.io/faq" title="FAQ">
                     <span>FAQ</span>
                 </a>
             </li>
@@ -408,7 +408,7 @@ This is part 2 of what to do when facing a limited amount of labeled data for su
 </ul>
 <h3 id="ensemble-and-approximated-ensemble">Ensemble and Approximated Ensemble<a hidden class="anchor" aria-hidden="true" href="#ensemble-and-approximated-ensemble">#</a></h3>
 <p>There is a long tradition in machine learning of using ensembles to improve model performance. When there is a significant diversity among models, ensembles are expected to yield better results. This ensemble theory is proved to be correct by many ML algorithms; for example, <a href="https://en.wikipedia.org/wiki/AdaBoost">AdaBoost</a> aggregates many weak learners to perform similar or even better than a single strong learner. <a href="https://en.wikipedia.org/wiki/Bootstrapping_(statistics)">Bootstrapping</a> ensembles multiple trials of resampling to achieve more accurate estimation of metrics. Random forests or <a href="https://en.wikipedia.org/wiki/Gradient_boosting">GBM</a> is also a good example for the effectiveness of ensembling.</p>
-<p>To get better uncertainty estimation, it is intuitive to aggregate a collection of independently trained models. However, it is expensive to train a single deep neural network model, let alone many of them. In reinforcement learning, Bootstrapped DQN  (<a href="https://arxiv.org/abs/1602.04621">Osband, et al. 2016</a>) is equipped with multiple value heads and relies on the uncertainty among an ensemble of Q value approximation to guide <a href="https://lilianweng.github.io/posts/2020-06-07-exploration-drl/#q-value-exploration">exploration</a> in RL.</p>
+<p>To get better uncertainty estimation, it is intuitive to aggregate a collection of independently trained models. However, it is expensive to train a single deep neural network model, let alone many of them. In reinforcement learning, Bootstrapped DQN  (<a href="https://arxiv.org/abs/1602.04621">Osband, et al. 2016</a>) is equipped with multiple value heads and relies on the uncertainty among an ensemble of Q value approximation to guide <a href="https://yikhuen.github.io/posts/2020-06-07-exploration-drl/#q-value-exploration">exploration</a> in RL.</p>
 <p>In active learning, a commoner approach is to use <em>dropout</em> to &ldquo;simulate&rdquo; a probabilistic Gaussian process (<a href="https://arxiv.org/abs/1506.02142">Gal &amp; Ghahramani 2016</a>). We thus ensemble multiple samples collected from the same model but with different dropout masks applied during the forward pass to estimate the model uncertainty (epistemic uncertainty). The process is named <strong>MC dropout</strong> (Monte Carlo dropout), where dropout is applied before every weight layer, is approved to be mathematically equivalent to an approximation to the probabilistic deep Gaussian process (<a href="https://arxiv.org/abs/1506.02157">Gal &amp; Ghahramani 2016</a>). This simple idea has been shown to be effective for classification with small datasets and widely adopted in scenarios when efficient model uncertainty estimation is needed.</p>
 <p><strong>DBAL</strong> (Deep Bayesian active learning; <a href="https://arxiv.org/abs/1703.02910">Gal et al. 2017</a>) approximates Bayesian neural networks with MC dropout such that it learns a distribution over model weights. In their experiment, MC dropout performed better than random baseline and mean standard deviation (Mean STD), similarly to variation ratios and entropy measurement.</p>
 <figure>
@@ -537,7 +537,7 @@ $$
 	<img src="MAL-exp.png" style="width: 100%;"  />
 	<figcaption>Performance of MAL on ImageNet. (Table source: <a href="https://arxiv.org/abs/2012.10467" target="_blank">Ebrahimiet al. 2021</a>)</figcaption>
 </figure>
-<p><strong>CAL</strong> (Contrastive Active Learning; <a href="https://arxiv.org/abs/2109.03764">Margatina et al. 2021</a>) intends to select <a href="https://lilianweng.github.io/posts/2021-05-31-contrastive/">contrastive</a> examples. If two data points with different labels share similar network representations $\Phi(.)$, they are considered as contrastive examples in CAL. Given a pair of contrastive examples $(\mathbf{x}_i, \mathbf{x}_j)$, they should</p>
+<p><strong>CAL</strong> (Contrastive Active Learning; <a href="https://arxiv.org/abs/2109.03764">Margatina et al. 2021</a>) intends to select <a href="https://yikhuen.github.io/posts/2021-05-31-contrastive/">contrastive</a> examples. If two data points with different labels share similar network representations $\Phi(.)$, they are considered as contrastive examples in CAL. Given a pair of contrastive examples $(\mathbf{x}_i, \mathbf{x}_j)$, they should</p>
 <div>
 $$
 d(\Phi(\mathbf{x}_i), \Phi(\mathbf{x}_j)) < \epsilon \quad\text{and}\quad \text{KL}(p(y\vert \mathbf{x}_i) \| p(y\vert \mathbf{x}_j)) \rightarrow \infty
@@ -651,10 +651,10 @@ $$
 <li>Cluster $\beta b$ examples into $B$ clusters;</li>
 <li>Select $b$ different examples closest to the cluster centers for this round of active learning.</li>
 </ol>
-<p>Active learning can be further combined with <a href="https://lilianweng.github.io/posts/2021-12-05-semi-supervised/">semi-supervised learning</a> to save the budget. <strong>CEAL</strong> (Cost-Effective Active Learning; <a href="https://arxiv.org/abs/1701.03551">Yang et al. 2017</a>) runs two things in parallel:</p>
+<p>Active learning can be further combined with <a href="https://yikhuen.github.io/posts/2021-12-05-semi-supervised/">semi-supervised learning</a> to save the budget. <strong>CEAL</strong> (Cost-Effective Active Learning; <a href="https://arxiv.org/abs/1701.03551">Yang et al. 2017</a>) runs two things in parallel:</p>
 <ol>
 <li>Select uncertain samples via active learning and get them labeled;</li>
-<li>Select samples with the most confident prediction and assign them <a href="https://lilianweng.github.io/posts/2021-12-05-semi-supervised/#pseudo-labeling">pseudo labels</a>. The confidence prediction is judged by whether the prediction entropy is below a threshold $\delta$. As the model is getting better in time, the threshold $\delta$ decays in time as well.</li>
+<li>Select samples with the most confident prediction and assign them <a href="https://yikhuen.github.io/posts/2021-12-05-semi-supervised/#pseudo-labeling">pseudo labels</a>. The confidence prediction is judged by whether the prediction entropy is below a threshold $\delta$. As the model is getting better in time, the threshold $\delta$ decays in time as well.</li>
 </ol>
 <figure>
 	<img src="CEAL.png" style="width: 100%;"  />
@@ -699,16 +699,16 @@ $$
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://lilianweng.github.io/tags/data/">Data</a></li>
-      <li><a href="https://lilianweng.github.io/tags/active-learning/">Active-Learning</a></li>
+      <li><a href="https://yikhuen.github.io/tags/data/">Data</a></li>
+      <li><a href="https://yikhuen.github.io/tags/active-learning/">Active-Learning</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://lilianweng.github.io/posts/2022-04-15-data-gen/">
+  <a class="prev" href="https://yikhuen.github.io/posts/2022-04-15-data-gen/">
     <span class="title">« </span>
     <br>
     <span>Learning with not Enough Data Part 3: Data Generation</span>
   </a>
-  <a class="next" href="https://lilianweng.github.io/posts/2021-12-05-semi-supervised/">
+  <a class="next" href="https://yikhuen.github.io/posts/2021-12-05-semi-supervised/">
     <span class="title"> »</span>
     <br>
     <span>Learning with not Enough Data Part 1: Semi-Supervised Learning</span>
@@ -766,7 +766,7 @@ $$
     </main>
     
 <footer class="footer">
-    <span>&copy; 2025 <a href="https://lilianweng.github.io/">YK's Log</a></span>
+    <span>&copy; 2025 <a href="https://yikhuen.github.io/">YK's Log</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

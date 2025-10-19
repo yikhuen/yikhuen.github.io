@@ -13,18 +13,18 @@
 [Updated on 2018-12-27: Add bbox regression and tricks sections for R-CNN.]
 In the series of &ldquo;Object Detection for Dummies&rdquo;, we started with basic concepts in image processing, such as gradient vectors and HOG, in Part 1. Then we introduced classic convolutional neural network architecture designs for classification and pioneer models for object recognition, Overfeat and DPM, in Part 2. In the third post of this series, we are about to review a set of models in the R-CNN (&ldquo;Region-based CNN&rdquo;) family.">
 <meta name="author" content="Lilian Weng">
-<link rel="canonical" href="https://lilianweng.github.io/posts/2017-12-31-object-recognition-part-3/" />
+<link rel="canonical" href="https://yikhuen.github.io/posts/2017-12-31-object-recognition-part-3/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.51b2420ff5ea1215cdf584af7ba59d5fea94201c33f25109d6448c7271631316.css" integrity="sha256-UbJCD/XqEhXN9YSve6WdX&#43;qUIBwz8lEJ1kSMcnFjExY=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.2eadbb982468c11a433a3e291f01326f2ba43f065e256bf792dbd79640a92316.js" integrity="sha256-Lq27mCRowRpDOj4pHwEybyukPwZeJWv3ktvXlkCpIxY="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://lilianweng.github.io/favicon_wine.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://lilianweng.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://lilianweng.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://lilianweng.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://lilianweng.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="https://yikhuen.github.io/favicon_wine.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://yikhuen.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://yikhuen.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://yikhuen.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://yikhuen.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://lilianweng.github.io/posts/2017-12-31-object-recognition-part-3/" />
+<link rel="alternate" hreflang="en" href="https://yikhuen.github.io/posts/2017-12-31-object-recognition-part-3/" />
 <noscript>
     <style>
         #theme-toggle,
@@ -189,7 +189,7 @@ In the series of &ldquo;Object Detection for Dummies&rdquo;, we started with bas
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://lilianweng.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
+            <a href="https://yikhuen.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -217,27 +217,27 @@ In the series of &ldquo;Object Detection for Dummies&rdquo;, we started with bas
         </div>
         <ul id="menu">
             <li>
-                <a href="https://lilianweng.github.io/" title="Posts">
+                <a href="https://yikhuen.github.io/" title="Posts">
                     <span>Posts</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/archives" title="Archive">
+                <a href="https://yikhuen.github.io/archives" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="https://yikhuen.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/tags/" title="Tags">
+                <a href="https://yikhuen.github.io/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/faq" title="FAQ">
+                <a href="https://yikhuen.github.io/faq" title="FAQ">
                     <span>FAQ</span>
                 </a>
             </li>
@@ -316,12 +316,12 @@ In the series of &ldquo;Object Detection for Dummies&rdquo;, we started with bas
 <p><span class="update">[Updated on 2018-12-20: Remove YOLO here. Part 4 will cover multiple fast object detection algorithms, including YOLO.]</span>
 <br/>
 <span class="update">[Updated on 2018-12-27: Add <a href="#bounding-box-regression">bbox regression</a> and <a href="#common-tricks">tricks</a> sections for R-CNN.]</span></p>
-<p>In the series of &ldquo;Object Detection for Dummies&rdquo;, we started with basic concepts in image processing, such as gradient vectors and HOG, in <a href="https://lilianweng.github.io/posts/2017-10-29-object-recognition-part-1/">Part 1</a>. Then we introduced classic convolutional neural network architecture designs for classification and pioneer models for object recognition, Overfeat and DPM, in <a href="https://lilianweng.github.io/posts/2017-12-15-object-recognition-part-2/">Part 2</a>. In the third post of this series, we are about to review a set of models in the R-CNN (&ldquo;Region-based CNN&rdquo;) family.</p>
+<p>In the series of &ldquo;Object Detection for Dummies&rdquo;, we started with basic concepts in image processing, such as gradient vectors and HOG, in <a href="https://yikhuen.github.io/posts/2017-10-29-object-recognition-part-1/">Part 1</a>. Then we introduced classic convolutional neural network architecture designs for classification and pioneer models for object recognition, Overfeat and DPM, in <a href="https://yikhuen.github.io/posts/2017-12-15-object-recognition-part-2/">Part 2</a>. In the third post of this series, we are about to review a set of models in the R-CNN (&ldquo;Region-based CNN&rdquo;) family.</p>
 <p>Links to all the posts in the series:
-[<a href="https://lilianweng.github.io/posts/2017-10-29-object-recognition-part-1/">Part 1</a>]
-[<a href="https://lilianweng.github.io/posts/2017-12-15-object-recognition-part-2/">Part 2</a>]
-[<a href="https://lilianweng.github.io/posts/2017-12-31-object-recognition-part-3/">Part 3</a>]
-[<a href="https://lilianweng.github.io/posts/2018-12-27-object-recognition-part-4/">Part 4</a>].</p>
+[<a href="https://yikhuen.github.io/posts/2017-10-29-object-recognition-part-1/">Part 1</a>]
+[<a href="https://yikhuen.github.io/posts/2017-12-15-object-recognition-part-2/">Part 2</a>]
+[<a href="https://yikhuen.github.io/posts/2017-12-31-object-recognition-part-3/">Part 3</a>]
+[<a href="https://yikhuen.github.io/posts/2018-12-27-object-recognition-part-4/">Part 4</a>].</p>
 <p>Here is a list of papers covered in this post ;)</p>
 <table>
   <thead>
@@ -355,7 +355,7 @@ In the series of &ldquo;Object Detection for Dummies&rdquo;, we started with bas
   </tbody>
 </table>
 <h1 id="r-cnn">R-CNN<a hidden class="anchor" aria-hidden="true" href="#r-cnn">#</a></h1>
-<p>R-CNN (<a href="https://arxiv.org/abs/1311.2524">Girshick et al., 2014</a>) is short for &ldquo;Region-based Convolutional Neural Networks&rdquo;. The main idea is composed of two steps. First, using <a href="https://lilianweng.github.io/posts/2017-10-29-object-recognition-part-1/#selective-search">selective search</a>, it identifies a manageable number of bounding-box object region candidates (&ldquo;region of interest&rdquo; or &ldquo;RoI&rdquo;). And then it extracts CNN features from each region independently for classification.</p>
+<p>R-CNN (<a href="https://arxiv.org/abs/1311.2524">Girshick et al., 2014</a>) is short for &ldquo;Region-based Convolutional Neural Networks&rdquo;. The main idea is composed of two steps. First, using <a href="https://yikhuen.github.io/posts/2017-10-29-object-recognition-part-1/#selective-search">selective search</a>, it identifies a manageable number of bounding-box object region candidates (&ldquo;region of interest&rdquo; or &ldquo;RoI&rdquo;). And then it extracts CNN features from each region independently for classification.</p>
 <figure>
 	<img src="RCNN.png" style="width: 100%;"  />
 	<figcaption>The architecture of R-CNN. (Image source: <a href="https://arxiv.org/abs/1311.2524" target="_blank">Girshick et al., 2014</a>)</figcaption>
@@ -554,7 +554,7 @@ $$
 $$
 </div>
 <h1 id="mask-r-cnn">Mask R-CNN<a hidden class="anchor" aria-hidden="true" href="#mask-r-cnn">#</a></h1>
-<p>Mask R-CNN (<a href="https://arxiv.org/pdf/1703.06870.pdf">He et al., 2017</a>) extends Faster R-CNN to pixel-level <a href="https://lilianweng.github.io/posts/2017-10-29-object-recognition-part-1/#image-segmentation-felzenszwalbs-algorithm">image segmentation</a>. The key point is to decouple the classification and the pixel-level mask prediction tasks. Based on the framework of <a href="#faster-r-cnn">Faster R-CNN</a>, it added a third branch for predicting an object mask in parallel with the existing branches for classification and localization. The mask branch is a small fully-connected network applied to each RoI, predicting a segmentation mask in a pixel-to-pixel manner.</p>
+<p>Mask R-CNN (<a href="https://arxiv.org/pdf/1703.06870.pdf">He et al., 2017</a>) extends Faster R-CNN to pixel-level <a href="https://yikhuen.github.io/posts/2017-10-29-object-recognition-part-1/#image-segmentation-felzenszwalbs-algorithm">image segmentation</a>. The key point is to decouple the classification and the pixel-level mask prediction tasks. Based on the framework of <a href="#faster-r-cnn">Faster R-CNN</a>, it added a third branch for predicting an object mask in parallel with the existing branches for classification and localization. The mask branch is a small fully-connected network applied to each RoI, predicting a segmentation mask in a pixel-to-pixel manner.</p>
 <figure>
 	<img src="mask-rcnn.png" style="width: 550px;"  />
 	<figcaption>Mask R-CNN is Faster R-CNN model with image segmentation. (Image source: <a href="https://arxiv.org/pdf/1703.06870.pdf" target="_blank">He et al., 2017</a>)</figcaption>
@@ -607,17 +607,17 @@ $$
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://lilianweng.github.io/tags/object-detection/">Object-Detection</a></li>
-      <li><a href="https://lilianweng.github.io/tags/object-recognition/">Object-Recognition</a></li>
-      <li><a href="https://lilianweng.github.io/tags/vision-model/">Vision-Model</a></li>
+      <li><a href="https://yikhuen.github.io/tags/object-detection/">Object-Detection</a></li>
+      <li><a href="https://yikhuen.github.io/tags/object-recognition/">Object-Recognition</a></li>
+      <li><a href="https://yikhuen.github.io/tags/vision-model/">Vision-Model</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://lilianweng.github.io/posts/2018-01-23-multi-armed-bandit/">
+  <a class="prev" href="https://yikhuen.github.io/posts/2018-01-23-multi-armed-bandit/">
     <span class="title">« </span>
     <br>
     <span>The Multi-Armed Bandit Problem and Its Solutions</span>
   </a>
-  <a class="next" href="https://lilianweng.github.io/posts/2017-12-15-object-recognition-part-2/">
+  <a class="next" href="https://yikhuen.github.io/posts/2017-12-15-object-recognition-part-2/">
     <span class="title"> »</span>
     <br>
     <span>Object Detection for Dummies Part 2: CNN, DPM and Overfeat</span>
@@ -675,7 +675,7 @@ $$
     </main>
     
 <footer class="footer">
-    <span>&copy; 2025 <a href="https://lilianweng.github.io/">YK's Log</a></span>
+    <span>&copy; 2025 <a href="https://yikhuen.github.io/">YK's Log</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

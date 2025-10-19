@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Agent on Lil&#39;Log</title>
-    <link>https://lilianweng.github.io/tags/agent/</link>
+    <link>https://yikhuen.github.io/tags/agent/</link>
     <description>Recent content in Agent on Lil&#39;Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 23 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lilianweng.github.io/tags/agent/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 23 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://yikhuen.github.io/tags/agent/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>LLM Powered Autonomous Agents</title>
-      <link>https://lilianweng.github.io/posts/2023-06-23-agent/</link>
+      <link>https://yikhuen.github.io/posts/2023-06-23-agent/</link>
       <pubDate>Fri, 23 Jun 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://lilianweng.github.io/posts/2023-06-23-agent/</guid>
+      <guid>https://yikhuen.github.io/posts/2023-06-23-agent/</guid>
       <description>&lt;p&gt;Building agents with LLM (large language model) as its core controller is a cool concept. Several proof-of-concepts demos, such as &lt;a href=&#34;https://github.com/Significant-Gravitas/Auto-GPT&#34;&gt;AutoGPT&lt;/a&gt;, &lt;a href=&#34;https://github.com/AntonOsika/gpt-engineer&#34;&gt;GPT-Engineer&lt;/a&gt; and &lt;a href=&#34;https://github.com/yoheinakajima/babyagi&#34;&gt;BabyAGI&lt;/a&gt;, serve as inspiring examples. The potentiality of LLM extends beyond generating well-written copies, stories, essays and programs; it can be framed as a powerful general problem solver.&lt;/p&gt;
 &lt;h1 id=&#34;agent-system-overview&#34;&gt;Agent System Overview&lt;/h1&gt;
 &lt;p&gt;In a LLM-powered autonomous agent system, LLM functions as the agent&amp;rsquo;s brain, complemented by several key components:&lt;/p&gt;
@@ -25,7 +25,7 @@
 &lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Memory&lt;/strong&gt;
 &lt;ul&gt;
-&lt;li&gt;Short-term memory: I would consider all the in-context learning (See &lt;a href=&#34;https://lilianweng.github.io/posts/2023-03-15-prompt-engineering/&#34;&gt;Prompt Engineering&lt;/a&gt;) as utilizing short-term memory of the model to learn.&lt;/li&gt;
+&lt;li&gt;Short-term memory: I would consider all the in-context learning (See &lt;a href=&#34;https://yikhuen.github.io/posts/2023-03-15-prompt-engineering/&#34;&gt;Prompt Engineering&lt;/a&gt;) as utilizing short-term memory of the model to learn.&lt;/li&gt;
 &lt;li&gt;Long-term memory: This provides the agent with the capability to retain and recall (infinite) information over extended periods, often by leveraging an external vector store and fast retrieval.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;

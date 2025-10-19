@@ -10,18 +10,18 @@
 <meta name="description" content="
 Stochastic gradient descent is a universal choice for optimizing deep learning models. However, it is not the only option. With black-box optimization algorithms, you can evaluate a target function $f(x): \mathbb{R}^n \to \mathbb{R}$, even when you don&rsquo;t know the precise analytic form of $f(x)$ and thus cannot compute gradients or the Hessian matrix. Examples of black-box optimization methods include Simulated Annealing, Hill Climbing and Nelder-Mead method.">
 <meta name="author" content="Lilian Weng">
-<link rel="canonical" href="https://lilianweng.github.io/posts/2019-09-05-evolution-strategies/" />
+<link rel="canonical" href="https://yikhuen.github.io/posts/2019-09-05-evolution-strategies/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.51b2420ff5ea1215cdf584af7ba59d5fea94201c33f25109d6448c7271631316.css" integrity="sha256-UbJCD/XqEhXN9YSve6WdX&#43;qUIBwz8lEJ1kSMcnFjExY=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.2eadbb982468c11a433a3e291f01326f2ba43f065e256bf792dbd79640a92316.js" integrity="sha256-Lq27mCRowRpDOj4pHwEybyukPwZeJWv3ktvXlkCpIxY="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://lilianweng.github.io/favicon_wine.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://lilianweng.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://lilianweng.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://lilianweng.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://lilianweng.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="https://yikhuen.github.io/favicon_wine.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://yikhuen.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://yikhuen.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://yikhuen.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://yikhuen.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://lilianweng.github.io/posts/2019-09-05-evolution-strategies/" />
+<link rel="alternate" hreflang="en" href="https://yikhuen.github.io/posts/2019-09-05-evolution-strategies/" />
 <noscript>
     <style>
         #theme-toggle,
@@ -180,7 +180,7 @@ Stochastic gradient descent is a universal choice for optimizing deep learning m
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://lilianweng.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
+            <a href="https://yikhuen.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -208,27 +208,27 @@ Stochastic gradient descent is a universal choice for optimizing deep learning m
         </div>
         <ul id="menu">
             <li>
-                <a href="https://lilianweng.github.io/" title="Posts">
+                <a href="https://yikhuen.github.io/" title="Posts">
                     <span>Posts</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/archives" title="Archive">
+                <a href="https://yikhuen.github.io/archives" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="https://yikhuen.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/tags/" title="Tags">
+                <a href="https://yikhuen.github.io/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/faq" title="FAQ">
+                <a href="https://yikhuen.github.io/faq" title="FAQ">
                     <span>FAQ</span>
                 </a>
             </li>
@@ -666,7 +666,7 @@ $$
 \mathcal{J}(\theta) = \mathbb{E}_{x\sim p_\theta(x)} [f(x)] = \int_x f(x) p_\theta(x) dx
 $$
 </div>
-<p>Using the same log-likelihood <a href="http://blog.shakirm.com/2015/11/machine-learning-trick-of-the-day-5-log-derivative-trick/">trick</a> in <a href="https://lilianweng.github.io/posts/2018-04-08-policy-gradient/#reinforce">REINFORCE</a>:</p>
+<p>Using the same log-likelihood <a href="http://blog.shakirm.com/2015/11/machine-learning-trick-of-the-day-5-log-derivative-trick/">trick</a> in <a href="https://yikhuen.github.io/posts/2018-04-08-policy-gradient/#reinforce">REINFORCE</a>:</p>
 <div>
 $$
 \begin{aligned}
@@ -709,19 +709,19 @@ $$
 \end{aligned}
 $$
 </div>
-<p>In one generation, we can sample many $epsilon_i, i=1,\dots,n$ and evaluate the fitness <em>in parallel</em>. One beautiful design is that no large model parameter needs to be shared. By only communicating the random seeds between workers, it is enough for the master node to do parameter update. This approach is later extended to adaptively learn a loss function; see my previous post on <a href="https://lilianweng.github.io/posts/2019-06-23-meta-rl/#meta-learning-the-loss-function">Evolved Policy Gradient</a>.</p>
+<p>In one generation, we can sample many $epsilon_i, i=1,\dots,n$ and evaluate the fitness <em>in parallel</em>. One beautiful design is that no large model parameter needs to be shared. By only communicating the random seeds between workers, it is enough for the master node to do parameter update. This approach is later extended to adaptively learn a loss function; see my previous post on <a href="https://yikhuen.github.io/posts/2019-06-23-meta-rl/#meta-learning-the-loss-function">Evolved Policy Gradient</a>.</p>
 <figure>
 	<img src="OpenAI-ES-algorithm.png" style="width: 100%;"  />
 	<figcaption>The algorithm for training a RL policy using evolution strategies. (Image source: <a href="https://arxiv.org/abs/1703.03864" target="_blank">ES-for-RL</a> paper)</figcaption>
 </figure>
 <p>To make the performance more robust, OpenAI ES adopts virtual batch normalization (BN with mini-batch used for calculating statistics fixed), mirror sampling (sampling a pair of $(-\epsilon, \epsilon)$ for evaluation), and <a href="#fitness-shaping">fitness shaping</a>.</p>
 <h2 id="exploration-with-es">Exploration with ES<a hidden class="anchor" aria-hidden="true" href="#exploration-with-es">#</a></h2>
-<p>Exploration (<a href="https://lilianweng.github.io/posts/2018-01-23-multi-armed-bandit/#exploitation-vs-exploration">vs exploitation</a>) is an important topic in RL. The optimization direction in the ES algorithm <a href="TBA">above</a> is only extracted from the cumulative return $F(\theta)$. Without explicit exploration, the agent might get trapped in a local optimum.</p>
+<p>Exploration (<a href="https://yikhuen.github.io/posts/2018-01-23-multi-armed-bandit/#exploitation-vs-exploration">vs exploitation</a>) is an important topic in RL. The optimization direction in the ES algorithm <a href="TBA">above</a> is only extracted from the cumulative return $F(\theta)$. Without explicit exploration, the agent might get trapped in a local optimum.</p>
 <p>Novelty-Search ES (<strong>NS-ES</strong>; <a href="https://arxiv.org/abs/1712.06560">Conti et al, 2018</a>) encourages exploration by updating the parameter in the direction to maximize the <em>novelty</em> score. The novelty score depends on a domain-specific behavior characterization function $b(\pi_\theta)$. The choice of $b(\pi_\theta)$ is specific to the task and seems to be a bit arbitrary; for example, in the Humanoid locomotion task in the paper, $b(\pi_\theta)$ is the final $(x,y)$ location of the agent.</p>
 <ol>
 <li>Every policy&rsquo;s $b(\pi_\theta)$ is pushed to an archive set $\mathcal{A}$.</li>
 <li>Novelty of a policy $\pi_\theta$ is measured as the k-nearest neighbor score between $b(\pi_\theta)$ and all other entries in $\mathcal{A}$.
-(The use case of the archive set sounds quite similar to <a href="https://lilianweng.github.io/posts/2019-06-23-meta-rl/#episodic-control">episodic memory</a>.)</li>
+(The use case of the archive set sounds quite similar to <a href="https://yikhuen.github.io/posts/2019-06-23-meta-rl/#episodic-control">episodic memory</a>.)</li>
 </ol>
 <div>
 $$
@@ -736,7 +736,7 @@ $$
 = \frac{1}{\sigma}\mathbb{E}_{\epsilon\sim\mathcal{N}(0, I)} [ \epsilon N(\hat{\theta} + \sigma\epsilon, \mathcal{A}) ]
 $$
 </div>
-<p>NS-ES maintains a group of $M$ independently trained agents (&ldquo;meta-population&rdquo;), $\mathcal{M} = \{\theta_1, \dots, \theta_M \}$ and picks one to advance proportional to the novelty score. Eventually we select the best policy. This process is equivalent to ensembling; also see the same idea in <a href="https://lilianweng.github.io/posts/2018-04-08-policy-gradient/#svpg">SVPG</a>.</p>
+<p>NS-ES maintains a group of $M$ independently trained agents (&ldquo;meta-population&rdquo;), $\mathcal{M} = \{\theta_1, \dots, \theta_M \}$ and picks one to advance proportional to the novelty score. Eventually we select the best policy. This process is equivalent to ensembling; also see the same idea in <a href="https://yikhuen.github.io/posts/2018-04-08-policy-gradient/#svpg">SVPG</a>.</p>
 <div>
 $$
 \begin{aligned}
@@ -768,7 +768,7 @@ $$
 	<img src="CEM-RL.png" style="width: 100%;"  />
 	<figcaption>Architectures of the (a) CEM-RL and (b) <a href="https://papers.nips.cc/paper/7395-evolution-guided-policy-gradient-in-reinforcement-learning.pdf" target="_blank">ERL</a> algorithms (Image source: <a href="https://arxiv.org/abs/1810.01222" target="_blank">CEM-RL</a> paper)</figcaption>
 </figure>
-<p>The CEM-RL method (<a href="https://arxiv.org/abs/1810.01222">Pourchot &amp; Sigaud, 2019</a>) combines Cross Entropy Method (CEM) with either <a href="https://lilianweng.github.io/posts/2018-04-08-policy-gradient/#ddpg">DDPG</a> or <a href="https://lilianweng.github.io/posts/2018-04-08-policy-gradient/#td3">TD3</a>. CEM here works pretty much the same as the simple Gaussian ES described <a href="#simple-gaussian-evolution-strategies">above</a> and therefore the same function can be replaced using CMA-ES. CEM-RL is built on the framework of <em>Evolutionary Reinforcement Learning</em> (<em>ERL</em>; <a href="https://papers.nips.cc/paper/7395-evolution-guided-policy-gradient-in-reinforcement-learning.pdf">Khadka &amp; Tumer, 2018</a>) in which the standard EA algorithm selects and evolves a population of actors and the rollout experience generated in the process is then added into reply buffer for training both RL-actor and RL-critic networks.</p>
+<p>The CEM-RL method (<a href="https://arxiv.org/abs/1810.01222">Pourchot &amp; Sigaud, 2019</a>) combines Cross Entropy Method (CEM) with either <a href="https://yikhuen.github.io/posts/2018-04-08-policy-gradient/#ddpg">DDPG</a> or <a href="https://yikhuen.github.io/posts/2018-04-08-policy-gradient/#td3">TD3</a>. CEM here works pretty much the same as the simple Gaussian ES described <a href="#simple-gaussian-evolution-strategies">above</a> and therefore the same function can be replaced using CMA-ES. CEM-RL is built on the framework of <em>Evolutionary Reinforcement Learning</em> (<em>ERL</em>; <a href="https://papers.nips.cc/paper/7395-evolution-guided-policy-gradient-in-reinforcement-learning.pdf">Khadka &amp; Tumer, 2018</a>) in which the standard EA algorithm selects and evolves a population of actors and the rollout experience generated in the process is then added into reply buffer for training both RL-actor and RL-critic networks.</p>
 <p>Workflow:</p>
 <ul>
 <li>
@@ -795,7 +795,7 @@ $$
 </ul>
 <h1 id="extension-ea-in-deep-learning">Extension: EA in Deep Learning<a hidden class="anchor" aria-hidden="true" href="#extension-ea-in-deep-learning">#</a></h1>
 <p>(This section is not on evolution strategies, but still an interesting and relevant reading.)</p>
-<p>The <em>Evolutionary Algorithms</em> have been applied on many deep learning problems. POET (<a href="https://arxiv.org/abs/1901.01753">Wang et al, 2019</a>) is a framework based on EA and attempts to generate a variety of different tasks while the problems themselves are being solved. POET has been introduced in my <a href="https://lilianweng.github.io/posts/2019-06-23-meta-rl/#task-generation-by-domain-randomization">last post</a> on meta-RL. Evolutionary Reinforcement Learning (ERL) is another example; See Fig. 7 (b).</p>
+<p>The <em>Evolutionary Algorithms</em> have been applied on many deep learning problems. POET (<a href="https://arxiv.org/abs/1901.01753">Wang et al, 2019</a>) is a framework based on EA and attempts to generate a variety of different tasks while the problems themselves are being solved. POET has been introduced in my <a href="https://yikhuen.github.io/posts/2019-06-23-meta-rl/#task-generation-by-domain-randomization">last post</a> on meta-RL. Evolutionary Reinforcement Learning (ERL) is another example; See Fig. 7 (b).</p>
 <p>Below I would like to introduce two applications in more detail, <em>Population-Based Training (PBT)</em> and <em>Weight-Agnostic Neural Networks (WANN)</em>.</p>
 <h2 id="hyperparameter-tuning-pbt">Hyperparameter Tuning: PBT<a hidden class="anchor" aria-hidden="true" href="#hyperparameter-tuning-pbt">#</a></h2>
 <figure>
@@ -860,16 +860,16 @@ $$
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://lilianweng.github.io/tags/evolution/">Evolution</a></li>
-      <li><a href="https://lilianweng.github.io/tags/reinforcement-learning/">Reinforcement-Learning</a></li>
+      <li><a href="https://yikhuen.github.io/tags/evolution/">Evolution</a></li>
+      <li><a href="https://yikhuen.github.io/tags/reinforcement-learning/">Reinforcement-Learning</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://lilianweng.github.io/posts/2019-11-10-self-supervised/">
+  <a class="prev" href="https://yikhuen.github.io/posts/2019-11-10-self-supervised/">
     <span class="title">« </span>
     <br>
     <span>Self-Supervised Representation Learning</span>
   </a>
-  <a class="next" href="https://lilianweng.github.io/posts/2019-06-23-meta-rl/">
+  <a class="next" href="https://yikhuen.github.io/posts/2019-06-23-meta-rl/">
     <span class="title"> »</span>
     <br>
     <span>Meta Reinforcement Learning</span>
@@ -927,7 +927,7 @@ $$
     </main>
     
 <footer class="footer">
-    <span>&copy; 2025 <a href="https://lilianweng.github.io/">YK's Log</a></span>
+    <span>&copy; 2025 <a href="https://yikhuen.github.io/">YK's Log</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

@@ -10,18 +10,18 @@
 <meta name="description" content="
 The goal of contrastive representation learning is to learn such an embedding space in which similar sample pairs stay close to each other while dissimilar ones are far apart. Contrastive learning can be applied to both supervised and unsupervised settings. When working with unsupervised data, contrastive learning is one of the most powerful approaches in self-supervised learning.">
 <meta name="author" content="Lilian Weng">
-<link rel="canonical" href="https://lilianweng.github.io/posts/2021-05-31-contrastive/" />
+<link rel="canonical" href="https://yikhuen.github.io/posts/2021-05-31-contrastive/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.51b2420ff5ea1215cdf584af7ba59d5fea94201c33f25109d6448c7271631316.css" integrity="sha256-UbJCD/XqEhXN9YSve6WdX&#43;qUIBwz8lEJ1kSMcnFjExY=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.2eadbb982468c11a433a3e291f01326f2ba43f065e256bf792dbd79640a92316.js" integrity="sha256-Lq27mCRowRpDOj4pHwEybyukPwZeJWv3ktvXlkCpIxY="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://lilianweng.github.io/favicon_wine.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://lilianweng.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://lilianweng.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://lilianweng.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://lilianweng.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="https://yikhuen.github.io/favicon_wine.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://yikhuen.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://yikhuen.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://yikhuen.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://yikhuen.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://lilianweng.github.io/posts/2021-05-31-contrastive/" />
+<link rel="alternate" hreflang="en" href="https://yikhuen.github.io/posts/2021-05-31-contrastive/" />
 <noscript>
     <style>
         #theme-toggle,
@@ -180,7 +180,7 @@ The goal of contrastive representation learning is to learn such an embedding sp
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://lilianweng.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
+            <a href="https://yikhuen.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -208,27 +208,27 @@ The goal of contrastive representation learning is to learn such an embedding sp
         </div>
         <ul id="menu">
             <li>
-                <a href="https://lilianweng.github.io/" title="Posts">
+                <a href="https://yikhuen.github.io/" title="Posts">
                     <span>Posts</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/archives" title="Archive">
+                <a href="https://yikhuen.github.io/archives" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="https://yikhuen.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/tags/" title="Tags">
+                <a href="https://yikhuen.github.io/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/faq" title="FAQ">
+                <a href="https://yikhuen.github.io/faq" title="FAQ">
                     <span>FAQ</span>
                 </a>
             </li>
@@ -376,7 +376,7 @@ The goal of contrastive representation learning is to learn such an embedding sp
 </div>
 
   <div class="post-content"><!-- The main idea of contrastive learning is to learn representations such that similar samples stay close to each other, while dissimilar ones are far apart. Contrastive learning can be applied to both supervised and unsupervised data and has been shown to achieve good performance on a variety of vision and language tasks. -->
-<p>The goal of contrastive representation learning is to learn such an embedding space in which similar sample pairs stay close to each other while dissimilar ones are far apart. Contrastive learning can be applied to both supervised and unsupervised settings. When working with unsupervised data, contrastive learning is one of the most powerful approaches in <a href="https://lilianweng.github.io/posts/2019-11-10-self-supervised/">self-supervised learning</a>.</p>
+<p>The goal of contrastive representation learning is to learn such an embedding space in which similar sample pairs stay close to each other while dissimilar ones are far apart. Contrastive learning can be applied to both supervised and unsupervised settings. When working with unsupervised data, contrastive learning is one of the most powerful approaches in <a href="https://yikhuen.github.io/posts/2019-11-10-self-supervised/">self-supervised learning</a>.</p>
 <h1 id="contrastive-training-objectives">Contrastive Training Objectives<a hidden class="anchor" aria-hidden="true" href="#contrastive-training-objectives">#</a></h1>
 <p>In early versions of loss functions for contrastive learning, only one positive and one negative sample are involved. The trend in recent training objectives is to include multiple positive and negative pairs in one batch.</p>
 <h2 id="contrastive-loss">Contrastive Loss<a hidden class="anchor" aria-hidden="true" href="#contrastive-loss">#</a></h2>
@@ -439,7 +439,7 @@ $$
 </div>
 <p>If we only sample one negative sample per class, it is equivalent to the softmax loss for multi-class classification.</p>
 <h2 id="nce">NCE<a hidden class="anchor" aria-hidden="true" href="#nce">#</a></h2>
-<p><strong>Noise Contrastive Estimation</strong>, short for <strong>NCE</strong>, is a method for estimating parameters of a statistical model, proposed by <a href="http://proceedings.mlr.press/v9/gutmann10a.html">Gutmann &amp; Hyvarinen</a> in 2010. The idea is to run logistic regression to tell apart the target data from noise. Read more on how NCE is used for learning word embedding <a href="https://lilianweng.github.io/posts/2017-10-15-word-embedding/#noise-contrastive-estimation-nce">here</a>.</p>
+<p><strong>Noise Contrastive Estimation</strong>, short for <strong>NCE</strong>, is a method for estimating parameters of a statistical model, proposed by <a href="http://proceedings.mlr.press/v9/gutmann10a.html">Gutmann &amp; Hyvarinen</a> in 2010. The idea is to run logistic regression to tell apart the target data from noise. Read more on how NCE is used for learning word embedding <a href="https://yikhuen.github.io/posts/2017-10-15-word-embedding/#noise-contrastive-estimation-nce">here</a>.</p>
 <p>Let $\mathbf{x}$ be the target sample $\sim P(\mathbf{x} \vert C=1; \theta) = p_\theta(\mathbf{x})$ and $\tilde{\mathbf{x}}$ be the noise sample $\sim  P(\tilde{\mathbf{x}} \vert C=0) = q(\tilde{\mathbf{x}})$. Note that the logistic regression models the logit (i.e. log-odds) and in this case we would like to model the logit of a sample $u$ from the target data distribution instead of the noise distribution:</p>
 <div>
 $$
@@ -457,7 +457,7 @@ $$
 </div>
 <p>Here I listed the original form of NCE loss which works with only one positive and one noise sample. In many follow-up works, contrastive loss incorporating multiple negative samples is also broadly referred to as NCE.</p>
 <h2 id="infonce">InfoNCE<a hidden class="anchor" aria-hidden="true" href="#infonce">#</a></h2>
-<p>The <strong>InfoNCE loss</strong> in CPC (<a href="https://lilianweng.github.io/posts/2019-11-10-self-supervised/#contrastive-predictive-coding">Contrastive Predictive Coding</a>; <a href="https://arxiv.org/abs/1807.03748">van den Oord, et al. 2018</a>), inspired by <a href="#NCE">NCE</a>, uses categorical cross-entropy loss to identify the positive sample amongst a set of unrelated noise samples.</p>
+<p>The <strong>InfoNCE loss</strong> in CPC (<a href="https://yikhuen.github.io/posts/2019-11-10-self-supervised/#contrastive-predictive-coding">Contrastive Predictive Coding</a>; <a href="https://arxiv.org/abs/1807.03748">van den Oord, et al. 2018</a>), inspired by <a href="#NCE">NCE</a>, uses categorical cross-entropy loss to identify the positive sample amongst a set of unrelated noise samples.</p>
 <p>Given a context vector $\mathbf{c}$, the positive sample should be drawn from the conditional distribution $p(\mathbf{x} \vert \mathbf{c})$, while $N-1$ negative samples are drawn from the proposal distribution $p(\mathbf{x})$, independent from the context $\mathbf{c}$. For brevity, let us label all the samples as $X=\{ \mathbf{x}_i \}^N_{i=1}$ among which only one of them $\mathbf{x}_\texttt{pos}$ is a positive sample. The probability of we detecting the positive sample correctly is:</p>
 <div>
 $$
@@ -521,7 +521,7 @@ $$
 <h2 id="large-batch-size">Large Batch Size<a hidden class="anchor" aria-hidden="true" href="#large-batch-size">#</a></h2>
 <p>Using a large batch size during training is another key ingredient in the success of many contrastive learning methods (e.g. <a href="#simclr">SimCLR</a>, <a href="#clip">CLIP</a>), especially when it relies on in-batch negatives. Only when the batch size is big enough, the loss function can cover a diverse enough collection of negative samples, challenging enough for the model to learn meaningful representation to distinguish different examples.</p>
 <h2 id="hard-negative-mining">Hard Negative Mining<a hidden class="anchor" aria-hidden="true" href="#hard-negative-mining">#</a></h2>
-<p>Hard negative samples should have different labels from the anchor sample, but have embedding features very close to the anchor embedding. With access to ground truth labels in supervised datasets, it is easy to identify task-specific hard negatives. For example when learning sentence embedding, we can treat sentence pairs labelled as &ldquo;contradiction&rdquo; in NLI datasets as hard negative pairs (e.g. <a href="#dropout-and-cutoff">SimCSE</a>, or use top incorrect candidates returned by BM25 with most keywords matched as hard negative samples (<a href="https://lilianweng.github.io/posts/2020-10-29-odqa/#DPR">DPR</a>; <a href="https://arxiv.org/abs/2004.04906">Karpukhin et al., 2020</a>).</p>
+<p>Hard negative samples should have different labels from the anchor sample, but have embedding features very close to the anchor embedding. With access to ground truth labels in supervised datasets, it is easy to identify task-specific hard negatives. For example when learning sentence embedding, we can treat sentence pairs labelled as &ldquo;contradiction&rdquo; in NLI datasets as hard negative pairs (e.g. <a href="#dropout-and-cutoff">SimCSE</a>, or use top incorrect candidates returned by BM25 with most keywords matched as hard negative samples (<a href="https://yikhuen.github.io/posts/2020-10-29-odqa/#DPR">DPR</a>; <a href="https://arxiv.org/abs/2004.04906">Karpukhin et al., 2020</a>).</p>
 <p>However, it becomes tricky to do hard negative mining when we want to remain unsupervised. Increasing training batch size or <a href="#memory-bank">memory bank</a> size implicitly introduces more hard negative samples, but it leads to a heavy burden of large memory usage as a side effect.</p>
 <p><a href="https://arxiv.org/abs/2007.00224">Chuang et al. (2020)</a> studied the sampling bias in contrastive learning and proposed debiased loss. In the unsupervised setting, since we do not know the ground truth labels, we may accidentally sample false negative samples. Sampling bias can lead to significant performance drop.</p>
 <figure>
@@ -594,7 +594,7 @@ $$
 <h3 id="augmentation-strategies">Augmentation Strategies<a hidden class="anchor" aria-hidden="true" href="#augmentation-strategies">#</a></h3>
 <p>Many frameworks are designed for learning good data augmentation strategies (i.e. a composition of multiple transforms). Here are a few common ones.</p>
 <ul>
-<li><a href="https://lilianweng.github.io/posts/2019-05-05-domain-randomization/#AutoAugment">AutoAugment</a> (<a href="https://arxiv.org/abs/1805.09501">Cubuk, et al. 2018</a>): Inspired by <a href="https://lilianweng.github.io/posts/2020-08-06-nas/">NAS</a>, AutoAugment frames the problem of learning best data augmentation operations (i.e. shearing, rotation, invert, etc.) for image classification as an RL problem and looks for the combination that leads to the highest accuracy on the evaluation set.</li>
+<li><a href="https://yikhuen.github.io/posts/2019-05-05-domain-randomization/#AutoAugment">AutoAugment</a> (<a href="https://arxiv.org/abs/1805.09501">Cubuk, et al. 2018</a>): Inspired by <a href="https://yikhuen.github.io/posts/2020-08-06-nas/">NAS</a>, AutoAugment frames the problem of learning best data augmentation operations (i.e. shearing, rotation, invert, etc.) for image classification as an RL problem and looks for the combination that leads to the highest accuracy on the evaluation set.</li>
 <li>RandAugment (<a href="https://arxiv.org/abs/1909.13719">Cubuk et al., 2019</a>): RandAugment greatly reduces the search space of AutoAugment by controlling the magnitudes of different transformation operations with a single magnitude parameter.</li>
 <li>PBA (Population based augmentation; <a href="https://arxiv.org/abs/1905.05393">Ho et al., 2019</a>): PBA combined PBT (<a href="https://arxiv.org/abs/1711.09846">Jaderberg et al, 2017</a>) with AutoAugment, using the evolutionary algorithm to train a population of children models in parallel to evolve the best augmentation strategies.</li>
 <li>UDA (Unsupervised Data Augmentation; <a href="https://arxiv.org/abs/1904.12848">Xie et al., 2019</a>): Among a set of possible augmentation strategies, UDA selects those to minimize the KL divergence between the predicted distribution over an unlabelled example and its unlabelled augmented version.</li>
@@ -754,7 +754,7 @@ $$
 <p>The advantage of MoCo compared to <a href="#simclr">SimCLR</a> is that MoCo decouples the batch size from the number of negatives, but SimCLR requires a large batch size in order to have enough negative samples and suffers performance drops when their batch size is reduced.</p>
 <p>Two designs in SimCLR, namely, (1) an MLP projection head and (2) stronger data augmentation, are proved to be very efficient. <strong>MoCo V2</strong> (<a href="https://arxiv.org/abs/2003.04297">Chen et al, 2020</a>) combined these two designs, achieving even better transfer performance with no dependency on a very large batch size.</p>
 <h3 id="curl">CURL<a hidden class="anchor" aria-hidden="true" href="#curl">#</a></h3>
-<p><strong>CURL</strong> (<a href="https://arxiv.org/abs/2004.04136">Srinivas, et al. 2020</a>) applies the above ideas in <a href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/">Reinforcement Learning</a>. It learns a visual representation for RL tasks by matching embeddings of two data-augmented versions, $o_q$ and $o_k$, of the raw observation $o$ via contrastive loss. CURL primarily relies on random crop data augmentation. The key encoder is implemented as a momentum encoder with weights as EMA of the query encoder weights, same as in <a href="#moco--moco-v2">MoCo</a>.</p>
+<p><strong>CURL</strong> (<a href="https://arxiv.org/abs/2004.04136">Srinivas, et al. 2020</a>) applies the above ideas in <a href="https://yikhuen.github.io/posts/2018-02-19-rl-overview/">Reinforcement Learning</a>. It learns a visual representation for RL tasks by matching embeddings of two data-augmented versions, $o_q$ and $o_k$, of the raw observation $o$ via contrastive loss. CURL primarily relies on random crop data augmentation. The key encoder is implemented as a momentum encoder with weights as EMA of the query encoder weights, same as in <a href="#moco--moco-v2">MoCo</a>.</p>
 <p>One significant difference between RL and supervised visual tasks is that RL depends on <em>temporal consistency</em> between consecutive frames. Therefore, CURL applies augmentation consistently on each stack of frames to retain information about the temporal structure of the observation.</p>
 <figure>
 	<img src="CURL.png" style="width: 70%;"  />
@@ -857,7 +857,7 @@ $$
 <h3 id="back-translation">Back-translation<a hidden class="anchor" aria-hidden="true" href="#back-translation">#</a></h3>
 <p><strong>CERT</strong> (<em>Contrastive self-supervised Encoder Representations from Transformers</em>; <a href="https://arxiv.org/abs/2005.12766">Fang et al. (2020)</a>; <a href="https://github.com/UCSD-AI4H/CERT">code</a>) generates augmented sentences via <strong>back-translation</strong>. Various translation models for different languages can be employed for creating different versions of augmentations. Once we have a noise version of text samples, many contrastive learning frameworks introduced above, such as <a href="#moco--moco-v2">MoCo</a>, can be used to learn sentence embedding.</p>
 <h3 id="dropout-and-cutoff">Dropout and Cutoff<a hidden class="anchor" aria-hidden="true" href="#dropout-and-cutoff">#</a></h3>
-<p><a href="https://arxiv.org/abs/2009.13818">Shen et al. (2020)</a> proposed to apply <strong>Cutoff</strong> to text augmentation, inspired by <a href="https://lilianweng.github.io/posts/2019-01-31-lm/#cross-view-training">cross-view training</a>. They proposed three cutoff augmentation strategies:</p>
+<p><a href="https://arxiv.org/abs/2009.13818">Shen et al. (2020)</a> proposed to apply <strong>Cutoff</strong> to text augmentation, inspired by <a href="https://yikhuen.github.io/posts/2019-01-31-lm/#cross-view-training">cross-view training</a>. They proposed three cutoff augmentation strategies:</p>
 <ol>
 <li><em>Token cutoff</em> removes the information of a few selected tokens. To make sure there is no data leakage, corresponding tokens in the input, positional and other relevant embedding matrices should all be zeroed out.,</li>
 <li><em>Feature cutoff</em> removes a few feature columns.</li>
@@ -903,7 +903,7 @@ $$
 <p><a id='isotropy' ></a>The embedding representation space is deemed <em>isotropic</em> if embeddings are uniformly distributed on each dimension; otherwise, it is <em>anisotropic</em>. <a href="https://arxiv.org/abs/2011.05864">Li et al, (2020)</a> showed that a pre-trained BERT learns a non-smooth <em>anisotropic</em> semantic space of sentence embeddings and thus leads to poor performance for text similarity tasks without fine-tuning. Empirically, they observed two issues with BERT sentence embedding:
 Word frequency biases the embedding space. High-frequency words are close to the origin, but low-frequency ones are far away from the origin.
 Low-frequency words scatter sparsely. The embeddings of low-frequency words tend to be farther to their $k$-NN neighbors, while the embeddings of high-frequency words concentrate more densely.</p>
-<p><strong>BERT-flow</strong> (<a href="https://arxiv.org/abs/2011.05864">Li et al, 2020</a>; <a href="https://github.com/bohanli/BERT-flow">code</a>) was proposed to transform the embedding to a smooth and isotropic Gaussian distribution via <a href="https://lilianweng.github.io/posts/2018-10-13-flow-models/#what-is-normalizing-flows">normalizing flows</a>.</p>
+<p><strong>BERT-flow</strong> (<a href="https://arxiv.org/abs/2011.05864">Li et al, 2020</a>; <a href="https://github.com/bohanli/BERT-flow">code</a>) was proposed to transform the embedding to a smooth and isotropic Gaussian distribution via <a href="https://yikhuen.github.io/posts/2018-10-13-flow-models/#what-is-normalizing-flows">normalizing flows</a>.</p>
 <figure>
 	<img src="BERT-flow.png" style="width: 50%;"  />
 	<figcaption>Illustration of the flow-based calibration over the original sentence embedding space in BERT-flow. (Image source: <a href="https://arxiv.org/abs/2011.05864" target="_blank">Li et al, 2020</a>)</figcaption>
@@ -944,7 +944,7 @@ $$
 <p>Whitening operations were shown to outperform BERT-flow and achieve SOTA with 256 sentence dimensionality on many STS benchmarks, either with or without NLI supervision.</p>
 <h2 id="unsupervised-sentence-embedding-learning">Unsupervised Sentence Embedding Learning<a hidden class="anchor" aria-hidden="true" href="#unsupervised-sentence-embedding-learning">#</a></h2>
 <h3 id="context-prediction">Context Prediction<a hidden class="anchor" aria-hidden="true" href="#context-prediction">#</a></h3>
-<p><strong>Quick-Thought (QT) vectors</strong> (<a href="https://arxiv.org/abs/1803.02893">Logeswaran &amp; Lee, 2018</a>) formulate sentence representation learning as a <em>classification</em> problem: Given a sentence and its context, a classifier distinguishes context sentences from other contrastive sentences based on their vector representations (<a href="https://lilianweng.github.io/posts/2019-01-31-lm/#MLM">&ldquo;cloze test&rdquo;</a>). Such a formulation removes the softmax output layer which causes training slowdown.</p>
+<p><strong>Quick-Thought (QT) vectors</strong> (<a href="https://arxiv.org/abs/1803.02893">Logeswaran &amp; Lee, 2018</a>) formulate sentence representation learning as a <em>classification</em> problem: Given a sentence and its context, a classifier distinguishes context sentences from other contrastive sentences based on their vector representations (<a href="https://yikhuen.github.io/posts/2019-01-31-lm/#MLM">&ldquo;cloze test&rdquo;</a>). Such a formulation removes the softmax output layer which causes training slowdown.</p>
 <figure>
 	<img src="quick-thought.png" style="width: 85%;"  />
 	<figcaption>Illustration of how Quick-Thought sentence embedding vectors are learned. (Image source: <a href="https://arxiv.org/abs/1803.02893" target="_blank">Logeswaran & Lee, 2018</a>)</figcaption>
@@ -1045,19 +1045,19 @@ $$
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://lilianweng.github.io/tags/representation-learning/">Representation-Learning</a></li>
-      <li><a href="https://lilianweng.github.io/tags/long-read/">Long-Read</a></li>
-      <li><a href="https://lilianweng.github.io/tags/language-model/">Language-Model</a></li>
-      <li><a href="https://lilianweng.github.io/tags/unsupervised-learning/">Unsupervised-Learning</a></li>
-      <li><a href="https://lilianweng.github.io/tags/data-augmentation/">Data-Augmentation</a></li>
+      <li><a href="https://yikhuen.github.io/tags/representation-learning/">Representation-Learning</a></li>
+      <li><a href="https://yikhuen.github.io/tags/long-read/">Long-Read</a></li>
+      <li><a href="https://yikhuen.github.io/tags/language-model/">Language-Model</a></li>
+      <li><a href="https://yikhuen.github.io/tags/unsupervised-learning/">Unsupervised-Learning</a></li>
+      <li><a href="https://yikhuen.github.io/tags/data-augmentation/">Data-Augmentation</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://lilianweng.github.io/posts/2021-07-11-diffusion-models/">
+  <a class="prev" href="https://yikhuen.github.io/posts/2021-07-11-diffusion-models/">
     <span class="title">« </span>
     <br>
     <span>What are Diffusion Models?</span>
   </a>
-  <a class="next" href="https://lilianweng.github.io/posts/2021-03-21-lm-toxicity/">
+  <a class="next" href="https://yikhuen.github.io/posts/2021-03-21-lm-toxicity/">
     <span class="title"> »</span>
     <br>
     <span>Reducing Toxicity in Language Models</span>
@@ -1115,7 +1115,7 @@ $$
     </main>
     
 <footer class="footer">
-    <span>&copy; 2025 <a href="https://lilianweng.github.io/">YK's Log</a></span>
+    <span>&copy; 2025 <a href="https://yikhuen.github.io/">YK's Log</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

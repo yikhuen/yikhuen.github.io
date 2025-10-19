@@ -36,18 +36,18 @@ The agent learns to call external APIs for extra information that is missing fro
 Component One: Planning
 A complicated task usually involves many steps. An agent needs to know what they are and plan ahead.">
 <meta name="author" content="Lilian Weng">
-<link rel="canonical" href="https://lilianweng.github.io/posts/2023-06-23-agent/" />
+<link rel="canonical" href="https://yikhuen.github.io/posts/2023-06-23-agent/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.51b2420ff5ea1215cdf584af7ba59d5fea94201c33f25109d6448c7271631316.css" integrity="sha256-UbJCD/XqEhXN9YSve6WdX&#43;qUIBwz8lEJ1kSMcnFjExY=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.2eadbb982468c11a433a3e291f01326f2ba43f065e256bf792dbd79640a92316.js" integrity="sha256-Lq27mCRowRpDOj4pHwEybyukPwZeJWv3ktvXlkCpIxY="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://lilianweng.github.io/favicon_wine.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://lilianweng.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://lilianweng.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://lilianweng.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://lilianweng.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="https://yikhuen.github.io/favicon_wine.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://yikhuen.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://yikhuen.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://yikhuen.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://yikhuen.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://lilianweng.github.io/posts/2023-06-23-agent/" />
+<link rel="alternate" hreflang="en" href="https://yikhuen.github.io/posts/2023-06-23-agent/" />
 <noscript>
     <style>
         #theme-toggle,
@@ -258,7 +258,7 @@ A complicated task usually involves many steps. An agent needs to know what they
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://lilianweng.github.io/" accesskey="h" title="Lil&#39;Log (Alt + H)">Lil&#39;Log</a>
+            <a href="https://yikhuen.github.io/" accesskey="h" title="Lil&#39;Log (Alt + H)">Lil&#39;Log</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -286,27 +286,27 @@ A complicated task usually involves many steps. An agent needs to know what they
         </div>
         <ul id="menu">
             <li>
-                <a href="https://lilianweng.github.io/" title="Posts">
+                <a href="https://yikhuen.github.io/" title="Posts">
                     <span>Posts</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/archives" title="Archive">
+                <a href="https://yikhuen.github.io/archives" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="https://yikhuen.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/tags/" title="Tags">
+                <a href="https://yikhuen.github.io/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/faq" title="FAQ">
+                <a href="https://yikhuen.github.io/faq" title="FAQ">
                     <span>FAQ</span>
                 </a>
             </li>
@@ -385,7 +385,7 @@ A complicated task usually involves many steps. An agent needs to know what they
 </li>
 <li><strong>Memory</strong>
 <ul>
-<li>Short-term memory: I would consider all the in-context learning (See <a href="https://lilianweng.github.io/posts/2023-03-15-prompt-engineering/">Prompt Engineering</a>) as utilizing short-term memory of the model to learn.</li>
+<li>Short-term memory: I would consider all the in-context learning (See <a href="https://yikhuen.github.io/posts/2023-03-15-prompt-engineering/">Prompt Engineering</a>) as utilizing short-term memory of the model to learn.</li>
 <li>Long-term memory: This provides the agent with the capability to retain and recall (infinite) information over extended periods, often by leveraging an external vector store and fast retrieval.</li>
 </ul>
 </li>
@@ -402,7 +402,7 @@ A complicated task usually involves many steps. An agent needs to know what they
 <h1 id="component-one-planning">Component One: Planning<a hidden class="anchor" aria-hidden="true" href="#component-one-planning">#</a></h1>
 <p>A complicated task usually involves many steps. An agent needs to know what they are and plan ahead.</p>
 <h2 id="task-decomposition">Task Decomposition<a hidden class="anchor" aria-hidden="true" href="#task-decomposition">#</a></h2>
-<p><a href="https://lilianweng.github.io/posts/2023-03-15-prompt-engineering/#chain-of-thought-cot"><strong>Chain of thought</strong></a> (CoT; <a href="https://arxiv.org/abs/2201.11903">Wei et al. 2022</a>) has become a standard prompting technique for enhancing model performance on complex tasks. The model is instructed to &ldquo;think step by step&rdquo; to utilize more test-time computation to decompose hard tasks into smaller and simpler steps. CoT transforms big tasks into multiple manageable tasks and shed lights into an interpretation of the model&rsquo;s thinking process.</p>
+<p><a href="https://yikhuen.github.io/posts/2023-03-15-prompt-engineering/#chain-of-thought-cot"><strong>Chain of thought</strong></a> (CoT; <a href="https://arxiv.org/abs/2201.11903">Wei et al. 2022</a>) has become a standard prompting technique for enhancing model performance on complex tasks. The model is instructed to &ldquo;think step by step&rdquo; to utilize more test-time computation to decompose hard tasks into smaller and simpler steps. CoT transforms big tasks into multiple manageable tasks and shed lights into an interpretation of the model&rsquo;s thinking process.</p>
 <p><strong>Tree of Thoughts</strong> (<a href="https://arxiv.org/abs/2305.10601">Yao et al. 2023</a>) extends CoT by exploring multiple reasoning possibilities at each step. It first decomposes the problem into multiple thought steps and generates multiple thoughts per step, creating a tree structure. The search process can be BFS (breadth-first search) or DFS (depth-first search) with each state evaluated by a classifier (via a prompt) or majority vote.</p>
 <p>Task decomposition can be done (1) by LLM with simple prompting like <code>&quot;Steps for XYZ.\n1.&quot;</code>, <code>&quot;What are the subgoals for achieving XYZ?&quot;</code>, (2) by using task-specific instructions; e.g. <code>&quot;Write a story outline.&quot;</code> for writing a novel, or (3) with human inputs.</p>
 <p>Another quite distinct approach, <strong>LLM+P</strong> (<a href="https://arxiv.org/abs/2304.11477">Liu et al. 2023</a>), involves relying on an external classical planner to do long-horizon planning. This approach utilizes the Planning Domain Definition Language (PDDL) as an intermediate interface to describe the planning problem. In this process, LLM (1) translates the problem into &ldquo;Problem PDDL&rdquo;, then (2) requests a classical planner to generate a PDDL plan based on an existing &ldquo;Domain PDDL&rdquo;, and finally (3) translates the PDDL plan back into natural language. Essentially, the planning step is outsourced to an external tool, assuming the availability of domain-specific PDDL and a suitable planner which is common in certain robotic setups but not in many other domains.</p>
@@ -444,10 +444,10 @@ Observation: ...
 </figure>
 <p>The paper hypothesizes that any algorithm that generates a set of learning histories can be distilled into a neural network by performing behavioral cloning over actions. The history data is generated by a set of source policies, each trained for a specific task. At the training stage, during each RL run, a random task is sampled and a subsequence of multi-episode history is used for training, such that the learned policy is task-agnostic.</p>
 <p>In reality, the model has limited context window length, so episodes should be short enough to construct multi-episode history. Multi-episodic contexts of 2-4 episodes are necessary to learn a near-optimal in-context RL algorithm. The emergence of in-context RL requires long enough context.</p>
-<p>In comparison with three baselines, including ED (expert distillation, behavior cloning with expert trajectories instead of learning history), source policy (used for generating trajectories for distillation by <a href="https://lilianweng.github.io/posts/2018-01-23-multi-armed-bandit/#upper-confidence-bounds">UCB</a>), RL^2 (<a href="https://arxiv.org/abs/1611.02779">Duan et al. 2017</a>; used as upper bound since it needs online RL), AD demonstrates in-context RL with performance getting close to RL^2 despite only using offline RL and learns much faster than other baselines. When conditioned on partial training history of the source policy, AD also improves much faster than ED baseline.</p>
+<p>In comparison with three baselines, including ED (expert distillation, behavior cloning with expert trajectories instead of learning history), source policy (used for generating trajectories for distillation by <a href="https://yikhuen.github.io/posts/2018-01-23-multi-armed-bandit/#upper-confidence-bounds">UCB</a>), RL^2 (<a href="https://arxiv.org/abs/1611.02779">Duan et al. 2017</a>; used as upper bound since it needs online RL), AD demonstrates in-context RL with performance getting close to RL^2 despite only using offline RL and learns much faster than other baselines. When conditioned on partial training history of the source policy, AD also improves much faster than ED baseline.</p>
 <figure>
 	<img src="algorithm-distillation-results.png" style="width: 100%;"  />
-	<figcaption>Comparison of AD, ED, source policy and RL^2 on environments that require memory and exploration. Only binary reward is assigned. The source policies are trained with <a href="https://lilianweng.github.io/posts/2018-04-08-policy-gradient/#a3c" target="_blank">A3C</a> for "dark" environments and <a href="http://lilianweng.github.io/posts/2018-02-19-rl-overview/#deep-q-network" target="_blank">DQN</a> for watermaze.<br/>(Image source: <a href="https://arxiv.org/abs/2210.14215" target="_blank">Laskin et al. 2023</a>)</figcaption>
+	<figcaption>Comparison of AD, ED, source policy and RL^2 on environments that require memory and exploration. Only binary reward is assigned. The source policies are trained with <a href="https://yikhuen.github.io/posts/2018-04-08-policy-gradient/#a3c" target="_blank">A3C</a> for "dark" environments and <a href="http://yikhuen.github.io/posts/2018-02-19-rl-overview/#deep-q-network" target="_blank">DQN</a> for watermaze.<br/>(Image source: <a href="https://arxiv.org/abs/2210.14215" target="_blank">Laskin et al. 2023</a>)</figcaption>
 </figure>
 <h1 id="component-two-memory">Component Two: Memory<a hidden class="anchor" aria-hidden="true" href="#component-two-memory">#</a></h1>
 <p>(Big thank you to ChatGPT for helping me draft this section. I&rsquo;ve learned a lot about the human brain and data structure for fast MIPS in my <a href="https://chat.openai.com/share/46ff149e-a4c7-4dd7-a800-fc4a642ea389">conversations</a> with ChatGPT.)</p>
@@ -501,7 +501,7 @@ Observation: ...
 </figure>
 <p><a name="mrkl"></a><strong>MRKL</strong> (<a href="https://arxiv.org/abs/2205.00445">Karpas et al. 2022</a>), short for &ldquo;Modular Reasoning, Knowledge and Language&rdquo;, is a neuro-symbolic architecture for autonomous agents. A MRKL system is proposed to contain a collection of &ldquo;expert&rdquo; modules and the general-purpose LLM works as a router to route inquiries to the best suitable expert module. These modules can be neural (e.g. deep learning models) or symbolic (e.g. math calculator, currency converter, weather API).</p>
 <p>They did an experiment on fine-tuning LLM to call a calculator, using arithmetic as a test case. Their experiments showed that it was harder to solve verbal math problems than explicitly stated math problems because LLMs (7B Jurassic1-large model) failed to extract the right arguments for the basic arithmetic reliably. The results highlight when the external symbolic tools can work reliably, <em>knowing when to and how to use the tools are crucial</em>, determined by the LLM capability.</p>
-<p>Both <strong>TALM</strong> (Tool Augmented Language Models; <a href="https://arxiv.org/abs/2205.12255">Parisi et al. 2022</a>) and <strong>Toolformer</strong> (<a href="https://arxiv.org/abs/2302.04761">Schick et al. 2023</a>) fine-tune a LM to learn to use external tool APIs. The dataset is expanded based on whether a newly added API call annotation can improve the quality of model outputs. See more details in the <a href="https://lilianweng.github.io/posts/2023-03-15-prompt-engineering/#external-apis">&ldquo;External APIs&rdquo; section</a> of Prompt Engineering.</p>
+<p>Both <strong>TALM</strong> (Tool Augmented Language Models; <a href="https://arxiv.org/abs/2205.12255">Parisi et al. 2022</a>) and <strong>Toolformer</strong> (<a href="https://arxiv.org/abs/2302.04761">Schick et al. 2023</a>) fine-tune a LM to learn to use external tool APIs. The dataset is expanded based on whether a newly added API call annotation can improve the quality of model outputs. See more details in the <a href="https://yikhuen.github.io/posts/2023-03-15-prompt-engineering/#external-apis">&ldquo;External APIs&rdquo; section</a> of Prompt Engineering.</p>
 <p>ChatGPT <a href="https://openai.com/blog/chatgpt-plugins">Plugins</a> and OpenAI API  <a href="https://platform.openai.com/docs/guides/gpt/function-calling">function calling</a> are good examples of LLMs augmented with tool use capability working in practice. The collection of tool APIs can be provided by other developers (as in Plugins) or self-defined (as in function calls).</p>
 <p><strong>HuggingGPT</strong> (<a href="https://arxiv.org/abs/2303.17580">Shen et al. 2023</a>) is a framework to use ChatGPT as the task planner to select models available in HuggingFace platform according to the model descriptions and summarize the response based on the execution results.</p>
 <figure>
@@ -804,19 +804,19 @@ package/project.</p>
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://lilianweng.github.io/tags/nlp/">Nlp</a></li>
-      <li><a href="https://lilianweng.github.io/tags/language-model/">Language-Model</a></li>
-      <li><a href="https://lilianweng.github.io/tags/agent/">Agent</a></li>
-      <li><a href="https://lilianweng.github.io/tags/steerability/">Steerability</a></li>
-      <li><a href="https://lilianweng.github.io/tags/prompting/">Prompting</a></li>
+      <li><a href="https://yikhuen.github.io/tags/nlp/">Nlp</a></li>
+      <li><a href="https://yikhuen.github.io/tags/language-model/">Language-Model</a></li>
+      <li><a href="https://yikhuen.github.io/tags/agent/">Agent</a></li>
+      <li><a href="https://yikhuen.github.io/tags/steerability/">Steerability</a></li>
+      <li><a href="https://yikhuen.github.io/tags/prompting/">Prompting</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://lilianweng.github.io/posts/2023-10-25-adv-attack-llm/">
+  <a class="prev" href="https://yikhuen.github.io/posts/2023-10-25-adv-attack-llm/">
     <span class="title">« </span>
     <br>
     <span>Adversarial Attacks on LLMs</span>
   </a>
-  <a class="next" href="https://lilianweng.github.io/posts/2023-03-15-prompt-engineering/">
+  <a class="next" href="https://yikhuen.github.io/posts/2023-03-15-prompt-engineering/">
     <span class="title"> »</span>
     <br>
     <span>Prompt Engineering</span>
@@ -874,7 +874,7 @@ package/project.</p>
     </main>
     
 <footer class="footer">
-    <span>&copy; 2025 <a href="https://lilianweng.github.io/">Lil&#39;Log</a></span>
+    <span>&copy; 2025 <a href="https://yikhuen.github.io/">Lil&#39;Log</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

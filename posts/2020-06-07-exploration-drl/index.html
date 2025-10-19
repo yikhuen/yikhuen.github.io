@@ -11,18 +11,18 @@
 [Updated on 2020-06-17: Add &ldquo;exploration via disagreement&rdquo; in the &ldquo;Forward Dynamics&rdquo; section.
 Exploitation versus exploration is a critical topic in Reinforcement Learning. We&rsquo;d like the RL agent to find the best solution as fast as possible. However, in the meantime, committing to solutions too quickly without enough exploration sounds pretty bad, as it could lead to local minima or total failure. Modern RL algorithms that optimize for the best returns can achieve good exploitation quite efficiently, while exploration remains more like an open topic.">
 <meta name="author" content="Lilian Weng">
-<link rel="canonical" href="https://lilianweng.github.io/posts/2020-06-07-exploration-drl/" />
+<link rel="canonical" href="https://yikhuen.github.io/posts/2020-06-07-exploration-drl/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.51b2420ff5ea1215cdf584af7ba59d5fea94201c33f25109d6448c7271631316.css" integrity="sha256-UbJCD/XqEhXN9YSve6WdX&#43;qUIBwz8lEJ1kSMcnFjExY=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.2eadbb982468c11a433a3e291f01326f2ba43f065e256bf792dbd79640a92316.js" integrity="sha256-Lq27mCRowRpDOj4pHwEybyukPwZeJWv3ktvXlkCpIxY="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://lilianweng.github.io/favicon_wine.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://lilianweng.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://lilianweng.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://lilianweng.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://lilianweng.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="https://yikhuen.github.io/favicon_wine.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://yikhuen.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://yikhuen.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://yikhuen.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://yikhuen.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://lilianweng.github.io/posts/2020-06-07-exploration-drl/" />
+<link rel="alternate" hreflang="en" href="https://yikhuen.github.io/posts/2020-06-07-exploration-drl/" />
 <noscript>
     <style>
         #theme-toggle,
@@ -183,7 +183,7 @@ Exploitation versus exploration is a critical topic in Reinforcement Learning. W
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://lilianweng.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
+            <a href="https://yikhuen.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -211,27 +211,27 @@ Exploitation versus exploration is a critical topic in Reinforcement Learning. W
         </div>
         <ul id="menu">
             <li>
-                <a href="https://lilianweng.github.io/" title="Posts">
+                <a href="https://yikhuen.github.io/" title="Posts">
                     <span>Posts</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/archives" title="Archive">
+                <a href="https://yikhuen.github.io/archives" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="https://yikhuen.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/tags/" title="Tags">
+                <a href="https://yikhuen.github.io/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/faq" title="FAQ">
+                <a href="https://yikhuen.github.io/faq" title="FAQ">
                     <span>FAQ</span>
                 </a>
             </li>
@@ -312,15 +312,15 @@ Exploitation versus exploration is a critical topic in Reinforcement Learning. W
 
   <div class="post-content"><!-- Exploitation versus exploration is a critical topic in reinforcement learning. This post introduces several common approaches for better exploration in Deep RL. -->
 <p><span class="update">[Updated on 2020-06-17: Add <a href="#exploration-via-disagreement">&ldquo;exploration via disagreement&rdquo;</a> in the &ldquo;Forward Dynamics&rdquo; <a href="#forward-dynamics">section</a>.</span></p>
-<p><a href="https://lilianweng.github.io/posts/2018-01-23-multi-armed-bandit/">Exploitation versus exploration</a> is a critical topic in Reinforcement Learning. We&rsquo;d like the RL agent to find the best solution as fast as possible. However, in the meantime, committing to solutions too quickly without enough exploration sounds pretty bad, as it could lead to local minima or total failure. Modern <a href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/">RL</a> <a href="https://lilianweng.github.io/posts/2018-04-08-policy-gradient/">algorithms</a> that optimize for the best returns can achieve good exploitation quite efficiently, while exploration remains more like an open topic.</p>
+<p><a href="https://yikhuen.github.io/posts/2018-01-23-multi-armed-bandit/">Exploitation versus exploration</a> is a critical topic in Reinforcement Learning. We&rsquo;d like the RL agent to find the best solution as fast as possible. However, in the meantime, committing to solutions too quickly without enough exploration sounds pretty bad, as it could lead to local minima or total failure. Modern <a href="https://yikhuen.github.io/posts/2018-02-19-rl-overview/">RL</a> <a href="https://yikhuen.github.io/posts/2018-04-08-policy-gradient/">algorithms</a> that optimize for the best returns can achieve good exploitation quite efficiently, while exploration remains more like an open topic.</p>
 <p>I would like to discuss several common exploration strategies in Deep RL here. As this is a very big topic, my post by no means can cover all the important subtopics. I plan to update it periodically and keep further enriching the content gradually in time.</p>
 <h1 id="classic-exploration-strategies">Classic Exploration Strategies<a hidden class="anchor" aria-hidden="true" href="#classic-exploration-strategies">#</a></h1>
 <p>As a quick recap, let&rsquo;s first go through several classic exploration algorithms that work out pretty well in the multi-armed bandit problem or simple tabular RL.</p>
 <ul>
 <li><strong>Epsilon-greedy</strong>: The agent does random exploration occasionally with probability $\epsilon$ and takes the optimal action most of the time with probability $1-\epsilon$.</li>
-<li><strong>Upper confidence bounds</strong>: The agent selects the greediest action to maximize the upper confidence bound $\hat{Q}_t(a) + \hat{U}_t(a)$, where $\hat{Q}_t(a)$ is the average rewards associated with action $a$ up to time $t$ and $\hat{U}_t(a)$ is a function reversely proportional to how many times action $a$ has been taken. See <a href="https://lilianweng.github.io/posts/2018-01-23-multi-armed-bandit/#upper-confidence-bounds">here</a> for more details.</li>
+<li><strong>Upper confidence bounds</strong>: The agent selects the greediest action to maximize the upper confidence bound $\hat{Q}_t(a) + \hat{U}_t(a)$, where $\hat{Q}_t(a)$ is the average rewards associated with action $a$ up to time $t$ and $\hat{U}_t(a)$ is a function reversely proportional to how many times action $a$ has been taken. See <a href="https://yikhuen.github.io/posts/2018-01-23-multi-armed-bandit/#upper-confidence-bounds">here</a> for more details.</li>
 <li><strong>Boltzmann exploration</strong>: The agent draws actions from a <a href="https://en.wikipedia.org/wiki/Boltzmann_distribution">boltzmann distribution</a> (softmax) over the learned Q values, regulated by a temperature parameter $\tau$.</li>
-<li><strong>Thompson sampling</strong>: The agent keeps track of a belief over the probability of optimal actions and samples from this distribution. See <a href="https://lilianweng.github.io/posts/2018-01-23-multi-armed-bandit/#thompson-sampling">here</a> for more details.</li>
+<li><strong>Thompson sampling</strong>: The agent keeps track of a belief over the probability of optimal actions and samples from this distribution. See <a href="https://yikhuen.github.io/posts/2018-01-23-multi-armed-bandit/#thompson-sampling">here</a> for more details.</li>
 </ul>
 <p>The following strategies could be used for better exploration in deep RL training when neural networks are used for function approximation:</p>
 <ul>
@@ -380,7 +380,7 @@ $$
 <p>The density model can also be a Gaussian Mixture Model as in <a href="https://arxiv.org/abs/1902.08039">Zhao &amp; Tresp (2018)</a>. They used a variational GMM to estimate the density of trajectories (e.g. concatenation of a sequence of states) and its predicted probabilities to guide prioritization in experience replay in off-policy setting.</p>
 <h3 id="counting-after-hashing">Counting after Hashing<a hidden class="anchor" aria-hidden="true" href="#counting-after-hashing">#</a></h3>
 <p>Another idea to make it possible to count high-dimensional states is to map states into <strong>hash codes</strong> so that the occurrences of states become trackable (<a href="https://arxiv.org/abs/1611.04717">Tang et al. 2017</a>). The state space is discretized with a hash function $\phi: \mathcal{S} \mapsto \mathbb{Z}^k$. An exploration bonus $r^{i}: \mathcal{S} \mapsto \mathbb{R}$ is added to the reward function, defined as $r^{i}(s) = {N(\phi(s))}^{-1/2}$, where $N(\phi(s))$ is an empirical count of occurrences of $\phi(s)$.</p>
-<p><a href="https://arxiv.org/abs/1611.04717">Tang et al. (2017)</a> proposed to use <em>Locality-Sensitive Hashing</em> (<a href="https://en.wikipedia.org/wiki/Locality-sensitive_hashing"><em>LSH</em></a>) to convert continuous, high-dimensional data to discrete hash codes. LSH is a popular class of hash functions for querying nearest neighbors based on certain similarity metrics. A hashing scheme $x \mapsto h(x)$ is locality-sensitive if it preserves the distancing information between data points, such that close vectors obtain similar hashes while distant vectors have very different ones. (See how LSH is used in <a href="https://lilianweng.github.io/posts/2020-04-07-the-transformer-family/#LSH">Transformer improvement</a> if interested.) <a href="https://www.cs.princeton.edu/courses/archive/spr04/cos598B/bib/CharikarEstim.pdf">SimHash</a> is a type of computationally efficient LSH and it measures similarity by angular distance:</p>
+<p><a href="https://arxiv.org/abs/1611.04717">Tang et al. (2017)</a> proposed to use <em>Locality-Sensitive Hashing</em> (<a href="https://en.wikipedia.org/wiki/Locality-sensitive_hashing"><em>LSH</em></a>) to convert continuous, high-dimensional data to discrete hash codes. LSH is a popular class of hash functions for querying nearest neighbors based on certain similarity metrics. A hashing scheme $x \mapsto h(x)$ is locality-sensitive if it preserves the distancing information between data points, such that close vectors obtain similar hashes while distant vectors have very different ones. (See how LSH is used in <a href="https://yikhuen.github.io/posts/2020-04-07-the-transformer-family/#LSH">Transformer improvement</a> if interested.) <a href="https://www.cs.princeton.edu/courses/archive/spr04/cos598B/bib/CharikarEstim.pdf">SimHash</a> is a type of computationally efficient LSH and it measures similarity by angular distance:</p>
 <div>
 $$
 \phi(s) = \text{sgn}(A g(s)) \in \{-1, 1\}^k
@@ -430,7 +430,7 @@ $$
 <ol>
 <li>Raw image pixels: No encoding, $\phi(x) = x$.</li>
 <li><a id="random-feature"></a>Random features (RF): Each state is compressed through a fixed random neural network.</li>
-<li><a href="https://lilianweng.github.io/posts/2018-08-12-vae/#vae-variational-autoencoder">VAE</a>: The probabilistic encoder is used for encoding, $\phi(x) = q(z \vert x)$.</li>
+<li><a href="https://yikhuen.github.io/posts/2018-08-12-vae/#vae-variational-autoencoder">VAE</a>: The probabilistic encoder is used for encoding, $\phi(x) = q(z \vert x)$.</li>
 <li>Inverse dynamic features (IDF): The same feature space as used in <a href="#ICM">ICM</a>.</li>
 </ol>
 <p>All the experiments have the reward signals normalized by a running estimation of standard deviation of the cumulative returns. And all the experiments are running in an infinite horizon setting to avoid &ldquo;done&rdquo; flag leaking information.</p>
@@ -476,7 +476,7 @@ r^i_t = D_\text{KL} [q_{\phi_{t+1}}(\theta) \| q_{\phi_t}(\theta))]
 $$
 </div>
 <p>where $\phi_{t+1}$ represents $q$&rsquo;s parameters associated with the new relief after seeing $a_t$ and $s_{t+1}$. When used as an exploration bonus, it is normalized by division by the moving median of this KL divergence value.</p>
-<p>Here the dynamics model is parameterized as a <a href="https://link.springer.com/book/10.1007/978-1-4612-0745-0">Bayesian neural network</a> (BNN), as it maintains a distribution over its weights. The BNN weight distribution $q_\phi(\theta)$ is modeled as a fully <em>factorized</em> Gaussian with $\phi = \{\mu, \sigma\}$ and we can easily sample $\theta \sim q_\phi(.)$. After applying a second-order Taylor expansion, the KL term $D_\text{KL}[q_{\phi + \lambda \Delta\phi}(\theta) | q_{\phi}(\theta)]$ can be estimated using <a href="https://lilianweng.github.io/posts/2019-09-05-evolution-strategies/#estimation-using-fisher-information-matrix">Fisher Information Matrix</a> $\mathbf{F}_\phi$, which is easy to compute, because $q_\phi$ is factorized Gaussian and thus the covariance matrix is only a diagonal matrix. See more details in <a href="https://arxiv.org/abs/1605.09674">the paper</a>, especially section 2.3-2.5.</p>
+<p>Here the dynamics model is parameterized as a <a href="https://link.springer.com/book/10.1007/978-1-4612-0745-0">Bayesian neural network</a> (BNN), as it maintains a distribution over its weights. The BNN weight distribution $q_\phi(\theta)$ is modeled as a fully <em>factorized</em> Gaussian with $\phi = \{\mu, \sigma\}$ and we can easily sample $\theta \sim q_\phi(.)$. After applying a second-order Taylor expansion, the KL term $D_\text{KL}[q_{\phi + \lambda \Delta\phi}(\theta) | q_{\phi}(\theta)]$ can be estimated using <a href="https://yikhuen.github.io/posts/2019-09-05-evolution-strategies/#estimation-using-fisher-information-matrix">Fisher Information Matrix</a> $\mathbf{F}_\phi$, which is easy to compute, because $q_\phi$ is factorized Gaussian and thus the covariance matrix is only a diagonal matrix. See more details in <a href="https://arxiv.org/abs/1605.09674">the paper</a>, especially section 2.3-2.5.</p>
 <p><a id="exploration-via-disagreement"></a>All the methods above depend on a single prediction model. If we have multiple such models, we could use the disagreement among models to set the exploration bonus (<a href="https://arxiv.org/abs/1906.04161">Pathak, et al. 2019</a>). High disagreement indicates low confidence in prediction and thus requires more exploration. <a href="https://arxiv.org/abs/1906.04161">Pathak, et al. (2019)</a> proposed to train a set of forward dynamics models and to use the variance over the ensemble of model outputs as $r_t^i$. Precisely, they encode the state space with <a href="#random-feature">random feature</a> and learn 5 models in the  ensemble.</p>
 <figure>
 	<img src="exploration-via-disagreement.png" style="width: 100%;"  />
@@ -580,7 +580,7 @@ $$
 	<img src="transition-graph.png" style="width: 70%;"  />
 	<figcaption>The nodes in the graph are states, the edges are possible transitions. The blue nodes are states in memory. The green nodes are reachable from the memory within $k = 2$ steps (not novel). The orange nodes are further away, so they are considered as novel states. (Image source: <a href="https://arxiv.org/abs/1810.02274" target="_blank">Savinov, et al. 2019</a>)</figcaption>
 </figure>
-<p>In order to estimate reachability between states, we need to access the transition graph, which is unfortunately not entirely known. Thus, <a href="https://arxiv.org/abs/1810.02274">Savinov, et al. (2019)</a> trained a <a href="https://lilianweng.github.io/posts/2018-11-30-meta-learning/#convolutional-siamese-neural-network">siamese</a> neural network to predict how many steps separate two states. It contains one embedding network $\phi: \mathcal{S} \mapsto \mathbb{R}^n$ to first encode the states to feature vectors and then one comparator network $C: \mathbb{R}^n \times \mathbb{R}^n \mapsto [0, 1]$ to output a binary label on whether two states are close enough (i.e., reachable within $k$ steps) in the transition graph, $C(\phi(s_i), \phi(s_j)) \mapsto [0, 1]$.</p>
+<p>In order to estimate reachability between states, we need to access the transition graph, which is unfortunately not entirely known. Thus, <a href="https://arxiv.org/abs/1810.02274">Savinov, et al. (2019)</a> trained a <a href="https://yikhuen.github.io/posts/2018-11-30-meta-learning/#convolutional-siamese-neural-network">siamese</a> neural network to predict how many steps separate two states. It contains one embedding network $\phi: \mathcal{S} \mapsto \mathbb{R}^n$ to first encode the states to feature vectors and then one comparator network $C: \mathbb{R}^n \times \mathbb{R}^n \mapsto [0, 1]$ to output a binary label on whether two states are close enough (i.e., reachable within $k$ steps) in the transition graph, $C(\phi(s_i), \phi(s_j)) \mapsto [0, 1]$.</p>
 <p>An episodic memory buffer $M$ stores embeddings of some past observations within the same episode. A new observation will be compared with existing state embeddings via $C$ and the results are aggregated (e.g. max, 90th percentile) to provide a reachability score $C^M(\phi(s_t))$. The exploration bonus is $r^i_t = \big(C&rsquo; - C^M(f(s_t))\big)$, where $C&rsquo;$ is a predefined threshold for determining the sign of the reward (e.g. $C&rsquo;=0.5$ works well for fixed-duration episodes). High bonus is awarded to new states when they are not easily reachable from states in the memory buffer.</p>
 <p>They claimed that the EC module can overcome the <a href="#the-noisy-tv-problem">noisy-TV</a> problem.</p>
 <figure>
@@ -614,7 +614,7 @@ $$
 </figure>
 <p>The uncertainty measure of a state can be something simple like count-based bonuses or something complex like density or bayesian models. The paper trained a forward dynamics model and took its prediction error as the uncertainty metric.</p>
 <h1 id="q-value-exploration">Q-Value Exploration<a hidden class="anchor" aria-hidden="true" href="#q-value-exploration">#</a></h1>
-<p>Inspired by <a href="https://lilianweng.github.io/posts/2018-01-23-multi-armed-bandit/#thompson-sampling">Thompson sampling</a>, <strong>Bootstrapped DQN</strong> (<a href="https://arxiv.org/abs/1602.04621">Osband, et al. 2016</a>) introduces a notion of uncertainty in Q-value approximation in classic <a href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/#deep-q-network">DQN</a> by using the <a href="https://en.wikipedia.org/wiki/Bootstrapping_(statistics)">bootstrapping</a> method. Bootstrapping is to approximate a distribution by sampling with replacement from the same population multiple times and then aggregate the results.</p>
+<p>Inspired by <a href="https://yikhuen.github.io/posts/2018-01-23-multi-armed-bandit/#thompson-sampling">Thompson sampling</a>, <strong>Bootstrapped DQN</strong> (<a href="https://arxiv.org/abs/1602.04621">Osband, et al. 2016</a>) introduces a notion of uncertainty in Q-value approximation in classic <a href="https://yikhuen.github.io/posts/2018-02-19-rl-overview/#deep-q-network">DQN</a> by using the <a href="https://en.wikipedia.org/wiki/Bootstrapping_(statistics)">bootstrapping</a> method. Bootstrapping is to approximate a distribution by sampling with replacement from the same population multiple times and then aggregate the results.</p>
 <p>Multiple Q-value heads are trained in parallel but each only consumes a bootstrapped sub-sampled set of data and each has its own corresponding target network. All the Q-value heads share the same backbone network.</p>
 <figure>
 	<img src="bootstrapped-DQN-algo.png" style="width: 100%;"  />
@@ -678,7 +678,7 @@ $$
 	<img src="VALOR-decoder.png" style="width: 50%;"  />
 	<figcaption>The decoder of VALOR is a biLSTM which takes $N = 11$ equally spaced observations from one trajectory as inputs. (Image source: <a href="https://arxiv.org/abs/1807.10299" target="_blank">Achiam, et al. 2018</a>)</figcaption>
 </figure>
-<p>DIAYN (&ldquo;Diversity is all you need&rdquo;; <a href="https://arxiv.org/abs/1802.06070">Eysenbach, et al. 2018</a>) has the idea lying in the same direction, although with a different name &mdash; DIAYN models the policies conditioned on a latent <em>skill</em> variable. See my <a href="https://lilianweng.github.io/posts/2019-06-23-meta-rl/#learning-with-random-rewards">previous post</a> for more details.</p>
+<p>DIAYN (&ldquo;Diversity is all you need&rdquo;; <a href="https://arxiv.org/abs/1802.06070">Eysenbach, et al. 2018</a>) has the idea lying in the same direction, although with a different name &mdash; DIAYN models the policies conditioned on a latent <em>skill</em> variable. See my <a href="https://yikhuen.github.io/posts/2019-06-23-meta-rl/#learning-with-random-rewards">previous post</a> for more details.</p>
 <h1 id="citation">Citation<a hidden class="anchor" aria-hidden="true" href="#citation">#</a></h1>
 <p>Cited as:</p>
 <blockquote>
@@ -733,17 +733,17 @@ Prediction-Based Rewards&rdquo;</a> Oct, 2018.</p>
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://lilianweng.github.io/tags/reinforcement-learning/">Reinforcement-Learning</a></li>
-      <li><a href="https://lilianweng.github.io/tags/exploration/">Exploration</a></li>
-      <li><a href="https://lilianweng.github.io/tags/long-read/">Long-Read</a></li>
+      <li><a href="https://yikhuen.github.io/tags/reinforcement-learning/">Reinforcement-Learning</a></li>
+      <li><a href="https://yikhuen.github.io/tags/exploration/">Exploration</a></li>
+      <li><a href="https://yikhuen.github.io/tags/long-read/">Long-Read</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://lilianweng.github.io/posts/2020-08-06-nas/">
+  <a class="prev" href="https://yikhuen.github.io/posts/2020-08-06-nas/">
     <span class="title">« </span>
     <br>
     <span>Neural Architecture Search</span>
   </a>
-  <a class="next" href="https://lilianweng.github.io/posts/2020-04-07-the-transformer-family/">
+  <a class="next" href="https://yikhuen.github.io/posts/2020-04-07-the-transformer-family/">
     <span class="title"> »</span>
     <br>
     <span>The Transformer Family</span>
@@ -801,7 +801,7 @@ Prediction-Based Rewards&rdquo;</a> Oct, 2018.</p>
     </main>
     
 <footer class="footer">
-    <span>&copy; 2025 <a href="https://lilianweng.github.io/">YK's Log</a></span>
+    <span>&copy; 2025 <a href="https://yikhuen.github.io/">YK's Log</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

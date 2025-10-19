@@ -13,18 +13,18 @@
 [Updated on 2022-08-31: Added latent diffusion model.
 [Updated on 2024-04-13: Added progressive distillation, consistency models, and the Model Architecture section.">
 <meta name="author" content="Lilian Weng">
-<link rel="canonical" href="https://lilianweng.github.io/posts/2021-07-11-diffusion-models/" />
+<link rel="canonical" href="https://yikhuen.github.io/posts/2021-07-11-diffusion-models/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.51b2420ff5ea1215cdf584af7ba59d5fea94201c33f25109d6448c7271631316.css" integrity="sha256-UbJCD/XqEhXN9YSve6WdX&#43;qUIBwz8lEJ1kSMcnFjExY=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.2eadbb982468c11a433a3e291f01326f2ba43f065e256bf792dbd79640a92316.js" integrity="sha256-Lq27mCRowRpDOj4pHwEybyukPwZeJWv3ktvXlkCpIxY="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://lilianweng.github.io/favicon_wine.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://lilianweng.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://lilianweng.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://lilianweng.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://lilianweng.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="https://yikhuen.github.io/favicon_wine.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://yikhuen.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://yikhuen.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://yikhuen.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://yikhuen.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://lilianweng.github.io/posts/2021-07-11-diffusion-models/" />
+<link rel="alternate" hreflang="en" href="https://yikhuen.github.io/posts/2021-07-11-diffusion-models/" />
 <noscript>
     <style>
         #theme-toggle,
@@ -189,7 +189,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://lilianweng.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
+            <a href="https://yikhuen.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -217,27 +217,27 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://lilianweng.github.io/" title="Posts">
+                <a href="https://yikhuen.github.io/" title="Posts">
                     <span>Posts</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/archives" title="Archive">
+                <a href="https://yikhuen.github.io/archives" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="https://yikhuen.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/tags/" title="Tags">
+                <a href="https://yikhuen.github.io/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/faq" title="FAQ">
+                <a href="https://yikhuen.github.io/faq" title="FAQ">
                     <span>FAQ</span>
                 </a>
             </li>
@@ -323,7 +323,7 @@
 <span class="update">[Updated on 2022-08-27: Added <a href="#classifier-free-guidance">classifier-free guidance</a>, <a href="#glide">GLIDE</a>, <a href="#unclip">unCLIP</a> and <a href="#imagen">Imagen</a>.</span><br/>
 <span class="update">[Updated on 2022-08-31: Added <a href="#ldm">latent diffusion model</a>.</span><br/>
 <span class="update">[Updated on 2024-04-13: Added <a href="#prog-distll">progressive distillation</a>, <a href="#consistency">consistency models</a>, and the <a href="#model-architecture">Model Architecture section</a>.</span></p>
-<p>So far, I&rsquo;ve written about three types of generative models, <a href="https://lilianweng.github.io/posts/2017-08-20-gan/">GAN</a>, <a href="https://lilianweng.github.io/posts/2018-08-12-vae/">VAE</a>, and <a href="https://lilianweng.github.io/posts/2018-10-13-flow-models/">Flow-based</a> models. They have shown great success in generating high-quality samples, but each has some limitations of its own. GAN models are known for potentially unstable training and less diversity in generation due to their adversarial training nature. VAE relies on a surrogate loss. Flow models have to use specialized architectures to construct reversible transform.</p>
+<p>So far, I&rsquo;ve written about three types of generative models, <a href="https://yikhuen.github.io/posts/2017-08-20-gan/">GAN</a>, <a href="https://yikhuen.github.io/posts/2018-08-12-vae/">VAE</a>, and <a href="https://yikhuen.github.io/posts/2018-10-13-flow-models/">Flow-based</a> models. They have shown great success in generating high-quality samples, but each has some limitations of its own. GAN models are known for potentially unstable training and less diversity in generation due to their adversarial training nature. VAE relies on a surrogate loss. Flow models have to use specialized architectures to construct reversible transform.</p>
 <p>Diffusion models are inspired by non-equilibrium thermodynamics. They define a Markov chain of diffusion steps to slowly add random noise to data and then learn to reverse the diffusion process to construct desired data samples from the noise. Unlike VAE or flow models, diffusion models are learned with a fixed procedure and the latent variable has high dimensionality (same as the original data).</p>
 <figure>
 	<img src="generative-overview.png" style="width: 100%;"  />
@@ -344,7 +344,7 @@ $$
 	<img src="DDPM.png" style="width: 100%;"  />
 	<figcaption>The Markov chain of forward (reverse) diffusion process of generating a sample by slowly adding (removing) noise. (Image source: <a href="https://arxiv.org/abs/2006.11239" target="_blank">Ho et al. 2020</a> with a few additional annotations)</figcaption>
 </figure>
-<p><a id="nice"></a>A nice property of the above process is that we can sample $\mathbf{x}_t$ at any arbitrary time step $t$ in a closed form using <a href="https://lilianweng.github.io/posts/2018-08-12-vae/#reparameterization-trick">reparameterization trick</a>. Let $\alpha_t = 1 - \beta_t$ and $\bar{\alpha}_t = \prod_{i=1}^t \alpha_i$:</p>
+<p><a id="nice"></a>A nice property of the above process is that we can sample $\mathbf{x}_t$ at any arbitrary time step $t$ in a closed form using <a href="https://yikhuen.github.io/posts/2018-08-12-vae/#reparameterization-trick">reparameterization trick</a>. Let $\alpha_t = 1 - \beta_t$ and $\bar{\alpha}_t = \prod_{i=1}^t \alpha_i$:</p>
 <div>
 $$
 \begin{aligned}
@@ -425,7 +425,7 @@ $$
 \end{aligned}
 $$
 </div>
-<p>As demonstrated in Fig. 2., such a setup is very similar to <a href="https://lilianweng.github.io/posts/2018-08-12-vae/">VAE</a> and thus we can use the variational lower bound to optimize the negative log-likelihood.</p>
+<p>As demonstrated in Fig. 2., such a setup is very similar to <a href="https://yikhuen.github.io/posts/2018-08-12-vae/">VAE</a> and thus we can use the variational lower bound to optimize the negative log-likelihood.</p>
 <div>
 $$
 \begin{aligned}
@@ -723,7 +723,7 @@ $$
 <ul>
 <li>$\Phi(.;\phi)$ is the update function of a one-step <a href="https://en.wikipedia.org/wiki/Ordinary_differential_equation">ODE</a> solver;</li>
 <li>$n \sim \mathcal{U}[1, N-1]$, has an uniform distribution over $1, \dots, N-1$;</li>
-<li>The network parameters $\theta^-$ is EMA version of $\theta$ which greatly stabilizes the training (just like in <a href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/#deep-q-network">DQN</a> or <a href="https://lilianweng.github.io/posts/2021-05-31-contrastive/#moco--moco-v2">momentum</a> contrastive learning);</li>
+<li>The network parameters $\theta^-$ is EMA version of $\theta$ which greatly stabilizes the training (just like in <a href="https://yikhuen.github.io/posts/2018-02-19-rl-overview/#deep-q-network">DQN</a> or <a href="https://yikhuen.github.io/posts/2021-05-31-contrastive/#moco--moco-v2">momentum</a> contrastive learning);</li>
 <li>$d(.,.)$ is a positive distance metric function that satisfies $\forall \mathbf{x}, \mathbf{y}: d(\mathbf{x}, \mathbf{y}) \geq 0$ and $d(\mathbf{x}, \mathbf{y}) = 0$ if and only if $\mathbf{x} = \mathbf{y}$ such as $\ell_2$, $\ell_1$ or <a href="https://arxiv.org/abs/1801.03924">LPIPS</a> (learned perceptual image patch similarity) distance;</li>
 <li>$\lambda(.) \in \mathbb{R}^+$ is a positive weighting function and the paper sets $\lambda(t_n)=1$.</li>
 </ul>
@@ -757,8 +757,8 @@ $$
 </figure>
 <p>The perceptual compression process relies on an autoencoder model. An encoder $\mathcal{E}$ is used to compress the input image $\mathbf{x} \in \mathbb{R}^{H \times W \times 3}$ to a smaller 2D latent vector $\mathbf{z} = \mathcal{E}(\mathbf{x}) \in \mathbb{R}^{h \times w \times c}$ , where the downsampling rate $f=H/h=W/w=2^m, m \in \mathbb{N}$. Then an decoder $\mathcal{D}$ reconstructs the images from the latent vector, $\tilde{\mathbf{x}} = \mathcal{D}(\mathbf{z})$. The paper explored two types of regularization in autoencoder training to avoid arbitrarily high-variance in the latent spaces.</p>
 <ul>
-<li><em>KL-reg</em>: A small KL penalty towards a standard normal distribution over the learned latent, similar to <a href="https://lilianweng.github.io/posts/2018-08-12-vae/">VAE</a>.</li>
-<li><em>VQ-reg</em>: Uses a vector quantization layer within the decoder, like <a href="https://lilianweng.github.io/posts/2018-08-12-vae/#vq-vae-and-vq-vae-2">VQVAE</a> but the quantization layer is absorbed by the decoder.</li>
+<li><em>KL-reg</em>: A small KL penalty towards a standard normal distribution over the learned latent, similar to <a href="https://yikhuen.github.io/posts/2018-08-12-vae/">VAE</a>.</li>
+<li><em>VQ-reg</em>: Uses a vector quantization layer within the decoder, like <a href="https://yikhuen.github.io/posts/2018-08-12-vae/#vq-vae-and-vq-vae-2">VQVAE</a> but the quantization layer is absorbed by the decoder.</li>
 </ul>
 <p>The diffusion and denoising processes happen on the latent vector $\mathbf{z}$. The denoising model is a time-conditioned U-Net, augmented with the cross-attention mechanism to handle flexible conditioning information for image generation (e.g. class labels, semantic maps, blurred variants of an image). The design is equivalent to fuse representation of different modality into the model with a cross-attention mechanism. Each type of conditioning information is paired with a domain-specific encoder $\tau_\theta$ to project the conditioning input $y$ to an intermediate representation that can be mapped into cross-attention component, $\tau_\theta(y) \in \mathbb{R}^{M \times d_\tau}$:</p>
 <div>
@@ -909,17 +909,17 @@ $$
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://lilianweng.github.io/tags/generative-model/">Generative-Model</a></li>
-      <li><a href="https://lilianweng.github.io/tags/math-heavy/">Math-Heavy</a></li>
-      <li><a href="https://lilianweng.github.io/tags/image-generation/">Image-Generation</a></li>
+      <li><a href="https://yikhuen.github.io/tags/generative-model/">Generative-Model</a></li>
+      <li><a href="https://yikhuen.github.io/tags/math-heavy/">Math-Heavy</a></li>
+      <li><a href="https://yikhuen.github.io/tags/image-generation/">Image-Generation</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://lilianweng.github.io/posts/2021-09-25-train-large/">
+  <a class="prev" href="https://yikhuen.github.io/posts/2021-09-25-train-large/">
     <span class="title">« </span>
     <br>
     <span>How to Train Really Large Models on Many GPUs?</span>
   </a>
-  <a class="next" href="https://lilianweng.github.io/posts/2021-05-31-contrastive/">
+  <a class="next" href="https://yikhuen.github.io/posts/2021-05-31-contrastive/">
     <span class="title"> »</span>
     <br>
     <span>Contrastive Representation Learning</span>
@@ -977,7 +977,7 @@ $$
     </main>
     
 <footer class="footer">
-    <span>&copy; 2025 <a href="https://lilianweng.github.io/">YK's Log</a></span>
+    <span>&copy; 2025 <a href="https://yikhuen.github.io/">YK's Log</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

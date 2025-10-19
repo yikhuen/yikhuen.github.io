@@ -15,18 +15,18 @@ Extrinsic hallucination: The model output should be grounded by the pre-training
 
 This post focuses on extrinsic hallucination. To avoid hallucination, LLMs need to be (1) factual and (2) acknowledge not knowing the answer when applicable.">
 <meta name="author" content="Lilian Weng">
-<link rel="canonical" href="https://lilianweng.github.io/posts/2024-07-07-hallucination/" />
+<link rel="canonical" href="https://yikhuen.github.io/posts/2024-07-07-hallucination/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.51b2420ff5ea1215cdf584af7ba59d5fea94201c33f25109d6448c7271631316.css" integrity="sha256-UbJCD/XqEhXN9YSve6WdX&#43;qUIBwz8lEJ1kSMcnFjExY=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.2eadbb982468c11a433a3e291f01326f2ba43f065e256bf792dbd79640a92316.js" integrity="sha256-Lq27mCRowRpDOj4pHwEybyukPwZeJWv3ktvXlkCpIxY="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://lilianweng.github.io/favicon_wine.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://lilianweng.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://lilianweng.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://lilianweng.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://lilianweng.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="https://yikhuen.github.io/favicon_wine.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://yikhuen.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://yikhuen.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://yikhuen.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://yikhuen.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://lilianweng.github.io/posts/2024-07-07-hallucination/" />
+<link rel="alternate" hreflang="en" href="https://yikhuen.github.io/posts/2024-07-07-hallucination/" />
 <noscript>
     <style>
         #theme-toggle,
@@ -195,7 +195,7 @@ This post focuses on extrinsic hallucination. To avoid hallucination, LLMs need 
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://lilianweng.github.io/" accesskey="h" title="Lil&#39;Log (Alt + H)">Lil&#39;Log</a>
+            <a href="https://yikhuen.github.io/" accesskey="h" title="Lil&#39;Log (Alt + H)">Lil&#39;Log</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -223,27 +223,27 @@ This post focuses on extrinsic hallucination. To avoid hallucination, LLMs need 
         </div>
         <ul id="menu">
             <li>
-                <a href="https://lilianweng.github.io/" title="Posts">
+                <a href="https://yikhuen.github.io/" title="Posts">
                     <span>Posts</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/archives" title="Archive">
+                <a href="https://yikhuen.github.io/archives" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="https://yikhuen.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/tags/" title="Tags">
+                <a href="https://yikhuen.github.io/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/faq" title="FAQ">
+                <a href="https://yikhuen.github.io/faq" title="FAQ">
                     <span>FAQ</span>
                 </a>
             </li>
@@ -326,7 +326,7 @@ This post focuses on extrinsic hallucination. To avoid hallucination, LLMs need 
 <h2 id="pre-training-data-issues">Pre-training Data Issues<a hidden class="anchor" aria-hidden="true" href="#pre-training-data-issues">#</a></h2>
 <p>The volume of the pre-training data corpus is enormous, as it is supposed to represent world knowledge in all available written forms. Data crawled from the public Internet is the most common choice and thus out-of-date, missing, or incorrect information is expected. As the model may incorrectly memorize this information by simply maximizing the log-likelihood, we would expect the model to make mistakes.</p>
 <h2 id="fine-tuning-new-knowledge">Fine-tuning New Knowledge<a hidden class="anchor" aria-hidden="true" href="#fine-tuning-new-knowledge">#</a></h2>
-<p>Fine-tuning a pre-trained LLM via supervised fine-tuning and <a href="https://lilianweng.github.io/posts/2021-01-02-controllable-text-generation/#rl-fine-tuning-with-human-preferences">RLHF</a> is a common technique for improving certain capabilities of the model like instruction following. Introducing new knowledge at the fine-tuning stage is hard to avoid.</p>
+<p>Fine-tuning a pre-trained LLM via supervised fine-tuning and <a href="https://yikhuen.github.io/posts/2021-01-02-controllable-text-generation/#rl-fine-tuning-with-human-preferences">RLHF</a> is a common technique for improving certain capabilities of the model like instruction following. Introducing new knowledge at the fine-tuning stage is hard to avoid.</p>
 <p>Fine-tuning usually consumes much less compute, making it debatable whether the model can reliably learn new knowledge via small-scale fine-tuning. <a href="https://arxiv.org/abs/2405.05904">Gekhman et al. 2024</a> studied the research question of whether fine-tuning LLMs on new knowledge encourages hallucinations. They found that (1) LLMs learn fine-tuning examples with new knowledge <em>slower</em> than other examples with knowledge consistent with the pre-existing knowledge of the model; (2) Once the examples with new knowledge are eventually learned, they increase the model&rsquo;s tendency to hallucinate.</p>
 <p>Given a closed-book QA dataset (i.e., <a href="https://github.com/princeton-nlp/EntityQuestions">EntityQuestions</a>), $D = {(q, a)}$, let us define $P_\text{Correct}(q, a; M, T )$ as an estimate of how likely the model $M$ can accurately generate the correct answer $a$ to question $q$, when prompted with <em>random few-shot exemplars</em> and using decoding temperature $T$. They categorize examples into a small hierarchy of 4 categories: <code>Known</code> groups with 3 subgroups (<code>HighlyKnown</code>, <code>MaybeKnown</code>, and <code>WeaklyKnown</code>) and <code>Unknown</code> groups, based on different conditions of $P_\text{Correct}(q, a; M, T )$.</p>
 <figure>
@@ -480,7 +480,7 @@ Their experiments focused on how well calibration generalizes under distribution
 <h1 id="anti-hallucination-methods">Anti-Hallucination Methods<a hidden class="anchor" aria-hidden="true" href="#anti-hallucination-methods">#</a></h1>
 <p>Let&rsquo;s review a set of methods to improve factuality of LLMs, ranging from retrieval of external knowledge base, special sampling methods to alignment fine-tuning. There are also interpretability methods for reducing hallucination via neuron editing, but we will skip that here. I may write about interpretability in a separate post later.</p>
 <h2 id="rag--edits-and-attribution">RAG → Edits and Attribution<a hidden class="anchor" aria-hidden="true" href="#rag--edits-and-attribution">#</a></h2>
-<p><a href="https://lilianweng.github.io/posts/2020-10-29-odqa/#RAG">RAG (Retrieval-augmented Generation)</a> is a very common approach to provide grounding information, that is to retrieve relevant documents and then generate with related documents as extra context.</p>
+<p><a href="https://yikhuen.github.io/posts/2020-10-29-odqa/#RAG">RAG (Retrieval-augmented Generation)</a> is a very common approach to provide grounding information, that is to retrieve relevant documents and then generate with related documents as extra context.</p>
 <p><strong>RARR</strong> (&ldquo;Retrofit Attribution using Research and Revision&rdquo;; <a href="https://arxiv.org/abs/2210.08726">Gao et al. 2022</a>) is a framework of retroactively enabling LLMs to support attributions to external evidence via <em>Editing for Attribution</em>. Given a model generated text $x$, RARR processes in two steps, outputting a revised text $y$ and an attribution report $A$ :</p>
 <ol>
 <li><strong>Research stage</strong>: Find related documents as evidence.
@@ -492,7 +492,7 @@ Their experiments focused on how well calibration generalizes under distribution
 </li>
 <li><strong>Revision stage</strong>: Edit the output to correct content unsupported by evidence while preserving the original content as much as possible. Initialize the revised text $y=x$.
 <ul>
-<li>(1) Per $(q_i, e_{ij})$, an agreement model (via few-shot prompting + <a href="https://lilianweng.github.io/posts/2023-03-15-prompt-engineering/#chain-of-thought-cot">CoT</a>, $(y, q, e) \to {0,1}$) checks whether the evidence $e_i$ disagrees with the current revised text $y$.</li>
+<li>(1) Per $(q_i, e_{ij})$, an agreement model (via few-shot prompting + <a href="https://yikhuen.github.io/posts/2023-03-15-prompt-engineering/#chain-of-thought-cot">CoT</a>, $(y, q, e) \to {0,1}$) checks whether the evidence $e_i$ disagrees with the current revised text $y$.</li>
 <li>(2) Only if a disagreement is detect, the edit model (via few-shot prompting + CoT, $(y, q, e) \to \text{ new }y$) outputs a new version of $y$ that aims to agree with evidence $e_{ij}$ while otherwise minimally altering $y$.</li>
 <li>(3) Finally only a limited number $M=5$ of evidence goes into the attribution report $A$.</li>
 </ul>
@@ -568,7 +568,7 @@ RARR leads to better-balanced results, especially in terms of preservation metri
 </figure>
 <p>Here are some interesting observations from the CoVe experiments:</p>
 <ul>
-<li>Instruction-tuning and <a href="https://lilianweng.github.io/posts/2023-03-15-prompt-engineering/#chain-of-thought-cot">CoT</a> do not reduce hallucinations.</li>
+<li>Instruction-tuning and <a href="https://yikhuen.github.io/posts/2023-03-15-prompt-engineering/#chain-of-thought-cot">CoT</a> do not reduce hallucinations.</li>
 <li>Factored and 2-step CoVe improve performance and further explicit reasoning on inconsistency detection also helps (&ldquo;factor+revise&rdquo; approach).</li>
 <li>Short-form verification questions are more accurately answered than long-form queries.</li>
 <li>Free-form LLM-generated verification questions are better than heuristics (e.g. <code>Does X answer the question?</code>) and  questions that require open-ended generation work better than yes/no questions.</li>
@@ -580,7 +580,7 @@ RARR leads to better-balanced results, especially in terms of preservation metri
 </figure>
 <p>The generated recitation is comparable with the BM25 based retrieval model, but both have gaps with the use of ground truth passage. According to their error analysis, about 7-10% questions have the correct recitation but cannot produce the correct answer, while around 12% questions do not have the correct recitation but can be answered correctly anyway.</p>
 <h2 id="sampling-methods">Sampling Methods<a hidden class="anchor" aria-hidden="true" href="#sampling-methods">#</a></h2>
-<p><a href="https://arxiv.org/abs/2206.04624">Lee, et al. (2022)</a> found that <a href="https://lilianweng.github.io/posts/2021-01-02-controllable-text-generation/#nucleus">nucleus sampling</a> (top-$p$ sampling) is found to perform worse on <a href="https://github.com/nayeon7lee/FactualityPrompt">FactualityPrompt</a> benchmark than greedy sampling, although it achieves better diversity and less repetition, since nucleus sampling added extra randomness. So they proposed <strong>factual-nucleus sampling</strong> algorithm, based on the hypothesis that sampling randomness <em>does more harm to factuality at the latter part of the sentence than at the beginning</em>. Factual-nucleus sampling is designed to <em>dynamically</em> adapt the probability $p$ during sampling tokens for each sentence. For the $t$-th token in one sentence, we have $p_t = \max(\omega, p \cdot \lambda^{t−1})$ where $\omega$ is to prevent the sampling falls back to greedy that hurts generation quality and diversity.</p>
+<p><a href="https://arxiv.org/abs/2206.04624">Lee, et al. (2022)</a> found that <a href="https://yikhuen.github.io/posts/2021-01-02-controllable-text-generation/#nucleus">nucleus sampling</a> (top-$p$ sampling) is found to perform worse on <a href="https://github.com/nayeon7lee/FactualityPrompt">FactualityPrompt</a> benchmark than greedy sampling, although it achieves better diversity and less repetition, since nucleus sampling added extra randomness. So they proposed <strong>factual-nucleus sampling</strong> algorithm, based on the hypothesis that sampling randomness <em>does more harm to factuality at the latter part of the sentence than at the beginning</em>. Factual-nucleus sampling is designed to <em>dynamically</em> adapt the probability $p$ during sampling tokens for each sentence. For the $t$-th token in one sentence, we have $p_t = \max(\omega, p \cdot \lambda^{t−1})$ where $\omega$ is to prevent the sampling falls back to greedy that hurts generation quality and diversity.</p>
 <figure>
 	<img src="factual-nucleus-sampling.png" style="width: 100%;"  />
 	<figcaption>Factual-nucleus sampling leads to be better diversity and less repetition then the standard nucleus sampling, while the hallucination error is measured in <a href="#ne-error" target="_blank">named entity (NE) error</a>. (Image source: <a href="https://arxiv.org/abs/2206.04624" target="_blank">Lee et al. 2022</a>)</figcaption>
@@ -596,7 +596,7 @@ RARR leads to better-balanced results, especially in terms of preservation metri
 <li><code>TopicPrefix</code> is introduced into training for better awareness of facts: Append topic (i.e. wikipedia document title) in front of each sentence in this document.</li>
 <li>Sentence completion loss as training objective: update the training loss to focus on the later part of the sentence where they hypothesize that the later part of a sentence contains more factual knowledge. The implementation is quite simple, deciding a pivot $t$, and all the tokens before the $t$-th token are all applied zero-masking. In their experiment, the best pivot $t$ is selected as 0.5 x the sentence length.</li>
 </ul>
-<p><a href="https://arxiv.org/abs/2405.01525">Lin et al. (2024)</a> proposed to do run SFT + <a href="https://lilianweng.github.io/posts/2021-01-02-controllable-text-generation/#rl-fine-tuning-with-human-preferences">RLHF</a> alignment training with special focus on factuality, named <strong>FLAME</strong> (&ldquo;Factuality-Aware Alignment&rdquo;).</p>
+<p><a href="https://arxiv.org/abs/2405.01525">Lin et al. (2024)</a> proposed to do run SFT + <a href="https://yikhuen.github.io/posts/2021-01-02-controllable-text-generation/#rl-fine-tuning-with-human-preferences">RLHF</a> alignment training with special focus on factuality, named <strong>FLAME</strong> (&ldquo;Factuality-Aware Alignment&rdquo;).</p>
 <ul>
 <li>SFT stage (Factuality-aware SFT): The goal is to generate training data that is more factual (measured by FActScore) than the model&rsquo;s own generation.</li>
 <li>RLHF stage (Factuality-aware DPO): Two approaches are tested and the method (1) turns out pretty bad, while (2) works out ok, likely due to (1) trying to distill new knowledge into the model without enough training. There is <a href="#fine-tuning-new-knowledge">evidence</a> that fine-tuning new knowledge might cause hallucination and the supervision from RAG contains information unknown to the LLM.
@@ -720,19 +720,19 @@ RARR leads to better-balanced results, especially in terms of preservation metri
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://lilianweng.github.io/tags/nlp/">Nlp</a></li>
-      <li><a href="https://lilianweng.github.io/tags/language-model/">Language-Model</a></li>
-      <li><a href="https://lilianweng.github.io/tags/safety/">Safety</a></li>
-      <li><a href="https://lilianweng.github.io/tags/hallucination/">Hallucination</a></li>
-      <li><a href="https://lilianweng.github.io/tags/factuality/">Factuality</a></li>
+      <li><a href="https://yikhuen.github.io/tags/nlp/">Nlp</a></li>
+      <li><a href="https://yikhuen.github.io/tags/language-model/">Language-Model</a></li>
+      <li><a href="https://yikhuen.github.io/tags/safety/">Safety</a></li>
+      <li><a href="https://yikhuen.github.io/tags/hallucination/">Hallucination</a></li>
+      <li><a href="https://yikhuen.github.io/tags/factuality/">Factuality</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://lilianweng.github.io/posts/2024-11-28-reward-hacking/">
+  <a class="prev" href="https://yikhuen.github.io/posts/2024-11-28-reward-hacking/">
     <span class="title">« </span>
     <br>
     <span>Reward Hacking in Reinforcement Learning</span>
   </a>
-  <a class="next" href="https://lilianweng.github.io/posts/2024-04-12-diffusion-video/">
+  <a class="next" href="https://yikhuen.github.io/posts/2024-04-12-diffusion-video/">
     <span class="title"> »</span>
     <br>
     <span>Diffusion Models for Video Generation</span>
@@ -790,7 +790,7 @@ RARR leads to better-balanced results, especially in terms of preservation metri
     </main>
     
 <footer class="footer">
-    <span>&copy; 2025 <a href="https://lilianweng.github.io/">Lil&#39;Log</a></span>
+    <span>&copy; 2025 <a href="https://yikhuen.github.io/">Lil&#39;Log</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

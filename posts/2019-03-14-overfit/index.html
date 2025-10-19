@@ -11,18 +11,18 @@
 [Updated on 2019-05-27: add the section on Lottery Ticket Hypothesis.]
 If you are like me, entering into the field of deep learning with experience in traditional machine learning, you may often ponder over this question: Since a typical deep neural network has so many parameters and training error can easily be perfect, it should surely suffer from substantial overfitting. How could it be ever generalized to out-of-sample data points?">
 <meta name="author" content="Lilian Weng">
-<link rel="canonical" href="https://lilianweng.github.io/posts/2019-03-14-overfit/" />
+<link rel="canonical" href="https://yikhuen.github.io/posts/2019-03-14-overfit/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.51b2420ff5ea1215cdf584af7ba59d5fea94201c33f25109d6448c7271631316.css" integrity="sha256-UbJCD/XqEhXN9YSve6WdX&#43;qUIBwz8lEJ1kSMcnFjExY=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.2eadbb982468c11a433a3e291f01326f2ba43f065e256bf792dbd79640a92316.js" integrity="sha256-Lq27mCRowRpDOj4pHwEybyukPwZeJWv3ktvXlkCpIxY="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://lilianweng.github.io/favicon_wine.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://lilianweng.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://lilianweng.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://lilianweng.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://lilianweng.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="https://yikhuen.github.io/favicon_wine.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://yikhuen.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://yikhuen.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://yikhuen.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://yikhuen.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://lilianweng.github.io/posts/2019-03-14-overfit/" />
+<link rel="alternate" hreflang="en" href="https://yikhuen.github.io/posts/2019-03-14-overfit/" />
 <noscript>
     <style>
         #theme-toggle,
@@ -183,7 +183,7 @@ If you are like me, entering into the field of deep learning with experience in 
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://lilianweng.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
+            <a href="https://yikhuen.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -211,27 +211,27 @@ If you are like me, entering into the field of deep learning with experience in 
         </div>
         <ul id="menu">
             <li>
-                <a href="https://lilianweng.github.io/" title="Posts">
+                <a href="https://yikhuen.github.io/" title="Posts">
                     <span>Posts</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/archives" title="Archive">
+                <a href="https://yikhuen.github.io/archives" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="https://yikhuen.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/tags/" title="Tags">
+                <a href="https://yikhuen.github.io/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/faq" title="FAQ">
+                <a href="https://yikhuen.github.io/faq" title="FAQ">
                     <span>FAQ</span>
                 </a>
             </li>
@@ -322,7 +322,7 @@ If you are like me, entering into the field of deep learning with experience in 
 <blockquote>
 <p>&ldquo;Comprehension is compression.&rdquo;</p>
 </blockquote>
-<p>The fundamental idea in MDL is to <em>view learning as data compression</em>. By compressing the data, we need to discover regularity or patterns in the data with the high potentiality to generalize to unseen samples. <a href="https://lilianweng.github.io/posts/2017-09-28-information-bottleneck/">Information bottleneck</a> theory believes that a deep neural network is trained first to represent the data by minimizing the generalization error and then learn to compress this representation by trimming noise.</p>
+<p>The fundamental idea in MDL is to <em>view learning as data compression</em>. By compressing the data, we need to discover regularity or patterns in the data with the high potentiality to generalize to unseen samples. <a href="https://yikhuen.github.io/posts/2017-09-28-information-bottleneck/">Information bottleneck</a> theory believes that a deep neural network is trained first to represent the data by minimizing the generalization error and then learn to compress this representation by trimming noise.</p>
 <p>Meanwhile, MDL considers the model description as part of the compression delivery, so the model cannot be arbitrarily large.</p>
 <p>A <em>two-part version</em> of MDL principle states that: Let $\mathcal{H}^{(1)}, \mathcal{H}^{(2)}, \dots$ be a list of models that can explain the dataset $\mathcal{D}$. The best hypothesis among them should be the one that minimizes the sum:</p>
 <div>
@@ -575,17 +575,17 @@ $$
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://lilianweng.github.io/tags/information-theory/">Information-Theory</a></li>
-      <li><a href="https://lilianweng.github.io/tags/foundation/">Foundation</a></li>
-      <li><a href="https://lilianweng.github.io/tags/learning-dynamics/">Learning-Dynamics</a></li>
+      <li><a href="https://yikhuen.github.io/tags/information-theory/">Information-Theory</a></li>
+      <li><a href="https://yikhuen.github.io/tags/foundation/">Foundation</a></li>
+      <li><a href="https://yikhuen.github.io/tags/learning-dynamics/">Learning-Dynamics</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://lilianweng.github.io/posts/2019-05-05-domain-randomization/">
+  <a class="prev" href="https://yikhuen.github.io/posts/2019-05-05-domain-randomization/">
     <span class="title">« </span>
     <br>
     <span>Domain Randomization for Sim2Real Transfer</span>
   </a>
-  <a class="next" href="https://lilianweng.github.io/posts/2019-01-31-lm/">
+  <a class="next" href="https://yikhuen.github.io/posts/2019-01-31-lm/">
     <span class="title"> »</span>
     <br>
     <span>Generalized Language Models</span>
@@ -643,7 +643,7 @@ $$
     </main>
     
 <footer class="footer">
-    <span>&copy; 2025 <a href="https://lilianweng.github.io/">YK's Log</a></span>
+    <span>&copy; 2025 <a href="https://yikhuen.github.io/">YK's Log</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

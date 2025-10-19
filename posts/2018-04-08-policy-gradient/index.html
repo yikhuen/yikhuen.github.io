@@ -24,18 +24,18 @@
 
 [Updated on 2021-09-19: Thanks to Wenhao &amp; 爱吃猫的鱼, we have this post in Chinese1 &amp; Chinese2].">
 <meta name="author" content="Lilian Weng">
-<link rel="canonical" href="https://lilianweng.github.io/posts/2018-04-08-policy-gradient/" />
+<link rel="canonical" href="https://yikhuen.github.io/posts/2018-04-08-policy-gradient/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.51b2420ff5ea1215cdf584af7ba59d5fea94201c33f25109d6448c7271631316.css" integrity="sha256-UbJCD/XqEhXN9YSve6WdX&#43;qUIBwz8lEJ1kSMcnFjExY=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.2eadbb982468c11a433a3e291f01326f2ba43f065e256bf792dbd79640a92316.js" integrity="sha256-Lq27mCRowRpDOj4pHwEybyukPwZeJWv3ktvXlkCpIxY="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://lilianweng.github.io/favicon_wine.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://lilianweng.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://lilianweng.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://lilianweng.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://lilianweng.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="https://yikhuen.github.io/favicon_wine.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://yikhuen.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://yikhuen.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://yikhuen.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://yikhuen.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://lilianweng.github.io/posts/2018-04-08-policy-gradient/" />
+<link rel="alternate" hreflang="en" href="https://yikhuen.github.io/posts/2018-04-08-policy-gradient/" />
 <noscript>
     <style>
         #theme-toggle,
@@ -222,7 +222,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://lilianweng.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
+            <a href="https://yikhuen.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -250,27 +250,27 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://lilianweng.github.io/" title="Posts">
+                <a href="https://yikhuen.github.io/" title="Posts">
                     <span>Posts</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/archives" title="Archive">
+                <a href="https://yikhuen.github.io/archives" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="https://yikhuen.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/tags/" title="Tags">
+                <a href="https://yikhuen.github.io/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/faq" title="FAQ">
+                <a href="https://yikhuen.github.io/faq" title="FAQ">
                     <span>FAQ</span>
                 </a>
             </li>
@@ -376,7 +376,7 @@
 <br/>
 <span class="update">[Updated on 2021-09-19: Thanks to Wenhao &amp; 爱吃猫的鱼, we have this post in <a href="https://tomaxent.com/2019/04/14/%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6%E6%96%B9%E6%B3%95/">Chinese1</a> &amp; <a href="https://paperexplained.cn/articles/article/detail/31/">Chinese2</a>].</span></p>
 <h1 id="what-is-policy-gradient">What is Policy Gradient<a hidden class="anchor" aria-hidden="true" href="#what-is-policy-gradient">#</a></h1>
-<p>Policy gradient is an approach to solve reinforcement learning problems. If you haven&rsquo;t looked into the field of reinforcement learning, please first read the section <a href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/#key-concepts">&ldquo;A (Long) Peek into Reinforcement Learning &raquo; Key Concepts&rdquo;</a> for the problem definition and key concepts.</p>
+<p>Policy gradient is an approach to solve reinforcement learning problems. If you haven&rsquo;t looked into the field of reinforcement learning, please first read the section <a href="https://yikhuen.github.io/posts/2018-02-19-rl-overview/#key-concepts">&ldquo;A (Long) Peek into Reinforcement Learning &raquo; Key Concepts&rdquo;</a> for the problem definition and key concepts.</p>
 <h2 id="notations">Notations<a hidden class="anchor" aria-hidden="true" href="#notations">#</a></h2>
 <p>Here is a list of notations to help you read through equations in the post easily.</p>
 <table>
@@ -457,7 +457,7 @@ $$
 </div>
 <p>where $d^\pi(s)$ is the stationary distribution of Markov chain for $\pi_\theta$ (on-policy state distribution under $\pi$). For simplicity, the parameter $\theta$ would be omitted for the policy $\pi_\theta$ when the policy is present in the subscript of other functions; for example, $d^{\pi}$ and $Q^\pi$ should be $d^{\pi_\theta}$ and $Q^{\pi_\theta}$ if written in full.</p>
 <p>Imagine that you can travel along the Markov chain&rsquo;s states forever, and eventually, as the time progresses, the probability of you ending up with one state becomes unchanged &mdash; this is the stationary probability for $\pi_\theta$. $d^\pi(s) = \lim_{t \to \infty} P(s_t = s \vert s_0, \pi_\theta)$ is the probability that $s_t=s$ when starting from $s_0$ and following policy $\pi_\theta$ for t steps. Actually, the existence of the stationary distribution of Markov chain is one main reason for why PageRank algorithm works. If you want to read more, check <a href="https://jeremykun.com/2015/04/06/markov-chain-monte-carlo-without-all-the-bullshit/">this</a>.</p>
-<p>It is natural to expect policy-based methods are more useful in the continuous space. Because there is an infinite number of actions and (or) states to estimate the values for and hence value-based approaches are way too expensive computationally in the continuous space. For example, in <a href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/#policy-iteration">generalized policy iteration</a>, the policy improvement step $\arg\max_{a \in \mathcal{A}} Q^\pi(s, a)$ requires a full scan of the action space, suffering from the <a href="https://en.wikipedia.org/wiki/Curse_of_dimensionality">curse of dimensionality</a>.</p>
+<p>It is natural to expect policy-based methods are more useful in the continuous space. Because there is an infinite number of actions and (or) states to estimate the values for and hence value-based approaches are way too expensive computationally in the continuous space. For example, in <a href="https://yikhuen.github.io/posts/2018-02-19-rl-overview/#policy-iteration">generalized policy iteration</a>, the policy improvement step $\arg\max_{a \in \mathcal{A}} Q^\pi(s, a)$ requires a full scan of the action space, suffering from the <a href="https://en.wikipedia.org/wiki/Curse_of_dimensionality">curse of dimensionality</a>.</p>
 <p>Using <em>gradient ascent</em>, we can move $\theta$ toward the direction suggested by the gradient $\nabla_\theta J(\theta)$ to find the best $\theta$ for $\pi_\theta$ that produces the highest return.</p>
 <h2 id="policy-gradient-theorem">Policy Gradient Theorem<a hidden class="anchor" aria-hidden="true" href="#policy-gradient-theorem">#</a></h2>
 <p>Computing the gradient $\nabla_\theta J(\theta)$ is tricky because it depends on both the action selection (directly determined by $\pi_\theta$) and the stationary distribution of states following the target selection behavior (indirectly determined by $\pi_\theta$). Given that the environment is generally unknown, it is difficult to estimate the effect on the state distribution by a policy update.</p>
@@ -562,7 +562,7 @@ $$
 <h1 id="policy-gradient-algorithms">Policy Gradient Algorithms<a hidden class="anchor" aria-hidden="true" href="#policy-gradient-algorithms">#</a></h1>
 <p>Tons of policy gradient algorithms have been proposed during recent years and there is no way for me to exhaust them. I&rsquo;m introducing some of them that I happened to know and read about.</p>
 <h2 id="reinforce">REINFORCE<a hidden class="anchor" aria-hidden="true" href="#reinforce">#</a></h2>
-<p><strong>REINFORCE</strong> (Monte-Carlo policy gradient) relies on an estimated return by <a href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/#monte-carlo-methods">Monte-Carlo</a> methods using episode samples to update the policy parameter $\theta$. REINFORCE works because the expectation of the sample gradient is equal to the actual gradient:</p>
+<p><strong>REINFORCE</strong> (Monte-Carlo policy gradient) relies on an estimated return by <a href="https://yikhuen.github.io/posts/2018-02-19-rl-overview/#monte-carlo-methods">Monte-Carlo</a> methods using episode samples to update the policy parameter $\theta$. REINFORCE works because the expectation of the sample gradient is equal to the actual gradient:</p>
 <div>
 $$
 \begin{aligned}
@@ -609,8 +609,8 @@ $$
 <h2 id="off-policy-policy-gradient">Off-Policy Policy Gradient<a hidden class="anchor" aria-hidden="true" href="#off-policy-policy-gradient">#</a></h2>
 <p>Both REINFORCE and the vanilla version of actor-critic method are on-policy: training samples are collected according to the target policy &mdash; the very same policy that we try to optimize for. Off policy methods, however, result in several additional advantages:</p>
 <ol>
-<li>The off-policy approach does not require full trajectories and can reuse any past episodes (<a href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/#deep-q-network">“experience replay”</a>) for much better sample efficiency.</li>
-<li>The sample collection follows a behavior policy different from the target policy, bringing better <a href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/#exploration-exploitation-dilemma">exploration</a>.</li>
+<li>The off-policy approach does not require full trajectories and can reuse any past episodes (<a href="https://yikhuen.github.io/posts/2018-02-19-rl-overview/#deep-q-network">“experience replay”</a>) for much better sample efficiency.</li>
+<li>The sample collection follows a behavior policy different from the target policy, bringing better <a href="https://yikhuen.github.io/posts/2018-02-19-rl-overview/#exploration-exploitation-dilemma">exploration</a>.</li>
 </ol>
 <p>Now let&rsquo;s see how off-policy policy gradient is computed. The behavior policy for collecting samples is a known policy (predefined just like a hyperparameter), labelled as $\beta(a \vert s)$. The objective function sums up the reward over the state distribution defined by this behavior policy:</p>
 <div>
@@ -715,7 +715,7 @@ $$
 </div>
 <p>We can consider the deterministic policy as a <em>special case</em> of the stochastic one, when the probability distribution contains only one extreme non-zero value over one action. Actually, in the DPG <a href="https://hal.inria.fr/file/index/docid/938992/filename/dpg-icml2014.pdf">paper</a>, the authors have shown that if the stochastic policy $\pi_{\mu_\theta, \sigma}$ is re-parameterized by a deterministic policy $\mu_\theta$ and a variation variable $\sigma$, the stochastic policy is eventually equivalent to the deterministic case when $\sigma=0$. Compared to the deterministic policy, we expect the stochastic policy to require more samples as it integrates the data over the whole state and action space.</p>
 <p>The deterministic policy gradient theorem can be plugged into common policy gradient frameworks.</p>
-<p>Let&rsquo;s consider an example of on-policy actor-critic algorithm to showcase the procedure. In each iteration of on-policy actor-critic, two actions are taken deterministically $a = \mu_\theta(s)$ and the <a href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/#sarsa-on-policy-td-control">SARSA</a> update on policy parameters relies on the new gradient that we just computed above:</p>
+<p>Let&rsquo;s consider an example of on-policy actor-critic algorithm to showcase the procedure. In each iteration of on-policy actor-critic, two actions are taken deterministically $a = \mu_\theta(s)$ and the <a href="https://yikhuen.github.io/posts/2018-02-19-rl-overview/#sarsa-on-policy-td-control">SARSA</a> update on policy parameters relies on the new gradient that we just computed above:</p>
 <div>
 $$
 \begin{aligned}
@@ -725,7 +725,7 @@ w_{t+1} &= w_t + \alpha_w \delta_t \nabla_w Q_w(s_t, a_t) & \\
 \end{aligned}
 $$
 </div>
-<p>However, unless there is sufficient noise in the environment, it is very hard to guarantee enough <a href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/#exploration-exploitation-dilemma">exploration</a> due to the determinacy of the policy. We can either add noise into the policy (ironically this makes it nondeterministic!) or learn it off-policy-ly by following a different stochastic behavior policy to collect samples.</p>
+<p>However, unless there is sufficient noise in the environment, it is very hard to guarantee enough <a href="https://yikhuen.github.io/posts/2018-02-19-rl-overview/#exploration-exploitation-dilemma">exploration</a> due to the determinacy of the policy. We can either add noise into the policy (ironically this makes it nondeterministic!) or learn it off-policy-ly by following a different stochastic behavior policy to collect samples.</p>
 <p>Say, in the off-policy approach, the training trajectories are generated by a stochastic policy $\beta(a \vert s)$ and thus the state distribution follows the corresponding discounted state density $\rho^\beta$:</p>
 <div>
 $$
@@ -739,7 +739,7 @@ $$
 In the off-policy approach with a stochastic policy, importance sampling is often used to correct the mismatch between behavior and target policies, as what we have described <a href="#off-policy-policy-gradient">above</a>. However, because the deterministic policy gradient removes the integral over actions, we can avoid importance sampling.</p>
 <h2 id="ddpg">DDPG<a hidden class="anchor" aria-hidden="true" href="#ddpg">#</a></h2>
 <p>[<a href="https://arxiv.org/pdf/1509.02971.pdf">paper</a>|<a href="https://github.com/openai/baselines/tree/master/baselines/ddpg">code</a>]</p>
-<p><strong>DDPG</strong> (<a href="https://arxiv.org/pdf/1509.02971.pdf">Lillicrap, et al., 2015</a>), short for <strong>Deep Deterministic Policy Gradient</strong>, is a model-free off-policy actor-critic algorithm, combining <a href="#dpg">DPG</a> with <a href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/#deep-q-network">DQN</a>. Recall that DQN (Deep Q-Network) stabilizes the learning of Q-function by experience replay and the frozen target network. The original DQN works in discrete space, and DDPG extends it to continuous space with the actor-critic framework while learning a deterministic policy.</p>
+<p><strong>DDPG</strong> (<a href="https://arxiv.org/pdf/1509.02971.pdf">Lillicrap, et al., 2015</a>), short for <strong>Deep Deterministic Policy Gradient</strong>, is a model-free off-policy actor-critic algorithm, combining <a href="#dpg">DPG</a> with <a href="https://yikhuen.github.io/posts/2018-02-19-rl-overview/#deep-q-network">DQN</a>. Recall that DQN (Deep Q-Network) stabilizes the learning of Q-function by experience replay and the frozen target network. The original DQN works in discrete space, and DDPG extends it to continuous space with the actor-critic framework while learning a deterministic policy.</p>
 <p>In order to do better exploration, an exploration policy $\mu&rsquo;$ is constructed by adding noise $\mathcal{N}$:</p>
 <div>
 $$
@@ -820,7 +820,7 @@ $$
 </figure>
 <h2 id="trpo">TRPO<a hidden class="anchor" aria-hidden="true" href="#trpo">#</a></h2>
 <p>[<a href="https://arxiv.org/pdf/1502.05477.pdf">paper</a>|<a href="https://github.com/openai/baselines/tree/master/baselines/trpo_mpi">code</a>]</p>
-<p>To improve training stability, we should avoid parameter updates that change the policy too much at one step. <strong>Trust region policy optimization (TRPO)</strong> (<a href="https://arxiv.org/pdf/1502.05477.pdf">Schulman, et al., 2015</a>) carries out this idea by enforcing a <a href="https://lilianweng.github.io/posts/2017-08-20-gan/#kullbackleibler-and-jensenshannon-divergence">KL divergence</a> constraint on the size of policy update at each iteration.</p>
+<p>To improve training stability, we should avoid parameter updates that change the policy too much at one step. <strong>Trust region policy optimization (TRPO)</strong> (<a href="https://arxiv.org/pdf/1502.05477.pdf">Schulman, et al., 2015</a>) carries out this idea by enforcing a <a href="https://yikhuen.github.io/posts/2017-08-20-gan/#kullbackleibler-and-jensenshannon-divergence">KL divergence</a> constraint on the size of policy update at each iteration.</p>
 <p>Consider the case when we are doing off-policy RL, the policy $\beta$ used for collecting trajectories on rollout workers is different from the policy $\pi$ to optimize for. The objective function in an off-policy model measures the total advantage over the state visitation distribution and actions, while the mismatch between the training data distribution and the true policy state distribution is compensated by importance sampling estimator:</p>
 <div>
 $$
@@ -1042,7 +1042,7 @@ J_Q(w) &= \mathbb{E}_{(s_t, a_t) \sim \mathcal{D}} [\frac{1}{2}\big( Q_w(s_t, a_
 \end{aligned}
 $$
 </div>
-<p>where $\bar{\psi}$ is the target value function which is the exponential moving average (or only gets updated periodically in a “hard” way), just like how the parameter of the target Q network is treated in <a href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/#deep-q-network">DQN</a> to stabilize the training.</p>
+<p>where $\bar{\psi}$ is the target value function which is the exponential moving average (or only gets updated periodically in a “hard” way), just like how the parameter of the target Q network is treated in <a href="https://yikhuen.github.io/posts/2018-02-19-rl-overview/#deep-q-network">DQN</a> to stabilize the training.</p>
 <p>SAC updates the policy to minimize the <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">KL-divergence</a>:</p>
 <div>
 $$
@@ -1222,8 +1222,8 @@ y_2 &= r + \gamma \min_{i=1,2} Q_{w_i}(s', \mu_{\theta_2}(s'))
 \end{aligned}
 $$
 </div>
-<p>(2) <strong>Delayed update of Target and Policy Networks</strong>:  In the <a href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/#actor-critic">actor-critic</a> model, policy and value updates are deeply coupled: Value estimates diverge through overestimation when the policy is poor, and the policy will become poor if the value estimate itself is inaccurate.</p>
-<p>To reduce the variance, TD3 updates the policy at a lower frequency than the Q-function. The policy network stays the same until the value error is small enough after several updates. The idea is similar to how the periodically-updated target network stay as a stable objective in <a href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/#dqn">DQN</a>.</p>
+<p>(2) <strong>Delayed update of Target and Policy Networks</strong>:  In the <a href="https://yikhuen.github.io/posts/2018-02-19-rl-overview/#actor-critic">actor-critic</a> model, policy and value updates are deeply coupled: Value estimates diverge through overestimation when the policy is poor, and the policy will become poor if the value estimate itself is inaccurate.</p>
+<p>To reduce the variance, TD3 updates the policy at a lower frequency than the Q-function. The policy network stays the same until the value error is small enough after several updates. The idea is similar to how the periodically-updated target network stay as a stable objective in <a href="https://yikhuen.github.io/posts/2018-02-19-rl-overview/#dqn">DQN</a>.</p>
 <p>(3) <strong>Target Policy Smoothing</strong>: Given a concern with deterministic policies that they can overfit to narrow peaks in the value function, TD3 introduced a smoothing regularization strategy on the value function: adding a small amount of clipped random noises to the selected action and averaging over mini-batches.</p>
 <div>
 $$
@@ -1233,7 +1233,7 @@ y &= r + \gamma Q_w (s', \mu_{\theta}(s') + \epsilon) & \\
 \end{aligned}
 $$
 </div>
-<p>This approach mimics the idea of <a href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/#sarsa-on-policy-td-control">SARSA</a> update and enforces that similar actions should have similar values.</p>
+<p>This approach mimics the idea of <a href="https://yikhuen.github.io/posts/2018-02-19-rl-overview/#sarsa-on-policy-td-control">SARSA</a> update and enforces that similar actions should have similar values.</p>
 <p>Here is the final algorithm:</p>
 <figure>
 	<img src="TD3.png"  style="width: 80%;" />
@@ -1300,7 +1300,7 @@ $$
           <td>$\Delta \theta$ on the parameter space</td>
       </tr>
       <tr>
-          <td><a href="https://lilianweng.github.io/posts/2019-09-05-evolution-strategies/#natural-gradients">Natural gradient</a></td>
+          <td><a href="https://yikhuen.github.io/posts/2019-09-05-evolution-strategies/#natural-gradients">Natural gradient</a></td>
           <td>$\Delta \theta$ on the search distribution space</td>
       </tr>
       <tr>
@@ -1425,17 +1425,17 @@ $$
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://lilianweng.github.io/tags/reinforcement-learning/">Reinforcement-Learning</a></li>
-      <li><a href="https://lilianweng.github.io/tags/long-read/">Long-Read</a></li>
-      <li><a href="https://lilianweng.github.io/tags/math-heavy/">Math-Heavy</a></li>
+      <li><a href="https://yikhuen.github.io/tags/reinforcement-learning/">Reinforcement-Learning</a></li>
+      <li><a href="https://yikhuen.github.io/tags/long-read/">Long-Read</a></li>
+      <li><a href="https://yikhuen.github.io/tags/math-heavy/">Math-Heavy</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://lilianweng.github.io/posts/2018-05-05-drl-implementation/">
+  <a class="prev" href="https://yikhuen.github.io/posts/2018-05-05-drl-implementation/">
     <span class="title">« </span>
     <br>
     <span>Implementing Deep Reinforcement Learning Models with Tensorflow &#43; OpenAI Gym</span>
   </a>
-  <a class="next" href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/">
+  <a class="next" href="https://yikhuen.github.io/posts/2018-02-19-rl-overview/">
     <span class="title"> »</span>
     <br>
     <span>A (Long) Peek into Reinforcement Learning</span>
@@ -1493,7 +1493,7 @@ $$
     </main>
     
 <footer class="footer">
-    <span>&copy; 2025 <a href="https://lilianweng.github.io/">YK's Log</a></span>
+    <span>&copy; 2025 <a href="https://yikhuen.github.io/">YK's Log</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

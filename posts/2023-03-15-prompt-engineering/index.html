@@ -10,18 +10,18 @@
 <meta name="description" content="Prompt Engineering, also known as In-Context Prompting, refers to methods for how to communicate with LLM to steer its behavior for desired outcomes without updating the model weights. It is an empirical science and the effect of prompt engineering methods can vary a lot among models, thus requiring heavy experimentation and heuristics.
 This post only focuses on prompt engineering for autoregressive language models, so nothing with Cloze tests, image generation or multimodality models. At its core, the goal of prompt engineering is about alignment and model steerability. Check my previous post on controllable text generation.">
 <meta name="author" content="Lilian Weng">
-<link rel="canonical" href="https://lilianweng.github.io/posts/2023-03-15-prompt-engineering/" />
+<link rel="canonical" href="https://yikhuen.github.io/posts/2023-03-15-prompt-engineering/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.51b2420ff5ea1215cdf584af7ba59d5fea94201c33f25109d6448c7271631316.css" integrity="sha256-UbJCD/XqEhXN9YSve6WdX&#43;qUIBwz8lEJ1kSMcnFjExY=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.2eadbb982468c11a433a3e291f01326f2ba43f065e256bf792dbd79640a92316.js" integrity="sha256-Lq27mCRowRpDOj4pHwEybyukPwZeJWv3ktvXlkCpIxY="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://lilianweng.github.io/favicon_wine.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://lilianweng.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://lilianweng.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://lilianweng.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://lilianweng.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="https://yikhuen.github.io/favicon_wine.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://yikhuen.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://yikhuen.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://yikhuen.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://yikhuen.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://lilianweng.github.io/posts/2023-03-15-prompt-engineering/" />
+<link rel="alternate" hreflang="en" href="https://yikhuen.github.io/posts/2023-03-15-prompt-engineering/" />
 <noscript>
     <style>
         #theme-toggle,
@@ -180,7 +180,7 @@ This post only focuses on prompt engineering for autoregressive language models,
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://lilianweng.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
+            <a href="https://yikhuen.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -208,27 +208,27 @@ This post only focuses on prompt engineering for autoregressive language models,
         </div>
         <ul id="menu">
             <li>
-                <a href="https://lilianweng.github.io/" title="Posts">
+                <a href="https://yikhuen.github.io/" title="Posts">
                     <span>Posts</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/archives" title="Archive">
+                <a href="https://yikhuen.github.io/archives" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="https://yikhuen.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/tags/" title="Tags">
+                <a href="https://yikhuen.github.io/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/faq" title="FAQ">
+                <a href="https://yikhuen.github.io/faq" title="FAQ">
                     <span>FAQ</span>
                 </a>
             </li>
@@ -304,7 +304,7 @@ This post only focuses on prompt engineering for autoregressive language models,
 </div>
 
   <div class="post-content"><p><strong>Prompt Engineering</strong>, also known as <strong>In-Context Prompting</strong>, refers to methods for how to communicate with LLM to steer its behavior for desired outcomes <em>without</em> updating the model weights. It is an empirical science and the effect of prompt engineering methods can vary a lot among models, thus requiring heavy experimentation and heuristics.</p>
-<p>This post only focuses on prompt engineering for autoregressive language models, so nothing with Cloze tests, image generation or multimodality models. At its core, the goal of prompt engineering is about alignment and model steerability. Check my <a href="https://lilianweng.github.io/posts/2021-01-02-controllable-text-generation/">previous post</a> on controllable text generation.</p>
+<p>This post only focuses on prompt engineering for autoregressive language models, so nothing with Cloze tests, image generation or multimodality models. At its core, the goal of prompt engineering is about alignment and model steerability. Check my <a href="https://yikhuen.github.io/posts/2021-01-02-controllable-text-generation/">previous post</a> on controllable text generation.</p>
 <p><span style="color: #bd2c22;">[My personal spicy take]</span> In my opinion, some prompt engineering papers are not worthy 8 pages long, since those tricks can be explained in one or a few sentences and the rest is all about benchmarking. An easy-to-use and shared benchmark infrastructure should be more beneficial to the community. Iterative prompting or external tool use would not be trivial to set up. Also non-trivial to align the whole research community to adopt it.</p>
 <h1 id="basic-prompting">Basic Prompting<a hidden class="anchor" aria-hidden="true" href="#basic-prompting">#</a></h1>
 <p>Zero-shot and few-shot learning are two most basic approaches for prompting the model, pioneered by many LLM papers and commonly used for benchmarking LLM performance.</p>
@@ -339,13 +339,13 @@ Sentiment:
 $$ such that $s(v)$ is low if many of $v$&rsquo;s neighbors are selected and thus the scoring encourages to pick diverse samples.</p>
 </li>
 <li>
-<p><a href="https://arxiv.org/abs/2112.08633">Rubin et al. (2022)</a> proposed to train embeddings via <a href="https://lilianweng.github.io/posts/2021-05-31-contrastive/">contrastive learning</a> specific to one training dataset for in-context learning sample selection.  Given each training pair $(x, y)$, the quality of one example $e_i$ (formatted input-output pair) can be measured by a conditioned probability assigned by LM: $\text{score}(e_i) = P_\text{LM}(y \mid e_i, x)$. We can identify other examples with top-$k$ and bottom-$k$ scores as positive and negative sets of candidates for every training pair and use that for contrastive learning.</p>
+<p><a href="https://arxiv.org/abs/2112.08633">Rubin et al. (2022)</a> proposed to train embeddings via <a href="https://yikhuen.github.io/posts/2021-05-31-contrastive/">contrastive learning</a> specific to one training dataset for in-context learning sample selection.  Given each training pair $(x, y)$, the quality of one example $e_i$ (formatted input-output pair) can be measured by a conditioned probability assigned by LM: $\text{score}(e_i) = P_\text{LM}(y \mid e_i, x)$. We can identify other examples with top-$k$ and bottom-$k$ scores as positive and negative sets of candidates for every training pair and use that for contrastive learning.</p>
 </li>
 <li>
-<p>Some researchers tried <a href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/#q-learning-off-policy-td-control">Q-Learning</a> to do sample selection. (<a href="https://arxiv.org/abs/2211.04486">Zhang et al. 2022</a>)</p>
+<p>Some researchers tried <a href="https://yikhuen.github.io/posts/2018-02-19-rl-overview/#q-learning-off-policy-td-control">Q-Learning</a> to do sample selection. (<a href="https://arxiv.org/abs/2211.04486">Zhang et al. 2022</a>)</p>
 </li>
 <li>
-<p>Motivated by uncertainty-based <a href="https://lilianweng.github.io/posts/2022-02-20-active-learning/">active learning</a>, <a href="https://arxiv.org/abs/2302.12246">Diao et al. (2023)</a> suggested to identify examples with high disagreement or entropy among multiple sampling trials. Then annotate these examples to be used in few-shot prompts.</p>
+<p>Motivated by uncertainty-based <a href="https://yikhuen.github.io/posts/2022-02-20-active-learning/">active learning</a>, <a href="https://arxiv.org/abs/2302.12246">Diao et al. (2023)</a> suggested to identify examples with high disagreement or entropy among multiple sampling trials. Then annotate these examples to be used in few-shot prompts.</p>
 </li>
 </ul>
 <h3 id="tips-for-example-ordering">Tips for Example Ordering<a hidden class="anchor" aria-hidden="true" href="#tips-for-example-ordering">#</a></h3>
@@ -355,7 +355,7 @@ $$ such that $s(v)$ is low if many of $v$&rsquo;s neighbors are selected and thu
 </ul>
 <h1 id="instruction-prompting">Instruction Prompting<a hidden class="anchor" aria-hidden="true" href="#instruction-prompting">#</a></h1>
 <p>The purpose of presenting few-shot examples in the prompt is to explain our intent to the model; in other words, describe the task instruction to the model in the form of demonstrations. However, few-shot can be expensive in terms of token usage and restricts the input length due to limited context length. So, why not just give the instruction directly?</p>
-<p><em>Instructed LM</em> (e.g. <a href="https://openai.com/research/instruction-following">InstructGPT</a>, <a href="https://github.com/allenai/natural-instructions">natural instruction</a>) finetunes a pretrained model with high-quality tuples of (task instruction, input, ground truth output) to make LM better understand user intention and follow instruction. <a href="https://lilianweng.github.io/posts/2021-01-02-controllable-text-generation/#rl-fine-tuning-with-human-preferences">RLHF</a> (Reinforcement Learning from Human Feedback) is a common method to do so. The benefit of instruction following style fine-tuning improves the model to be more aligned with human intention and greatly reduces the cost of communication.</p>
+<p><em>Instructed LM</em> (e.g. <a href="https://openai.com/research/instruction-following">InstructGPT</a>, <a href="https://github.com/allenai/natural-instructions">natural instruction</a>) finetunes a pretrained model with high-quality tuples of (task instruction, input, ground truth output) to make LM better understand user intention and follow instruction. <a href="https://yikhuen.github.io/posts/2021-01-02-controllable-text-generation/#rl-fine-tuning-with-human-preferences">RLHF</a> (Reinforcement Learning from Human Feedback) is a common method to do so. The benefit of instruction following style fine-tuning improves the model to be more aligned with human intention and greatly reduces the cost of communication.</p>
 <p>When interacting with instruction models, we should describe the task requirement in details, trying to be <em>specific</em> and <em>precise</em> and avoiding say &ldquo;not do something&rdquo; but rather specify what to do.</p>
 <pre tabindex="0"><code>Please label the sentiment towards the movie of the given movie review. The sentiment label should be &#34;positive&#34; or &#34;negative&#34;. 
 Text: i&#39;ll bet the video game is a lot more fun than the film. 
@@ -452,7 +452,7 @@ Answer: Let&#39;s think step by step.
 	<figcaption>How Self-Ask works with external search queries.<br/>(Image source: <a href="https://arxiv.org/abs/2305.10601" target="_blank">Yao et al. 2022</a>).</figcaption>
 </figure>
 <h1 id="automatic-prompt-design">Automatic Prompt Design<a hidden class="anchor" aria-hidden="true" href="#automatic-prompt-design">#</a></h1>
-<p>Prompt is a sequence of prefix tokens that increase the probability of getting  desired output given input. Therefore we can treat them as trainable parameters and <a href="https://lilianweng.github.io/posts/2021-01-02-controllable-text-generation/#smart-prompt-design">optimize them directly</a> on the embedding space via gradient descent, such as <strong>AutoPrompt</strong> (<a href="https://arxiv.org/abs/2010.15980">Shin et al., 2020</a>, <strong>Prefix-Tuning</strong> (<a href="https://arxiv.org/abs/2101.00190">Li &amp; Liang (2021)</a>), <strong>P-tuning</strong> (<a href="https://arxiv.org/abs/2103.10385">Liu et al. 2021</a>) and <strong>Prompt-Tuning</strong> (<a href="https://arxiv.org/abs/2104.08691">Lester et al. 2021</a>). <a href="https://lilianweng.github.io/posts/2021-01-02-controllable-text-generation/#smart-prompt-design">This section in my &ldquo;Controllable Neural Text Generation&rdquo; post</a> has a good coverage of them. The trend from AutoPrompt to Prompt-Tuning is that the setup gets gradually simplified.</p>
+<p>Prompt is a sequence of prefix tokens that increase the probability of getting  desired output given input. Therefore we can treat them as trainable parameters and <a href="https://yikhuen.github.io/posts/2021-01-02-controllable-text-generation/#smart-prompt-design">optimize them directly</a> on the embedding space via gradient descent, such as <strong>AutoPrompt</strong> (<a href="https://arxiv.org/abs/2010.15980">Shin et al., 2020</a>, <strong>Prefix-Tuning</strong> (<a href="https://arxiv.org/abs/2101.00190">Li &amp; Liang (2021)</a>), <strong>P-tuning</strong> (<a href="https://arxiv.org/abs/2103.10385">Liu et al. 2021</a>) and <strong>Prompt-Tuning</strong> (<a href="https://arxiv.org/abs/2104.08691">Lester et al. 2021</a>). <a href="https://yikhuen.github.io/posts/2021-01-02-controllable-text-generation/#smart-prompt-design">This section in my &ldquo;Controllable Neural Text Generation&rdquo; post</a> has a good coverage of them. The trend from AutoPrompt to Prompt-Tuning is that the setup gets gradually simplified.</p>
 <p><strong>APE</strong> (Automatic Prompt Engineer; <a href="https://arxiv.org/abs/2211.01910">Zhou et al. 2022</a>) is a method to search over a pool of model-generated instruction candidates and then filters the candidate set according to a chosen score function to ultimately choose the best candidate with highest score.</p>
 <ol>
 <li>
@@ -480,7 +480,7 @@ Answer: Let&#39;s think step by step.
 <h1 id="augmented-language-models">Augmented Language Models<a hidden class="anchor" aria-hidden="true" href="#augmented-language-models">#</a></h1>
 <p>A survey on augmented language models by <a href="https://arxiv.org/abs/2302.07842">Mialon et al. (2023)</a> has great coverage over multiple categories of language models augmented with reasoning skills and the ability of using external tools. Recommend it.</p>
 <h2 id="retrieval">Retrieval<a hidden class="anchor" aria-hidden="true" href="#retrieval">#</a></h2>
-<p>Often we need to complete tasks that require latest knowledge after the model pretraining time cutoff or internal/private knowledge base. In that case, the model would not know the context if we don’t explicitly provide it in the prompt. Many methods for <a href="https://lilianweng.github.io/posts/2020-10-29-odqa/">Open Domain Question Answering</a> depend on first doing retrieval over a knowledge base and then incorporating the retrieved content as part of the prompt. The accuracy of such a process depends on the quality of both retrieval and generation steps.</p>
+<p>Often we need to complete tasks that require latest knowledge after the model pretraining time cutoff or internal/private knowledge base. In that case, the model would not know the context if we don’t explicitly provide it in the prompt. Many methods for <a href="https://yikhuen.github.io/posts/2020-10-29-odqa/">Open Domain Question Answering</a> depend on first doing retrieval over a knowledge base and then incorporating the retrieved content as part of the prompt. The accuracy of such a process depends on the quality of both retrieval and generation steps.</p>
 <p><a href="https://arxiv.org/abs/2203.05115">Lazaridou et al. (2022)</a> studied how to use Google Search for document retrieval to augment LLMs. Given a question $q$, clean text is extracted out of 20 URLs returned by Google, resulting in a set of documents. Because these documents are long, each document is split into paragraphs of 6 sentences, $\{p\}$. Paragraphs are ranked by TF-IDF based cosine similarity between evidence paragraphs and the query. Only the most relevant paragraph is used in the prompt to produce an answer $a$.</p>
 <p>For closed-book QA, each demonstration is formatted as follows to construct few-shot prompts. Swapping the question with the evidence (longer distance between questions and answers) is found to consistently yield lower results across all datasets.</p>
 <pre tabindex="0"><code>Evidence: ...
@@ -488,7 +488,7 @@ Question: ...
 Answer: ...
 </code></pre><p>The answer probability is computed in three ways:</p>
 <ol>
-<li><a href="https://lilianweng.github.io/posts/2020-10-29-odqa/#RAG">RAG</a> style, $p(a_i \mid q) = \sum_{i=1}^n p_\text{tf-idf} (p_i \mid q) \cdot p_\text{LM}(a_i \mid q, p_i)$, where $p_\text{tf-idf} (p_i \mid q)$ is the normalized cosine similarities between the TF-IDF passage and question representations.</li>
+<li><a href="https://yikhuen.github.io/posts/2020-10-29-odqa/#RAG">RAG</a> style, $p(a_i \mid q) = \sum_{i=1}^n p_\text{tf-idf} (p_i \mid q) \cdot p_\text{LM}(a_i \mid q, p_i)$, where $p_\text{tf-idf} (p_i \mid q)$ is the normalized cosine similarities between the TF-IDF passage and question representations.</li>
 <li>Noisy channel inference, $p(a_i\mid q) = \frac{p_\text{LM}(q \mid a_i, p_i) \cdot p_\text{LM}(a_i \mid p_i)}{p_\text{LM}(q \mid p_i)}$</li>
 <li>Product-of-Experts (PoE), combines all probabilities used above in addition to $p_\text{LM}(p_i \mid q)$.</li>
 </ol>
@@ -640,19 +640,19 @@ Knowledge:
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://lilianweng.github.io/tags/nlp/">Nlp</a></li>
-      <li><a href="https://lilianweng.github.io/tags/language-model/">Language-Model</a></li>
-      <li><a href="https://lilianweng.github.io/tags/alignment/">Alignment</a></li>
-      <li><a href="https://lilianweng.github.io/tags/steerability/">Steerability</a></li>
-      <li><a href="https://lilianweng.github.io/tags/prompting/">Prompting</a></li>
+      <li><a href="https://yikhuen.github.io/tags/nlp/">Nlp</a></li>
+      <li><a href="https://yikhuen.github.io/tags/language-model/">Language-Model</a></li>
+      <li><a href="https://yikhuen.github.io/tags/alignment/">Alignment</a></li>
+      <li><a href="https://yikhuen.github.io/tags/steerability/">Steerability</a></li>
+      <li><a href="https://yikhuen.github.io/tags/prompting/">Prompting</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://lilianweng.github.io/posts/2023-06-23-agent/">
+  <a class="prev" href="https://yikhuen.github.io/posts/2023-06-23-agent/">
     <span class="title">« </span>
     <br>
     <span>LLM Powered Autonomous Agents</span>
   </a>
-  <a class="next" href="https://lilianweng.github.io/posts/2023-01-27-the-transformer-family-v2/">
+  <a class="next" href="https://yikhuen.github.io/posts/2023-01-27-the-transformer-family-v2/">
     <span class="title"> »</span>
     <br>
     <span>The Transformer Family Version 2.0</span>
@@ -710,7 +710,7 @@ Knowledge:
     </main>
     
 <footer class="footer">
-    <span>&copy; 2025 <a href="https://lilianweng.github.io/">YK's Log</a></span>
+    <span>&copy; 2025 <a href="https://yikhuen.github.io/">YK's Log</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

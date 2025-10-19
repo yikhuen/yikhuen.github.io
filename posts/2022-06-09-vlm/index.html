@@ -9,18 +9,18 @@
 <meta name="keywords" content="language-model, vision-language-model, vision-model" />
 <meta name="description" content="Processing images to generate text, such as image captioning and visual question-answering, has been studied for years. Traditionally such systems rely on an object detection network as a vision encoder to capture visual features and then produce text via a text decoder. Given a large amount of existing literature, in this post, I would like to only focus on one approach for solving vision language tasks, which is to extend pre-trained generalized language models to be capable of consuming visual signals.">
 <meta name="author" content="Lilian Weng">
-<link rel="canonical" href="https://lilianweng.github.io/posts/2022-06-09-vlm/" />
+<link rel="canonical" href="https://yikhuen.github.io/posts/2022-06-09-vlm/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.51b2420ff5ea1215cdf584af7ba59d5fea94201c33f25109d6448c7271631316.css" integrity="sha256-UbJCD/XqEhXN9YSve6WdX&#43;qUIBwz8lEJ1kSMcnFjExY=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.2eadbb982468c11a433a3e291f01326f2ba43f065e256bf792dbd79640a92316.js" integrity="sha256-Lq27mCRowRpDOj4pHwEybyukPwZeJWv3ktvXlkCpIxY="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://lilianweng.github.io/favicon_wine.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://lilianweng.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://lilianweng.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://lilianweng.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://lilianweng.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="https://yikhuen.github.io/favicon_wine.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://yikhuen.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://yikhuen.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://yikhuen.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://yikhuen.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://lilianweng.github.io/posts/2022-06-09-vlm/" />
+<link rel="alternate" hreflang="en" href="https://yikhuen.github.io/posts/2022-06-09-vlm/" />
 <noscript>
     <style>
         #theme-toggle,
@@ -177,7 +177,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://lilianweng.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
+            <a href="https://yikhuen.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -205,27 +205,27 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://lilianweng.github.io/" title="Posts">
+                <a href="https://yikhuen.github.io/" title="Posts">
                     <span>Posts</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/archives" title="Archive">
+                <a href="https://yikhuen.github.io/archives" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="https://yikhuen.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/tags/" title="Tags">
+                <a href="https://yikhuen.github.io/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/faq" title="FAQ">
+                <a href="https://yikhuen.github.io/faq" title="FAQ">
                     <span>FAQ</span>
                 </a>
             </li>
@@ -292,7 +292,7 @@
     </details>
 </div>
 
-  <div class="post-content"><p>Processing images to generate text, such as image captioning and visual question-answering, has been studied for years. Traditionally such systems rely on an object detection network as a vision encoder to capture visual features and then produce text via a text decoder. Given a large amount of existing literature, in this post, I would like to only focus on one approach for solving vision language tasks, which is to <em>extend pre-trained <a href="https://lilianweng.github.io/posts/2019-01-31-lm/">generalized language models</a> to be capable of consuming visual signals</em>.</p>
+  <div class="post-content"><p>Processing images to generate text, such as image captioning and visual question-answering, has been studied for years. Traditionally such systems rely on an object detection network as a vision encoder to capture visual features and then produce text via a text decoder. Given a large amount of existing literature, in this post, I would like to only focus on one approach for solving vision language tasks, which is to <em>extend pre-trained <a href="https://yikhuen.github.io/posts/2019-01-31-lm/">generalized language models</a> to be capable of consuming visual signals</em>.</p>
 <p>I roughly group such vision language models (VLMs) into four buckets:</p>
 <ol>
 <li>Translating images into embedding features that can be jointly trained with token embeddings.</li>
@@ -302,12 +302,12 @@
 </ol>
 <h1 id="jointly-training-with-image-and-text">Jointly Training with Image and Text<a hidden class="anchor" aria-hidden="true" href="#jointly-training-with-image-and-text">#</a></h1>
 <p>One straightforward approach to fuse visual information into language models is to treat images as normal text tokens and train the model on a sequence of joint representations of both text and images. Precisely, images are divided into multiple smaller patches and each patch is treated as one &ldquo;token&rdquo; in the input sequence.</p>
-<p><strong>VisualBERT</strong> (<a href="https://arxiv.org/abs/1908.03557">Li et al. 2019</a>) feeds both text inputs and image regions into <a href="https://lilianweng.github.io/posts/2019-01-31-lm/#bert">BERT</a> such that it is able to discover the internal alignment between images and text with self-attention mechanism.</p>
+<p><strong>VisualBERT</strong> (<a href="https://arxiv.org/abs/1908.03557">Li et al. 2019</a>) feeds both text inputs and image regions into <a href="https://yikhuen.github.io/posts/2019-01-31-lm/#bert">BERT</a> such that it is able to discover the internal alignment between images and text with self-attention mechanism.</p>
 <figure>
 	<img src="VisualBERT-arch.png" style="width: 100%;"  />
 	<figcaption>VisualBERT is trained on the combination of both text and image embeddings. (Image source: <a href="https://arxiv.org/abs/1908.03557" target="_blank">Li et al. 2019</a>)</figcaption>
 </figure>
-<p>Similar to <a href="https://lilianweng.github.io/posts/2019-01-31-lm/#input-embedding">text embedding in BERT</a>, each visual embedding in VisualBERT also sums up three types of embeddings, tokenized features $f_o$, segmentation embedding $f_s$ and position embedding $f_p$, precisely:</p>
+<p>Similar to <a href="https://yikhuen.github.io/posts/2019-01-31-lm/#input-embedding">text embedding in BERT</a>, each visual embedding in VisualBERT also sums up three types of embeddings, tokenized features $f_o$, segmentation embedding $f_s$ and position embedding $f_p$, precisely:</p>
 <ol>
 <li>$f_o$ is a visual feature vector computed for a bounding region of the image by a convolutional neural network;</li>
 <li>$f_s$ is a segment embedding to indicate whether the embedding is for vision not for text;</li>
@@ -315,7 +315,7 @@
 </ol>
 <p>The model is trained on MS COCO image caption dataset with both text and image as inputs to predict text captions, using two visually-grounded language model objectives:</p>
 <ol>
-<li><em><a href="https://lilianweng.github.io/posts/2019-01-31-lm/#pre-training-tasks">MLM</a> with the image</em>. The model needs to predict masked text tokens, while image embeddings always stay not masked.</li>
+<li><em><a href="https://yikhuen.github.io/posts/2019-01-31-lm/#pre-training-tasks">MLM</a> with the image</em>. The model needs to predict masked text tokens, while image embeddings always stay not masked.</li>
 <li><em>Sentence-image prediction</em>. When provided with an image and two associated captions, one of two captions might be a random unrelated caption with 50% probability. The model is asked to distinguish these two situations.</li>
 </ol>
 <p>According to ablation experiments, the most important configuration is to fuse visual information early on into the transformer layers and to pretrain the model on the COCO caption dataset. Initialization from a pre-trained BERT and the adoption of the sentence-image prediction training objective have relatively small impacts.</p>
@@ -380,7 +380,7 @@ Prompt: Manetho writes that these kings ruled from &lt;a title=&#34;&lt;mask:0&g
 Target: Manetho writes that these kings ruled from &lt;a title=&#34;&lt;mask:0&gt;&#34;&gt;Memphis&lt;/a&gt;...&lt;mask:0&gt; Memphis, Egypt
 </code></pre><h1 id="learned-image-embedding-as-frozen-lm-prefix">Learned Image Embedding as (Frozen) LM Prefix<a hidden class="anchor" aria-hidden="true" href="#learned-image-embedding-as-frozen-lm-prefix">#</a></h1>
 <p>What if we don’t want to change the language model parameters when adapting it to handle visual signals? Instead we learn such an embedding space for images that it is compatible with the language model’s.</p>
-<p>Inspired by <a href="https://arxiv.org/abs/2101.00190">prefix</a> or <a href="https://arxiv.org/abs/2104.08691">prompt</a> <a href="https://lilianweng.github.io/posts/2021-01-02-controllable-text-generation/#prefix-tuning">tuning</a>, both <strong>Frozen</strong> (<a href="https://arxiv.org/abs/2106.13884">Tsimpoukelli et al. 2021</a>) and <strong>ClipCap</strong> (<a href="https://arxiv.org/abs/2111.09734">Mokady, Hertz &amp; Hertz, 2021</a>) only update the parameters of the vision module during training to produce image embeddings that can work with a pretrained, <em>frozen</em> language model. Both are trained with aligned image caption <a href="#image-caption-datasets">datasets</a> to produce the next text token in caption conditioned on the image and previous text tokens. The powerful language capability is retained by freezing LM parameters. In addition, even though such setup is trained with limited image caption data, they can also rely on the encyclopedic knowledge of the language model at test time.</p>
+<p>Inspired by <a href="https://arxiv.org/abs/2101.00190">prefix</a> or <a href="https://arxiv.org/abs/2104.08691">prompt</a> <a href="https://yikhuen.github.io/posts/2021-01-02-controllable-text-generation/#prefix-tuning">tuning</a>, both <strong>Frozen</strong> (<a href="https://arxiv.org/abs/2106.13884">Tsimpoukelli et al. 2021</a>) and <strong>ClipCap</strong> (<a href="https://arxiv.org/abs/2111.09734">Mokady, Hertz &amp; Hertz, 2021</a>) only update the parameters of the vision module during training to produce image embeddings that can work with a pretrained, <em>frozen</em> language model. Both are trained with aligned image caption <a href="#image-caption-datasets">datasets</a> to produce the next text token in caption conditioned on the image and previous text tokens. The powerful language capability is retained by freezing LM parameters. In addition, even though such setup is trained with limited image caption data, they can also rely on the encyclopedic knowledge of the language model at test time.</p>
 <p>The vision encoder of Frozen is based on NF-ResNet-50 and uses the final output vector of the NF-Resnet after the global pooling layer. The Frozen VLM can be used as a multi-model few-shot learner to adapt to new tasks at test time for zero-shot or few-shot transfer with a sequence of interleaved images and text.</p>
 <figure>
 	<img src="Frozen-arch.png" style="width: 100%;"  />
@@ -391,7 +391,7 @@ Target: Manetho writes that these kings ruled from &lt;a title=&#34;&lt;mask:0&g
 	<img src="Frozen-results.png" style="width: 100%;"  />
 	<figcaption>Performance of different versions of Frozen on (left) VQAv2 and (right) OKVQA, trained on Conceptual Captions. "Frozen scratch" does not load a pre-trained LM and is trained from scratch. "Frozen finetuned" has the language model finetuned, while "Frozen" keeps LM frozen. "Frozen train-blind" blacks out the image. (Image source: <a href="https://arxiv.org/abs/2106.13884" target="_blank">Tsimpoukelli et al. 2021</a>)</figcaption>
 </figure>
-<p>ClipCap relies on <a href="https://lilianweng.github.io/posts/2021-05-31-contrastive/#clip">CLIP</a> (<a href="https://arxiv.org/abs/2103.00020">Radford et al. 2021</a>) for vision encoding, but it needs to be processed by a light mapping network $F$ such that image embedding vectors are translated into the same semantic space as the pre-trained LM. The network $F$ maps CLIP embeddings into a sequence of $k$ embedding vectors, each with the same dimension as a word embedding in GPT2. Increasing the prefix size $k$ helps improve the performance. Both CLIP vision encoder and the LM are <em>frozen</em> during training and only the mapping network $F$ is learned. They found that when LM is frozen, $F$ should be a transformer, with 8 multi-head self-attention layers with 8 heads each, but when LM can be fine-tuned, a MLP is enough.</p>
+<p>ClipCap relies on <a href="https://yikhuen.github.io/posts/2021-05-31-contrastive/#clip">CLIP</a> (<a href="https://arxiv.org/abs/2103.00020">Radford et al. 2021</a>) for vision encoding, but it needs to be processed by a light mapping network $F$ such that image embedding vectors are translated into the same semantic space as the pre-trained LM. The network $F$ maps CLIP embeddings into a sequence of $k$ embedding vectors, each with the same dimension as a word embedding in GPT2. Increasing the prefix size $k$ helps improve the performance. Both CLIP vision encoder and the LM are <em>frozen</em> during training and only the mapping network $F$ is learned. They found that when LM is frozen, $F$ should be a transformer, with 8 multi-head self-attention layers with 8 heads each, but when LM can be fine-tuned, a MLP is enough.</p>
 <p>Even though ClipCap only trains such a minimum set of parameters, it still achieves decent performance on image captioning tasks, comparable with SoTA at the time (e.g. <a href="https://arxiv.org/abs/2004.06165">Oscar</a>, <a href="https://arxiv.org/abs/1909.11059">VLP</a>, <a href="https://arxiv.org/abs/1707.07998">BUTD</a>). Hence they postulate that &ldquo;the CLIP space already encapsulates the required information, and adapting it towards specific styles does not contribute to flexibility.&rdquo;</p>
 <figure>
 	<img src="ClipCap-arch.png" style="width: 100%;"  />
@@ -512,7 +512,7 @@ $$</p>
 <h1 id="no-training">No Training<a hidden class="anchor" aria-hidden="true" href="#no-training">#</a></h1>
 <p>Finally it is possible to solve vision language tasks by stitching pretrained language and vision models together without training any additional parameters.</p>
 <h2 id="decoding-guided-with-vision-based-scores">Decoding Guided with Vision-based Scores<a hidden class="anchor" aria-hidden="true" href="#decoding-guided-with-vision-based-scores">#</a></h2>
-<p><strong>MAGiC</strong> (iMAge-Guided text generatIon with CLIP; <a href="https://arxiv.org/abs/2205.02655">Su et al. 2022</a>) does <a href="https://lilianweng.github.io/posts/2021-01-02-controllable-text-generation/#guided-decoding">guided decoding</a> according to a CLIP-based score named <em>magic score</em> to sample the next token, without fine-tuning. The generated text is encouraged to be relevant to the given image, while still stay coherent to the previously generated text.</p>
+<p><strong>MAGiC</strong> (iMAge-Guided text generatIon with CLIP; <a href="https://arxiv.org/abs/2205.02655">Su et al. 2022</a>) does <a href="https://yikhuen.github.io/posts/2021-01-02-controllable-text-generation/#guided-decoding">guided decoding</a> according to a CLIP-based score named <em>magic score</em> to sample the next token, without fine-tuning. The generated text is encouraged to be relevant to the given image, while still stay coherent to the previously generated text.</p>
 <p>The next token $x_t$ at a time step $t$ is selected according to the following equation. Model confidence and degeneration penalty (<a href="https://arxiv.org/abs/2202.06417">Su et al. 2022</a>) are added to avoid corrupted generation from LM.</p>
 <p>$$
 \begin{aligned}
@@ -657,17 +657,17 @@ $$</p>
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://lilianweng.github.io/tags/language-model/">Language-Model</a></li>
-      <li><a href="https://lilianweng.github.io/tags/vision-language-model/">Vision-Language-Model</a></li>
-      <li><a href="https://lilianweng.github.io/tags/vision-model/">Vision-Model</a></li>
+      <li><a href="https://yikhuen.github.io/tags/language-model/">Language-Model</a></li>
+      <li><a href="https://yikhuen.github.io/tags/vision-language-model/">Vision-Language-Model</a></li>
+      <li><a href="https://yikhuen.github.io/tags/vision-model/">Vision-Model</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://lilianweng.github.io/posts/2022-09-08-ntk/">
+  <a class="prev" href="https://yikhuen.github.io/posts/2022-09-08-ntk/">
     <span class="title">« </span>
     <br>
     <span>Some Math behind Neural Tangent Kernel</span>
   </a>
-  <a class="next" href="https://lilianweng.github.io/posts/2022-04-15-data-gen/">
+  <a class="next" href="https://yikhuen.github.io/posts/2022-04-15-data-gen/">
     <span class="title"> »</span>
     <br>
     <span>Learning with not Enough Data Part 3: Data Generation</span>
@@ -725,7 +725,7 @@ $$</p>
     </main>
     
 <footer class="footer">
-    <span>&copy; 2025 <a href="https://lilianweng.github.io/">YK's Log</a></span>
+    <span>&copy; 2025 <a href="https://yikhuen.github.io/">YK's Log</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

@@ -10,18 +10,18 @@
 <meta name="description" content="
 In Part 3, we have reviewed models in the R-CNN family. All of them are region-based object detection algorithms. They can achieve high accuracy but could be too slow for certain applications such as autonomous driving. In Part 4, we only focus on fast object detection models, including SSD, RetinaNet, and models in the YOLO family.">
 <meta name="author" content="Lilian Weng">
-<link rel="canonical" href="https://lilianweng.github.io/posts/2018-12-27-object-recognition-part-4/" />
+<link rel="canonical" href="https://yikhuen.github.io/posts/2018-12-27-object-recognition-part-4/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.51b2420ff5ea1215cdf584af7ba59d5fea94201c33f25109d6448c7271631316.css" integrity="sha256-UbJCD/XqEhXN9YSve6WdX&#43;qUIBwz8lEJ1kSMcnFjExY=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.2eadbb982468c11a433a3e291f01326f2ba43f065e256bf792dbd79640a92316.js" integrity="sha256-Lq27mCRowRpDOj4pHwEybyukPwZeJWv3ktvXlkCpIxY="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://lilianweng.github.io/favicon_wine.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://lilianweng.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://lilianweng.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://lilianweng.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://lilianweng.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="https://yikhuen.github.io/favicon_wine.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://yikhuen.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://yikhuen.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://yikhuen.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://yikhuen.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://lilianweng.github.io/posts/2018-12-27-object-recognition-part-4/" />
+<link rel="alternate" hreflang="en" href="https://yikhuen.github.io/posts/2018-12-27-object-recognition-part-4/" />
 <noscript>
     <style>
         #theme-toggle,
@@ -180,7 +180,7 @@ In Part 3, we have reviewed models in the R-CNN family. All of them are region-b
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://lilianweng.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
+            <a href="https://yikhuen.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -208,27 +208,27 @@ In Part 3, we have reviewed models in the R-CNN family. All of them are region-b
         </div>
         <ul id="menu">
             <li>
-                <a href="https://lilianweng.github.io/" title="Posts">
+                <a href="https://yikhuen.github.io/" title="Posts">
                     <span>Posts</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/archives" title="Archive">
+                <a href="https://yikhuen.github.io/archives" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="https://yikhuen.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/tags/" title="Tags">
+                <a href="https://yikhuen.github.io/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/faq" title="FAQ">
+                <a href="https://yikhuen.github.io/faq" title="FAQ">
                     <span>FAQ</span>
                 </a>
             </li>
@@ -304,12 +304,12 @@ In Part 3, we have reviewed models in the R-CNN family. All of them are region-b
 </div>
 
   <div class="post-content"><!-- Part 4 of the "Object Detection for Dummies" series focuses on one-stage models for fast detection, including SSD, RetinaNet, and models in the YOLO family. These models skip the explicit region proposal stage but apply the detection directly on dense sampled areas. -->
-<p>In <a href="https://lilianweng.github.io/posts/2017-12-31-object-recognition-part-3/">Part 3</a>, we have reviewed models in the R-CNN family. All of them are region-based object detection algorithms. They can achieve high accuracy but could be too slow for certain applications such as autonomous driving. In Part 4, we only focus on fast object detection models, including SSD, RetinaNet, and models in the YOLO family.</p>
+<p>In <a href="https://yikhuen.github.io/posts/2017-12-31-object-recognition-part-3/">Part 3</a>, we have reviewed models in the R-CNN family. All of them are region-based object detection algorithms. They can achieve high accuracy but could be too slow for certain applications such as autonomous driving. In Part 4, we only focus on fast object detection models, including SSD, RetinaNet, and models in the YOLO family.</p>
 <p>Links to all the posts in the series:
-[<a href="https://lilianweng.github.io/posts/2017-10-29-object-recognition-part-1/">Part 1</a>]
-[<a href="https://lilianweng.github.io/posts/2017-12-15-object-recognition-part-2/">Part 2</a>]
-[<a href="https://lilianweng.github.io/posts/2017-12-31-object-recognition-part-3/">Part 3</a>]
-[<a href="https://lilianweng.github.io/posts/2018-12-27-object-recognition-part-4/">Part 4</a>].</p>
+[<a href="https://yikhuen.github.io/posts/2017-10-29-object-recognition-part-1/">Part 1</a>]
+[<a href="https://yikhuen.github.io/posts/2017-12-15-object-recognition-part-2/">Part 2</a>]
+[<a href="https://yikhuen.github.io/posts/2017-12-31-object-recognition-part-3/">Part 3</a>]
+[<a href="https://yikhuen.github.io/posts/2018-12-27-object-recognition-part-4/">Part 4</a>].</p>
 <h1 id="two-stage-vs-one-stage-detectors">Two-stage vs One-stage Detectors<a hidden class="anchor" aria-hidden="true" href="#two-stage-vs-one-stage-detectors">#</a></h1>
 <p>Models in the R-CNN family are all region-based. The detection happens in two stages: (1) First, the model proposes a set of regions of interests by select search or regional proposal network. The proposed regions are sparse as the potential bounding box candidates can be infinite. (2) Then a classifier only processes the region candidates.</p>
 <p>The other different approach skips the region proposal stage and runs detection directly over a dense sampling of possible locations. This is how a one-stage object detection algorithm works. This is faster and simpler, but might potentially drag down the performance a bit.</p>
@@ -413,7 +413,7 @@ $$
 <p>Same as YOLO, the loss function is the sum of a localization loss and a classification loss.</p>
 <p>$\mathcal{L} = \frac{1}{N}(\mathcal{L}_\text{cls} + \alpha \mathcal{L}_\text{loc})$</p>
 <p>where $N$ is the number of matched bounding boxes and $\alpha$ balances the weights between two losses, picked by cross validation.</p>
-<p>The <em>localization loss</em> is a <a href="https://github.com/rbgirshick/py-faster-rcnn/files/764206/SmoothL1Loss.1.pdf">smooth L1 loss</a> between the predicted bounding box correction and the true values. The coordinate correction transformation is same as what <a href="https://lilianweng.github.io/posts/2017-12-31-object-recognition-part-3/#r-cnn">R-CNN</a> does in <a href="https://lilianweng.github.io/posts/2017-12-31-object-recognition-part-3/#bounding-box-regression">bounding box regression</a>.</p>
+<p>The <em>localization loss</em> is a <a href="https://github.com/rbgirshick/py-faster-rcnn/files/764206/SmoothL1Loss.1.pdf">smooth L1 loss</a> between the predicted bounding box correction and the true values. The coordinate correction transformation is same as what <a href="https://yikhuen.github.io/posts/2017-12-31-object-recognition-part-3/#r-cnn">R-CNN</a> does in <a href="https://yikhuen.github.io/posts/2017-12-31-object-recognition-part-3/#bounding-box-regression">bounding box regression</a>.</p>
 <div>
 $$
 \begin{aligned}
@@ -430,14 +430,14 @@ t^j_h &= \log(g^j_h / p^i_h)
 \end{aligned}
 $$
 </div>
-<p>where $\mathbb{1}_{ij}^\text{match}$ indicates whether the $i$-th bounding box with coordinates $(p^i_x, p^i_y, p^i_w, p^i_h)$ is matched to the $j$-th ground truth box with coordinates $(g^j_x, g^j_y, g^j_w, g^j_h)$ for any object. $d^i_m, m\in\{x, y, w, h\}$ are the predicted correction terms. See <a href="https://lilianweng.github.io/posts/2017-12-31-object-recognition-part-3/#bounding-box-regression">this</a> for how the transformation works.</p>
+<p>where $\mathbb{1}_{ij}^\text{match}$ indicates whether the $i$-th bounding box with coordinates $(p^i_x, p^i_y, p^i_w, p^i_h)$ is matched to the $j$-th ground truth box with coordinates $(g^j_x, g^j_y, g^j_w, g^j_h)$ for any object. $d^i_m, m\in\{x, y, w, h\}$ are the predicted correction terms. See <a href="https://yikhuen.github.io/posts/2017-12-31-object-recognition-part-3/#bounding-box-regression">this</a> for how the transformation works.</p>
 <p>The <em>classification loss</em> is a softmax loss over multiple classes (<a href="https://www.tensorflow.org/api_docs/python/tf/nn/softmax_cross_entropy_with_logits">softmax_cross_entropy_with_logits</a> in tensorflow):</p>
 <div>
 $$
 \mathcal{L}_\text{cls} = -\sum_{i \in \text{pos}} \mathbb{1}_{ij}^k \log(\hat{c}_i^k) - \sum_{i \in \text{neg}} \log(\hat{c}_i^0)\text{, where }\hat{c}_i^k = \text{softmax}(c_i^k)
 $$
 </div>
-<p>where $\mathbb{1}_{ij}^k$ indicates whether the $i$-th bounding box and the $j$-th ground truth box are matched for an object in class $k$. $\text{pos}$ is the set of matched bounding boxes ($N$ items in total) and  $\text{neg}$ is the set of negative examples. SSD uses <a href="https://lilianweng.github.io/posts/2017-12-31-object-recognition-part-3/#common-tricks">hard negative mining</a> to select easily misclassified negative examples to construct this $\text{neg}$ set: Once all the anchor boxes are sorted by objectiveness confidence score, the model picks the top candidates for training so that neg:pos is at most 3:1.</p>
+<p>where $\mathbb{1}_{ij}^k$ indicates whether the $i$-th bounding box and the $j$-th ground truth box are matched for an object in class $k$. $\text{pos}$ is the set of matched bounding boxes ($N$ items in total) and  $\text{neg}$ is the set of negative examples. SSD uses <a href="https://yikhuen.github.io/posts/2017-12-31-object-recognition-part-3/#common-tricks">hard negative mining</a> to select easily misclassified negative examples to construct this $\text{neg}$ set: Once all the anchor boxes are sorted by objectiveness confidence score, the model picks the top candidates for training so that neg:pos is at most 3:1.</p>
 <h1 id="yolov2--yolo9000">YOLOv2 / YOLO9000<a hidden class="anchor" aria-hidden="true" href="#yolov2--yolo9000">#</a></h1>
 <p><strong>YOLOv2</strong> (<a href="https://arxiv.org/abs/1612.08242">Redmon &amp; Farhadi, 2017</a>) is an enhanced version of YOLO. <strong>YOLO9000</strong> is built on top of YOLOv2 but trained with joint dataset combining the COCO detection dataset and the top 9000 classes from ImageNet.</p>
 <h2 id="yolov2-improvement">YOLOv2 Improvement<a hidden class="anchor" aria-hidden="true" href="#yolov2-improvement">#</a></h2>
@@ -608,17 +608,17 @@ The lateral connections only happen at the last layer in stages, denoted as $\{C
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://lilianweng.github.io/tags/object-detection/">Object-Detection</a></li>
-      <li><a href="https://lilianweng.github.io/tags/object-recognition/">Object-Recognition</a></li>
-      <li><a href="https://lilianweng.github.io/tags/vision-model/">Vision-Model</a></li>
+      <li><a href="https://yikhuen.github.io/tags/object-detection/">Object-Detection</a></li>
+      <li><a href="https://yikhuen.github.io/tags/object-recognition/">Object-Recognition</a></li>
+      <li><a href="https://yikhuen.github.io/tags/vision-model/">Vision-Model</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://lilianweng.github.io/posts/2019-01-31-lm/">
+  <a class="prev" href="https://yikhuen.github.io/posts/2019-01-31-lm/">
     <span class="title">« </span>
     <br>
     <span>Generalized Language Models</span>
   </a>
-  <a class="next" href="https://lilianweng.github.io/posts/2018-11-30-meta-learning/">
+  <a class="next" href="https://yikhuen.github.io/posts/2018-11-30-meta-learning/">
     <span class="title"> »</span>
     <br>
     <span>Meta-Learning: Learning to Learn Fast</span>
@@ -676,7 +676,7 @@ The lateral connections only happen at the last layer in stages, denoted as $\{C
     </main>
     
 <footer class="footer">
-    <span>&copy; 2025 <a href="https://lilianweng.github.io/">YK's Log</a></span>
+    <span>&copy; 2025 <a href="https://yikhuen.github.io/">YK's Log</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

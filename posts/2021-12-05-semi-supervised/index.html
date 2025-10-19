@@ -10,18 +10,18 @@
 <meta name="description" content="
 When facing a limited amount of labeled data for supervised learning tasks, four approaches are commonly discussed.">
 <meta name="author" content="Lilian Weng">
-<link rel="canonical" href="https://lilianweng.github.io/posts/2021-12-05-semi-supervised/" />
+<link rel="canonical" href="https://yikhuen.github.io/posts/2021-12-05-semi-supervised/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.51b2420ff5ea1215cdf584af7ba59d5fea94201c33f25109d6448c7271631316.css" integrity="sha256-UbJCD/XqEhXN9YSve6WdX&#43;qUIBwz8lEJ1kSMcnFjExY=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.2eadbb982468c11a433a3e291f01326f2ba43f065e256bf792dbd79640a92316.js" integrity="sha256-Lq27mCRowRpDOj4pHwEybyukPwZeJWv3ktvXlkCpIxY="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://lilianweng.github.io/favicon_wine.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://lilianweng.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://lilianweng.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://lilianweng.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://lilianweng.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="https://yikhuen.github.io/favicon_wine.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://yikhuen.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://yikhuen.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://yikhuen.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://yikhuen.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://lilianweng.github.io/posts/2021-12-05-semi-supervised/" />
+<link rel="alternate" hreflang="en" href="https://yikhuen.github.io/posts/2021-12-05-semi-supervised/" />
 <noscript>
     <style>
         #theme-toggle,
@@ -180,7 +180,7 @@ When facing a limited amount of labeled data for supervised learning tasks, four
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://lilianweng.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
+            <a href="https://yikhuen.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -208,27 +208,27 @@ When facing a limited amount of labeled data for supervised learning tasks, four
         </div>
         <ul id="menu">
             <li>
-                <a href="https://lilianweng.github.io/" title="Posts">
+                <a href="https://yikhuen.github.io/" title="Posts">
                     <span>Posts</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/archives" title="Archive">
+                <a href="https://yikhuen.github.io/archives" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="https://yikhuen.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/tags/" title="Tags">
+                <a href="https://yikhuen.github.io/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/faq" title="FAQ">
+                <a href="https://yikhuen.github.io/faq" title="FAQ">
                     <span>FAQ</span>
                 </a>
             </li>
@@ -306,7 +306,7 @@ When facing a limited amount of labeled data for supervised learning tasks, four
   <div class="post-content"><!-- The performance of supervised learning tasks improves with more high-quality labels available. However, it is expensive to collect a large number of labeled samples. There are several paradigms in machine learning to deal with the scenario when the labels are scarce. Semi-supervised learning is one candidate, utilizing a large amount of unlabeled data conjunction with a small amount of labeled data. -->
 <p>When facing a limited amount of labeled data for supervised learning tasks, four approaches are commonly discussed.</p>
 <ol>
-<li><strong>Pre-training + fine-tuning</strong>: Pre-train a powerful task-agnostic model on a large unsupervised data corpus, e.g. <a href="https://lilianweng.github.io/posts/2019-01-31-lm/">pre-training LMs</a> on free text, or pre-training vision models on unlabelled images via <a href="https://lilianweng.github.io/posts/2019-11-10-self-supervised/">self-supervised learning</a>, and then fine-tune it on the downstream task with a small set of labeled samples.</li>
+<li><strong>Pre-training + fine-tuning</strong>: Pre-train a powerful task-agnostic model on a large unsupervised data corpus, e.g. <a href="https://yikhuen.github.io/posts/2019-01-31-lm/">pre-training LMs</a> on free text, or pre-training vision models on unlabelled images via <a href="https://yikhuen.github.io/posts/2019-11-10-self-supervised/">self-supervised learning</a>, and then fine-tune it on the downstream task with a small set of labeled samples.</li>
 <li><strong>Semi-supervised learning</strong>: Learn from the labelled and unlabeled samples together. A lot of research has happened on vision tasks within this approach.</li>
 <li><strong>Active learning</strong>: Labeling is expensive, but we still want to collect more given a cost budget. Active learning learns to select most valuable unlabeled samples to be collected next and helps us act smartly with a limited budget.</li>
 <li><strong>Pre-training + dataset auto-generation</strong>: Given a capable pre-trained model, we can utilize it to auto-generate a lot more labeled samples. This has been especially popular within the language domain driven by the success of few-shot learning.</li>
@@ -420,7 +420,7 @@ When facing a limited amount of labeled data for supervised learning tasks, four
 </ul>
 <h1 id="consistency-regularization">Consistency Regularization<a hidden class="anchor" aria-hidden="true" href="#consistency-regularization">#</a></h1>
 <p><strong>Consistency Regularization</strong>, also known as <strong>Consistency Training</strong>, assumes that randomness within the neural network (e.g. with Dropout) or data augmentation transformations should not modify model predictions given the same input. Every method in this section has a consistency regularization loss as $\mathcal{L}_u$.</p>
-<p>This idea has been adopted in several <a href="https://lilianweng.github.io/posts/2019-11-10-self-supervised/">self-supervised</a> <a href="https://lilianweng.github.io/posts/2021-05-31-contrastive/">learning</a> methods, such as SimCLR, BYOL, SimCSE, etc. Different augmented versions of the same sample should result in the same representation. <a href="https://lilianweng.github.io/posts/2019-01-31-lm/#cross-view-training">Cross-view training</a> in language modeling and multi-view learning in self-supervised learning all share the same motivation.</p>
+<p>This idea has been adopted in several <a href="https://yikhuen.github.io/posts/2019-11-10-self-supervised/">self-supervised</a> <a href="https://yikhuen.github.io/posts/2021-05-31-contrastive/">learning</a> methods, such as SimCLR, BYOL, SimCSE, etc. Different augmented versions of the same sample should result in the same representation. <a href="https://yikhuen.github.io/posts/2019-01-31-lm/#cross-view-training">Cross-view training</a> in language modeling and multi-view learning in self-supervised learning all share the same motivation.</p>
 <h2 id="π-model">Π-model<a hidden class="anchor" aria-hidden="true" href="#π-model">#</a></h2>
 <figure>
 	<img src="PI-model.png" style="width: 100%;"  />
@@ -653,7 +653,7 @@ $$
 <li>a supervised loss with data augmentation and MixUp applied;</li>
 <li>an unsupervised loss with data augmentation and MixUp applied, using pseudo labels as targets;</li>
 <li>a CE loss on a single heavily-augmented unlabeled image without MixUp;</li>
-<li>a <a href="https://lilianweng.github.io/posts/2019-11-10-self-supervised/#distortion">rotation</a> loss as in self-supervised learning.</li>
+<li>a <a href="https://yikhuen.github.io/posts/2019-11-10-self-supervised/#distortion">rotation</a> loss as in self-supervised learning.</li>
 </ul>
 <h2 id="dividemix">DivideMix<a hidden class="anchor" aria-hidden="true" href="#dividemix">#</a></h2>
 <p><strong>DivideMix</strong> (<a href="https://arxiv.org/abs/2002.07394">Junnan Li et al. 2020</a>) combines semi-supervised learning with Learning with noisy labels (LNL). It models the per-sample loss distribution via a <a href="https://scikit-learn.org/stable/modules/mixture.html">GMM</a> to dynamically divide the training data into a labeled set with clean examples and an unlabeled set with noisy ones. Following the idea in <a href="https://arxiv.org/abs/1904.11238">Arazo et al. 2019</a>, they fit a two-component GMM on the per-sample cross entropy loss $\ell_i = y_i^\top \log f_\theta(\mathbf{x}_i)$. Clean samples are expected to get lower loss faster than noisy samples. The component with smaller mean is the cluster corresponding to clean labels and let’s denote it as $c$. If the GMM posterior probability $w_i = p_\text{GMM}(c \mid \ell_i)$ (i.e. the probability of the sampling belonging to the clean sample set) is larger than the threshold $\tau$, this sample is considered as a clean sample and otherwise a noisy one.</p>
@@ -738,7 +738,7 @@ $$
 	<img src="big-self-supervised-model.png" style="width: 85%;"  />
 	<figcaption>A semi-supervised learning framework leverages unlabeled data corpus by (Left) task-agnostic unsupervised pretraining and (Right) task-specific self-training and distillation. (Image source: <a href="https://arxiv.org/abs/2006.10029" target="_blank">Chen et al. 2020</a>)</figcaption>
 </figure>
-<p>They experimented on the ImageNet classification task. The self-supervised pre-training uses SimCLRv2, a directly improved version of <a href="https://lilianweng.github.io/posts/2021-05-31-contrastive/#simclr">SimCLR</a>. Observations in their empirical studies confirmed several learnings, aligned with <a href="https://arxiv.org/abs/2006.06882">Zoph et al. 2020</a>:</p>
+<p>They experimented on the ImageNet classification task. The self-supervised pre-training uses SimCLRv2, a directly improved version of <a href="https://yikhuen.github.io/posts/2021-05-31-contrastive/#simclr">SimCLR</a>. Observations in their empirical studies confirmed several learnings, aligned with <a href="https://arxiv.org/abs/2006.06882">Zoph et al. 2020</a>:</p>
 <ul>
 <li>Bigger models are more label-efficient;</li>
 <li>Bigger/deeper project heads in SimCLR improve representation learning;</li>
@@ -798,16 +798,16 @@ $$
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://lilianweng.github.io/tags/data/">Data</a></li>
-      <li><a href="https://lilianweng.github.io/tags/unsupervised-learning/">Unsupervised-Learning</a></li>
+      <li><a href="https://yikhuen.github.io/tags/data/">Data</a></li>
+      <li><a href="https://yikhuen.github.io/tags/unsupervised-learning/">Unsupervised-Learning</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://lilianweng.github.io/posts/2022-02-20-active-learning/">
+  <a class="prev" href="https://yikhuen.github.io/posts/2022-02-20-active-learning/">
     <span class="title">« </span>
     <br>
     <span>Learning with not Enough Data Part 2: Active Learning</span>
   </a>
-  <a class="next" href="https://lilianweng.github.io/posts/2021-09-25-train-large/">
+  <a class="next" href="https://yikhuen.github.io/posts/2021-09-25-train-large/">
     <span class="title"> »</span>
     <br>
     <span>How to Train Really Large Models on Many GPUs?</span>
@@ -865,7 +865,7 @@ $$
     </main>
     
 <footer class="footer">
-    <span>&copy; 2025 <a href="https://lilianweng.github.io/">YK's Log</a></span>
+    <span>&copy; 2025 <a href="https://yikhuen.github.io/">YK's Log</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

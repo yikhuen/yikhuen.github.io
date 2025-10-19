@@ -11,18 +11,18 @@
 [Updated on 2022-03-13: add expert choice routing.]
 [Updated on 2022-06-10]: Greg and I wrote a shorted and upgraded version of this post, published on OpenAI Blog: &ldquo;Techniques for Training Large Neural Networks&rdquo;">
 <meta name="author" content="Lilian Weng">
-<link rel="canonical" href="https://lilianweng.github.io/posts/2021-09-25-train-large/" />
+<link rel="canonical" href="https://yikhuen.github.io/posts/2021-09-25-train-large/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.51b2420ff5ea1215cdf584af7ba59d5fea94201c33f25109d6448c7271631316.css" integrity="sha256-UbJCD/XqEhXN9YSve6WdX&#43;qUIBwz8lEJ1kSMcnFjExY=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.2eadbb982468c11a433a3e291f01326f2ba43f065e256bf792dbd79640a92316.js" integrity="sha256-Lq27mCRowRpDOj4pHwEybyukPwZeJWv3ktvXlkCpIxY="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://lilianweng.github.io/favicon_wine.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://lilianweng.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://lilianweng.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://lilianweng.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://lilianweng.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="https://yikhuen.github.io/favicon_wine.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://yikhuen.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://yikhuen.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://yikhuen.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://yikhuen.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://lilianweng.github.io/posts/2021-09-25-train-large/" />
+<link rel="alternate" hreflang="en" href="https://yikhuen.github.io/posts/2021-09-25-train-large/" />
 <noscript>
     <style>
         #theme-toggle,
@@ -183,7 +183,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://lilianweng.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
+            <a href="https://yikhuen.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -211,27 +211,27 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://lilianweng.github.io/" title="Posts">
+                <a href="https://yikhuen.github.io/" title="Posts">
                     <span>Posts</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/archives" title="Archive">
+                <a href="https://yikhuen.github.io/archives" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="https://yikhuen.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/tags/" title="Tags">
+                <a href="https://yikhuen.github.io/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/faq" title="FAQ">
+                <a href="https://yikhuen.github.io/faq" title="FAQ">
                     <span>FAQ</span>
                 </a>
             </li>
@@ -297,7 +297,7 @@
   <div class="post-content"><!-- How to train large and deep neural networks is challenging, as it demands a large amount of GPU memory and a long horizon of training time. This post reviews several popular training parallelism paradigms, as well as a variety of model architecture and memory saving designs to make it possible to train very large neural networks across a large number of GPUs. -->
 <p><span class="update">[Updated on 2022-03-13: add <a href="#ec">expert choice routing</a>.]</span><br/>
 <span class="update">[Updated on 2022-06-10]: <a href="https://gregbrockman.com/">Greg</a> and I wrote a shorted and upgraded version of this post, published on OpenAI Blog: <a href="https://openai.com/blog/techniques-for-training-large-neural-networks/">&ldquo;Techniques for Training Large Neural Networks&rdquo;</a></p>
-<p>In recent years, we are seeing better results on many NLP benchmark tasks with larger pre-trained <a href="https://lilianweng.github.io/posts/2019-01-31-lm/">language models</a>. How to train large and deep neural networks is challenging, as it demands a large amount of GPU memory and a long horizon of training time.</p>
+<p>In recent years, we are seeing better results on many NLP benchmark tasks with larger pre-trained <a href="https://yikhuen.github.io/posts/2019-01-31-lm/">language models</a>. How to train large and deep neural networks is challenging, as it demands a large amount of GPU memory and a long horizon of training time.</p>
 <p>However an individual GPU worker has limited memory and the sizes of many large models have grown beyond a single GPU. There are several parallelism paradigms to enable model training across multiple GPUs, as well as a variety of model architecture and memory saving designs to help make it possible to train <em>very large</em> neural networks.</p>
 <h1 id="training-parallelism">Training Parallelism<a hidden class="anchor" aria-hidden="true" href="#training-parallelism">#</a></h1>
 <p>The main bottleneck for training very large neural network models is the intense demand for a large amount of GPU memory, way above what can be hosted on an individual GPU machine. Besides the model weights (e.g. tens of billions of floating point numbers), it is usually even more expensive to store intermediate computation outputs such as gradients and optimizer states (e.g. momentums &amp; variations in Adam). Additionally training a large model often pairs with a large training corpus and thus a single process may just take forever.</p>
@@ -573,17 +573,17 @@ ZeRO-R optimizes the memory consumption of residual states, using partitioned ac
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://lilianweng.github.io/tags/architecture/">Architecture</a></li>
-      <li><a href="https://lilianweng.github.io/tags/transformer/">Transformer</a></li>
-      <li><a href="https://lilianweng.github.io/tags/foundation/">Foundation</a></li>
+      <li><a href="https://yikhuen.github.io/tags/architecture/">Architecture</a></li>
+      <li><a href="https://yikhuen.github.io/tags/transformer/">Transformer</a></li>
+      <li><a href="https://yikhuen.github.io/tags/foundation/">Foundation</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://lilianweng.github.io/posts/2021-12-05-semi-supervised/">
+  <a class="prev" href="https://yikhuen.github.io/posts/2021-12-05-semi-supervised/">
     <span class="title">« </span>
     <br>
     <span>Learning with not Enough Data Part 1: Semi-Supervised Learning</span>
   </a>
-  <a class="next" href="https://lilianweng.github.io/posts/2021-07-11-diffusion-models/">
+  <a class="next" href="https://yikhuen.github.io/posts/2021-07-11-diffusion-models/">
     <span class="title"> »</span>
     <br>
     <span>What are Diffusion Models?</span>
@@ -641,7 +641,7 @@ ZeRO-R optimizes the memory consumption of residual states, using partitioned ac
     </main>
     
 <footer class="footer">
-    <span>&copy; 2025 <a href="https://lilianweng.github.io/">YK's Log</a></span>
+    <span>&copy; 2025 <a href="https://yikhuen.github.io/">YK's Log</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

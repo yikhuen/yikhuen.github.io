@@ -10,18 +10,18 @@
 <meta name="description" content="
 In my earlier post on meta-learning, the problem is mainly defined in the context of few-shot classification. Here I would like to explore more into cases when we try to &ldquo;meta-learn&rdquo; Reinforcement Learning (RL) tasks by developing an agent that can solve unseen tasks fast and efficiently.">
 <meta name="author" content="Lilian Weng">
-<link rel="canonical" href="https://lilianweng.github.io/posts/2019-06-23-meta-rl/" />
+<link rel="canonical" href="https://yikhuen.github.io/posts/2019-06-23-meta-rl/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.51b2420ff5ea1215cdf584af7ba59d5fea94201c33f25109d6448c7271631316.css" integrity="sha256-UbJCD/XqEhXN9YSve6WdX&#43;qUIBwz8lEJ1kSMcnFjExY=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.2eadbb982468c11a433a3e291f01326f2ba43f065e256bf792dbd79640a92316.js" integrity="sha256-Lq27mCRowRpDOj4pHwEybyukPwZeJWv3ktvXlkCpIxY="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://lilianweng.github.io/favicon_wine.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://lilianweng.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://lilianweng.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://lilianweng.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://lilianweng.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="https://yikhuen.github.io/favicon_wine.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://yikhuen.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://yikhuen.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://yikhuen.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://yikhuen.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://lilianweng.github.io/posts/2019-06-23-meta-rl/" />
+<link rel="alternate" hreflang="en" href="https://yikhuen.github.io/posts/2019-06-23-meta-rl/" />
 <noscript>
     <style>
         #theme-toggle,
@@ -180,7 +180,7 @@ In my earlier post on meta-learning, the problem is mainly defined in the contex
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://lilianweng.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
+            <a href="https://yikhuen.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -208,27 +208,27 @@ In my earlier post on meta-learning, the problem is mainly defined in the contex
         </div>
         <ul id="menu">
             <li>
-                <a href="https://lilianweng.github.io/" title="Posts">
+                <a href="https://yikhuen.github.io/" title="Posts">
                     <span>Posts</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/archives" title="Archive">
+                <a href="https://yikhuen.github.io/archives" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="https://yikhuen.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/tags/" title="Tags">
+                <a href="https://yikhuen.github.io/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/faq" title="FAQ">
+                <a href="https://yikhuen.github.io/faq" title="FAQ">
                     <span>FAQ</span>
                 </a>
             </li>
@@ -304,7 +304,7 @@ In my earlier post on meta-learning, the problem is mainly defined in the contex
 </div>
 
   <div class="post-content"><!-- Meta-RL is meta-learning on reinforcement learning tasks. After trained over a distribution of tasks, the agent is able to solve a new task by developing a new RL algorithm with its internal activity dynamics. This post starts with the origin of meta-RL and then dives into three key components of meta-RL. -->
-<p>In my earlier post on <a href="https://lilianweng.github.io/posts/2018-11-30-meta-learning/">meta-learning</a>, the problem is mainly defined in the context of few-shot classification. Here I would like to explore more into cases when we try to &ldquo;meta-learn&rdquo; <a href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/">Reinforcement Learning (RL)</a> tasks by developing an agent that can solve unseen tasks fast and efficiently.</p>
+<p>In my earlier post on <a href="https://yikhuen.github.io/posts/2018-11-30-meta-learning/">meta-learning</a>, the problem is mainly defined in the context of few-shot classification. Here I would like to explore more into cases when we try to &ldquo;meta-learn&rdquo; <a href="https://yikhuen.github.io/posts/2018-02-19-rl-overview/">Reinforcement Learning (RL)</a> tasks by developing an agent that can solve unseen tasks fast and efficiently.</p>
 <p>To recap, a good meta-learning model is expected to generalize to new tasks or new environments that have never been encountered during training. The adaptation process, essentially a <em>mini learning session</em>, happens at test with limited exposure to the new configurations. Even without any explicit fine-tuning (no gradient backpropagation on trainable variables), the meta-learning model autonomously adjusts internal hidden states to learn.</p>
 <p>Training RL algorithms can be notoriously difficult sometimes. If the meta-learning agent could become so smart that the distribution of solvable unseen tasks grows extremely broad, we are on track towards <a href="http://incompleteideas.net/IncIdeas/BitterLesson.html">general purpose methods</a> &mdash; essentially building a &ldquo;brain&rdquo; which would solve all kinds of RL problems without much human interference or manual feature engineering. Sounds amazing, right? 💖</p>
 <h1 id="on-the-origin-of-meta-rl">On the Origin of Meta-RL<a hidden class="anchor" aria-hidden="true" href="#on-the-origin-of-meta-rl">#</a></h1>
@@ -326,9 +326,9 @@ $$
 <h2 id="proposal-in-2016">Proposal in 2016<a hidden class="anchor" aria-hidden="true" href="#proposal-in-2016">#</a></h2>
 <p>In the modern days of DL, <a href="https://arxiv.org/abs/1611.05763">Wang et al.</a> (2016) and <a href="https://arxiv.org/abs/1611.02779">Duan et al.</a> (2017) simultaneously proposed the very similar idea of <strong>Meta-RL</strong> (it is called <strong>RL^2</strong> in the second paper). A meta-RL model is trained over a distribution of MDPs, and at test time, it is able to learn to solve a new task quickly. The goal of meta-RL is ambitious, taking one step further towards general algorithms.</p>
 <h1 id="define-meta-rl">Define Meta-RL<a hidden class="anchor" aria-hidden="true" href="#define-meta-rl">#</a></h1>
-<p><em>Meta Reinforcement Learning</em>, in short, is to do <a href="https://lilianweng.github.io/posts/2018-11-30-meta-learning/">meta-learning</a> in the field of <a href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/">reinforcement learning</a>. Usually the train and test tasks are different but drawn from the same family of problems; i.e., experiments in the papers included multi-armed bandit with different reward probabilities, mazes with different layouts, same robots but with different physical parameters in simulator, and many others.</p>
+<p><em>Meta Reinforcement Learning</em>, in short, is to do <a href="https://yikhuen.github.io/posts/2018-11-30-meta-learning/">meta-learning</a> in the field of <a href="https://yikhuen.github.io/posts/2018-02-19-rl-overview/">reinforcement learning</a>. Usually the train and test tasks are different but drawn from the same family of problems; i.e., experiments in the papers included multi-armed bandit with different reward probabilities, mazes with different layouts, same robots but with different physical parameters in simulator, and many others.</p>
 <h2 id="formulation">Formulation<a hidden class="anchor" aria-hidden="true" href="#formulation">#</a></h2>
-<p>Let&rsquo;s say we have a distribution of tasks, each formularized as an <a href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/#markov-decision-processes">MDP</a> (Markov Decision Process), $M_i \in \mathcal{M}$. An MDP is determined by a 4-tuple, $M_i= \langle \mathcal{S}, \mathcal{A}, P_i, R_i \rangle$:</p>
+<p>Let&rsquo;s say we have a distribution of tasks, each formularized as an <a href="https://yikhuen.github.io/posts/2018-02-19-rl-overview/#markov-decision-processes">MDP</a> (Markov Decision Process), $M_i \in \mathcal{M}$. An MDP is determined by a 4-tuple, $M_i= \langle \mathcal{S}, \mathcal{A}, P_i, R_i \rangle$:</p>
 <table>
   <thead>
       <tr>
@@ -406,11 +406,11 @@ While the agent is exposed to a variety of environments and tasks during trainin
 <hr>
 <p>The topic of designing good recurrent network architectures is a bit too broad to be discussed here, so I will skip it. Next, let&rsquo;s look further into another two components: meta-learning algorithms in the context of meta-RL and how to acquire a variety of training MDPs.</p>
 <h1 id="meta-learning-algorithms-for-meta-rl">Meta-Learning Algorithms for Meta-RL<a hidden class="anchor" aria-hidden="true" href="#meta-learning-algorithms-for-meta-rl">#</a></h1>
-<p>My previous <a href="https://lilianweng.github.io/posts/2018-11-30-meta-learning/">post</a> on meta-learning has covered several classic meta-learning algorithms. Here I&rsquo;m gonna include more related to RL.</p>
+<p>My previous <a href="https://yikhuen.github.io/posts/2018-11-30-meta-learning/">post</a> on meta-learning has covered several classic meta-learning algorithms. Here I&rsquo;m gonna include more related to RL.</p>
 <h2 id="optimizing-model-weights-for-meta-learning">Optimizing Model Weights for Meta-learning<a hidden class="anchor" aria-hidden="true" href="#optimizing-model-weights-for-meta-learning">#</a></h2>
-<p>Both MAML (<a href="https://arxiv.org/abs/1703.03400">Finn, et al. 2017</a>) and Reptile (<a href="https://arxiv.org/abs/1803.02999">Nichol et al., 2018</a>) are methods on updating model parameters in order to achieve good generalization performance on new tasks. See an earlier post <a href="https://lilianweng.github.io/posts/2018-11-30-meta-learning/#optimization-based">section</a> on MAML and Reptile.</p>
+<p>Both MAML (<a href="https://arxiv.org/abs/1703.03400">Finn, et al. 2017</a>) and Reptile (<a href="https://arxiv.org/abs/1803.02999">Nichol et al., 2018</a>) are methods on updating model parameters in order to achieve good generalization performance on new tasks. See an earlier post <a href="https://yikhuen.github.io/posts/2018-11-30-meta-learning/#optimization-based">section</a> on MAML and Reptile.</p>
 <h2 id="meta-learning-hyperparameters">Meta-learning Hyperparameters<a hidden class="anchor" aria-hidden="true" href="#meta-learning-hyperparameters">#</a></h2>
-<p>The <a href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/#value-function">return</a> function in an RL problem, $G_t^{(n)}$ or $G_t^\lambda$, involves a few hyperparameters that are often set heuristically, like the discount factor <a href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/#value-function">$\gamma$</a> and the bootstrapping parameter <a href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/#combining-td-and-mc-learning">$\lambda$</a>.
+<p>The <a href="https://yikhuen.github.io/posts/2018-02-19-rl-overview/#value-function">return</a> function in an RL problem, $G_t^{(n)}$ or $G_t^\lambda$, involves a few hyperparameters that are often set heuristically, like the discount factor <a href="https://yikhuen.github.io/posts/2018-02-19-rl-overview/#value-function">$\gamma$</a> and the bootstrapping parameter <a href="https://yikhuen.github.io/posts/2018-02-19-rl-overview/#combining-td-and-mc-learning">$\lambda$</a>.
 Meta-gradient RL (<a href="http://papers.nips.cc/paper/7507-meta-gradient-reinforcement-learning.pdf">Xu et al., 2018</a>) considers them as <em>meta-parameters</em>, $\eta=\{\gamma, \lambda \}$, that can be tuned and learned <em>online</em> while an agent is interacting with the environment. Therefore, the return becomes a function of $\eta$ and dynamically adapts itself to a specific task over time.</p>
 <div>
 $$
@@ -490,7 +490,7 @@ $$
 <p>where $\alpha_\text{out}$ is the learning rate of the outer loop.</p>
 <p>In practice, the loss $L_\phi$ is bootstrapped with an ordinary policy gradient (such as REINFORCE or PPO) surrogate loss $L_\text{pg}$, $\hat{L} = (1-\alpha) L_\phi + \alpha L_\text{pg}$. The weight $\alpha$ is annealing from 1 to 0 gradually during training. At test time, the loss function parameter $\phi$ stays fixed and the loss value is computed over a history of experience to update the policy parameters $\theta$.</p>
 <h2 id="meta-learning-the-exploration-strategies">Meta-learning the Exploration Strategies<a hidden class="anchor" aria-hidden="true" href="#meta-learning-the-exploration-strategies">#</a></h2>
-<p>The <a href="https://lilianweng.github.io/posts/2018-01-23-multi-armed-bandit/#exploitation-vs-exploration">exploitation vs exploration</a> dilemma is a critical problem in RL. Common ways to do exploration include $\epsilon$-greedy, random noise on actions, or stochastic policy with built-in randomness on the action space.</p>
+<p>The <a href="https://yikhuen.github.io/posts/2018-01-23-multi-armed-bandit/#exploitation-vs-exploration">exploitation vs exploration</a> dilemma is a critical problem in RL. Common ways to do exploration include $\epsilon$-greedy, random noise on actions, or stochastic policy with built-in randomness on the action space.</p>
 <p><strong>MAESN</strong> (<a href="http://papers.nips.cc/paper/7776-meta-reinforcement-learning-of-structured-exploration-strategies.pdf">Gupta et al, 2018</a>) is an algorithm to learn structured action noise from prior experience for better and more effective exploration. Simply adding random noise on actions cannot capture task-dependent or time-correlated exploration strategies. MAESN changes the policy to condition on a per-task random variable $z_i \sim \mathcal{N}(\mu_i, \sigma_i)$, for $i$-th task $M_i$, so we would have a policy $a \sim \pi_\theta(a\mid s, z_i)$.
 The latent variable $z_i$ is sampled once and fixed during one episode. Intuitively, the latent variable determines one type of behavior (or skills) that should be explored more at the beginning of a rollout and the agent would adjust its actions accordingly. Both the policy parameters and latent space are optimized to maximize the total task rewards. In the meantime, the policy learns to make use of the latent variables for exploration.</p>
 <p>In addition,  the loss function includes a KL divergence between the learned latent variable and a unit Gaussian prior, $D_\text{KL}(\mathcal{N}(\mu_i, \sigma_i)|\mathcal{N}(0, \mathbf{I}))$. On one hand, it restricts the learned latent space not too far from a common prior. On the other hand, it creates the variational evidence lower bound (<a href="http://users.umiacs.umd.edu/~xyang35/files/understanding-variational-lower.pdf">ELBO</a>) for the reward function. Interestingly the paper found that $(\mu_i, \sigma_i)$ for each task are usually close to the prior at convergence.</p>
@@ -501,7 +501,7 @@ The latent variable $z_i$ is sampled once and fixed during one episode. Intuitiv
 <h2 id="episodic-control">Episodic Control<a hidden class="anchor" aria-hidden="true" href="#episodic-control">#</a></h2>
 <p>A major criticism of RL is on its sample inefficiency. A large number of samples and small learning steps are required for incremental parameter adjustment in RL in order to maximize generalization and avoid catastrophic forgetting of earlier learning (<a href="https://www.cell.com/trends/cognitive-sciences/fulltext/S1364-6613(19)30061-0">Botvinick et al., 2019</a>).</p>
 <p><strong>Episodic control</strong> (<a href="http://papers.nips.cc/paper/3311-hippocampal-contributions-to-control-the-third-way.pdf">Lengyel &amp; Dayan, 2008</a>) is proposed as a solution to avoid forgetting and improve generalization while training at a faster speed. It is partially inspired by hypotheses on instance-based <a href="https://en.wikipedia.org/wiki/Hippocampus">hippocampal</a> learning.</p>
-<p>An <em>episodic memory</em> keeps explicit records of past events and uses these records directly as point of reference for making new decisions (i.e. just like <a href="https://lilianweng.github.io/posts/2018-11-30-meta-learning/#metric-based">metric-based</a> meta-learning). In <strong>MFEC</strong> (Model-Free Episodic Control; <a href="https://arxiv.org/abs/1606.04460">Blundell et al., 2016</a>), the memory is modeled as a big table, storing the state-action pair $(s, a)$ as key and the corresponding Q-value $Q_\text{EC}(s, a)$ as value. When receiving a new observation $s$, the Q value is estimated in an non-parametric way as the average Q-value of top $k$ most similar samples:</p>
+<p>An <em>episodic memory</em> keeps explicit records of past events and uses these records directly as point of reference for making new decisions (i.e. just like <a href="https://yikhuen.github.io/posts/2018-11-30-meta-learning/#metric-based">metric-based</a> meta-learning). In <strong>MFEC</strong> (Model-Free Episodic Control; <a href="https://arxiv.org/abs/1606.04460">Blundell et al., 2016</a>), the memory is modeled as a big table, storing the state-action pair $(s, a)$ as key and the corresponding Q-value $Q_\text{EC}(s, a)$ as value. When receiving a new observation $s$, the Q value is estimated in an non-parametric way as the average Q-value of top $k$ most similar samples:</p>
 <div>
 $$
 \hat{Q}_\text{EC}(s, a) = 
@@ -521,8 +521,8 @@ G_t                                 & \text{otherwise}
 \end{cases}
 $$
 </div>
-<p>As a tabular RL method, MFEC suffers from large memory consumption and a lack of ways to generalize among similar states. The first one can be fixed with an LRU cache. Inspired by <a href="https://lilianweng.github.io/posts/2018-11-30-meta-learning/#metric-based">metric-based</a> meta-learning, especially Matching Networks (<a href="http://papers.nips.cc/paper/6385-matching-networks-for-one-shot-learning.pdf">Vinyals et al., 2016</a>), the generalization problem is improved in a follow-up algorithm, <strong>NEC</strong> (Neural Episodic Control; <a href="https://arxiv.org/abs/1703.01988">Pritzel et al., 2016</a>).</p>
-<p>The episodic memory in NEC is a Differentiable Neural Dictionary (<strong>DND</strong>), where the key is a convolutional embedding vector of input image pixels and the value stores estimated Q value. Given an inquiry key, the output is a weighted sum of values of top similar keys, where the weight is a normalized kernel measure between the query key and the selected key in the dictionary. This sounds like a hard <a href="https://lilianweng.github.io/posts/2018-06-24-attention/">attention</a> machanism.</p>
+<p>As a tabular RL method, MFEC suffers from large memory consumption and a lack of ways to generalize among similar states. The first one can be fixed with an LRU cache. Inspired by <a href="https://yikhuen.github.io/posts/2018-11-30-meta-learning/#metric-based">metric-based</a> meta-learning, especially Matching Networks (<a href="http://papers.nips.cc/paper/6385-matching-networks-for-one-shot-learning.pdf">Vinyals et al., 2016</a>), the generalization problem is improved in a follow-up algorithm, <strong>NEC</strong> (Neural Episodic Control; <a href="https://arxiv.org/abs/1703.01988">Pritzel et al., 2016</a>).</p>
+<p>The episodic memory in NEC is a Differentiable Neural Dictionary (<strong>DND</strong>), where the key is a convolutional embedding vector of input image pixels and the value stores estimated Q value. Given an inquiry key, the output is a weighted sum of values of top similar keys, where the weight is a normalized kernel measure between the query key and the selected key in the dictionary. This sounds like a hard <a href="https://yikhuen.github.io/posts/2018-06-24-attention/">attention</a> machanism.</p>
 <figure>
 	<img src="neural-episodic-control.png" style="width: 100%;"  />
 	<figcaption>Fig. 6 Illustrations of episodic memory module in NEC and two operations on a differentiable neural dictionary. (Image source: <a href="https://arxiv.org/abs/1703.01988" target="_blank">Pritzel et al., 2016</a>)</figcaption>
@@ -552,7 +552,7 @@ $$
 <li>Or, the <em>environment</em>: The transition function $P_i$ can be reshaped by initializing the environment with varying shifts between states.</li>
 </ul>
 <h2 id="task-generation-by-domain-randomization">Task Generation by Domain Randomization<a hidden class="anchor" aria-hidden="true" href="#task-generation-by-domain-randomization">#</a></h2>
-<p>Randomizing parameters in a simulator is an easy way to obtain tasks with modified transition functions. If interested in learning further, check my last <a href="https://lilianweng.github.io/posts/2019-05-05-domain-randomization/">post</a> on <strong>domain randomization</strong>.</p>
+<p>Randomizing parameters in a simulator is an easy way to obtain tasks with modified transition functions. If interested in learning further, check my last <a href="https://yikhuen.github.io/posts/2019-05-05-domain-randomization/">post</a> on <strong>domain randomization</strong>.</p>
 <h2 id="evolutionary-algorithm-on-environment-generation">Evolutionary Algorithm on Environment Generation<a hidden class="anchor" aria-hidden="true" href="#evolutionary-algorithm-on-environment-generation">#</a></h2>
 <p><a href="https://en.wikipedia.org/wiki/Evolutionary_algorithm">Evolutionary algorithm</a> is a gradient-free heuristic-based optimization method, inspired by natural selection. A population of solutions follows a loop of evaluation, selection, reproduction, and mutation. Eventually, good solutions survive and thus get selected.</p>
 <p><strong>POET</strong> (<a href="https://arxiv.org/abs/1901.01753">Wang et al, 2019</a>), a framework based on the evolutionary algorithm, attempts to generate tasks while the problems themselves are being solved. The implementation of POET is only specifically designed for a simple 2D <a href="https://gym.openai.com/envs/BipedalWalkerHardcore-v2/">bipedal walker</a> environment but points out an interesting direction. It is noteworthy that the evolutionary algorithm has had some compelling applications in Deep Learning like <a href="#meta-learning-the-loss-function">EPG</a> and PBT (Population-Based Training; <a href="https://arxiv.org/abs/1711.09846"> Jaderberg et al, 2017</a>).</p>
@@ -566,7 +566,7 @@ $$
 <li><em>Optimization</em>: Train paired agents within their respective environments.</li>
 <li><em>Selection</em>: Periodically attempt to transfer current agents from one environment to another. Copy and update the best performing agent for every environment. The intuition is that skills learned in one environment might be helpful for a different environment.</li>
 </ol>
-<p>The procedure above is quite similar to <a href="https://arxiv.org/abs/1711.09846">PBT</a>, but PBT mutates and evolves hyperparameters instead. To some extent, POET is doing <a href="https://lilianweng.github.io/posts/2019-05-05-domain-randomization/">domain randomization</a>, as all the gaps, stumps and terrain roughness are controlled by some randomization probability parameters. Different from DR, the agents are not exposed to a fully randomized difficult environment all at once, but instead they are learning gradually with a curriculum configured by the evolutionary algorithm.</p>
+<p>The procedure above is quite similar to <a href="https://arxiv.org/abs/1711.09846">PBT</a>, but PBT mutates and evolves hyperparameters instead. To some extent, POET is doing <a href="https://yikhuen.github.io/posts/2019-05-05-domain-randomization/">domain randomization</a>, as all the gaps, stumps and terrain roughness are controlled by some randomization probability parameters. Different from DR, the agents are not exposed to a fully randomized difficult environment all at once, but instead they are learning gradually with a curriculum configured by the evolutionary algorithm.</p>
 <h2 id="learning-with-random-rewards">Learning with Random Rewards<a hidden class="anchor" aria-hidden="true" href="#learning-with-random-rewards">#</a></h2>
 <p>An MDP without a reward function $R$ is known as a <em>Controlled Markov process</em> (CMP). Given a predefined CMP, $\langle \mathcal{S}, \mathcal{A}, P\rangle$, we can acquire a variety of tasks by generating a collection of reward functions $\mathcal{R}$ that encourage the training of an effective meta-learning policy.</p>
 <p><a href="https://arxiv.org/abs/1806.04640">Gupta et al. (2018)</a> proposed two unsupervised approaches  for growing the task distribution in the context of CMP. Assuming there is an underlying latent variable $z \sim p(z)$ associated with every task, it parameterizes/determines a reward function: $r_z(s) = \log D(z|s)$, where a &ldquo;discriminator&rdquo; function $D(.)$ is used to extract the latent variable from the state. The paper described two ways to construct a discriminator function:</p>
@@ -636,16 +636,16 @@ $$
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://lilianweng.github.io/tags/meta-learning/">Meta-Learning</a></li>
-      <li><a href="https://lilianweng.github.io/tags/reinforcement-learning/">Reinforcement-Learning</a></li>
+      <li><a href="https://yikhuen.github.io/tags/meta-learning/">Meta-Learning</a></li>
+      <li><a href="https://yikhuen.github.io/tags/reinforcement-learning/">Reinforcement-Learning</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://lilianweng.github.io/posts/2019-09-05-evolution-strategies/">
+  <a class="prev" href="https://yikhuen.github.io/posts/2019-09-05-evolution-strategies/">
     <span class="title">« </span>
     <br>
     <span>Evolution Strategies</span>
   </a>
-  <a class="next" href="https://lilianweng.github.io/posts/2019-05-05-domain-randomization/">
+  <a class="next" href="https://yikhuen.github.io/posts/2019-05-05-domain-randomization/">
     <span class="title"> »</span>
     <br>
     <span>Domain Randomization for Sim2Real Transfer</span>
@@ -703,7 +703,7 @@ $$
     </main>
     
 <footer class="footer">
-    <span>&copy; 2025 <a href="https://lilianweng.github.io/">YK's Log</a></span>
+    <span>&copy; 2025 <a href="https://yikhuen.github.io/">YK's Log</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

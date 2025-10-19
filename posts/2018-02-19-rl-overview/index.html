@@ -12,18 +12,18 @@
 
 [Updated on 2021-09-19: Thanks to 爱吃猫的鱼, we have this post in Chinese].">
 <meta name="author" content="Lilian Weng">
-<link rel="canonical" href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/" />
+<link rel="canonical" href="https://yikhuen.github.io/posts/2018-02-19-rl-overview/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.51b2420ff5ea1215cdf584af7ba59d5fea94201c33f25109d6448c7271631316.css" integrity="sha256-UbJCD/XqEhXN9YSve6WdX&#43;qUIBwz8lEJ1kSMcnFjExY=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.2eadbb982468c11a433a3e291f01326f2ba43f065e256bf792dbd79640a92316.js" integrity="sha256-Lq27mCRowRpDOj4pHwEybyukPwZeJWv3ktvXlkCpIxY="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://lilianweng.github.io/favicon_wine.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://lilianweng.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://lilianweng.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://lilianweng.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://lilianweng.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="https://yikhuen.github.io/favicon_wine.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://yikhuen.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://yikhuen.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://yikhuen.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://yikhuen.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/" />
+<link rel="alternate" hreflang="en" href="https://yikhuen.github.io/posts/2018-02-19-rl-overview/" />
 <noscript>
     <style>
         #theme-toggle,
@@ -186,7 +186,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://lilianweng.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
+            <a href="https://yikhuen.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -214,27 +214,27 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://lilianweng.github.io/" title="Posts">
+                <a href="https://yikhuen.github.io/" title="Posts">
                     <span>Posts</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/archives" title="Archive">
+                <a href="https://yikhuen.github.io/archives" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="https://yikhuen.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/tags/" title="Tags">
+                <a href="https://yikhuen.github.io/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/faq" title="FAQ">
+                <a href="https://yikhuen.github.io/faq" title="FAQ">
                     <span>FAQ</span>
                 </a>
             </li>
@@ -608,7 +608,7 @@ $$
 	<img src="MC_control.png" style="width: 30%;"  />
 <ol>
 <li>Improve the policy greedily with respect to the current value function: $\pi(s) = \arg\max_{a \in \mathcal{A}} Q(s, a)$.</li>
-<li>Generate a new episode with the new policy $\pi$ (i.e. using algorithms like <a href="https://lilianweng.github.io/posts/2018-01-23-multi-armed-bandit/#%CE%B5-greedy-algorithm">ε-greedy</a> helps us balance between exploitation and exploration.)</li>
+<li>Generate a new episode with the new policy $\pi$ (i.e. using algorithms like <a href="https://yikhuen.github.io/posts/2018-01-23-multi-armed-bandit/#%CE%B5-greedy-algorithm">ε-greedy</a> helps us balance between exploitation and exploration.)</li>
 <li>Estimate Q using the new episode: $q_\pi(s, a) = \frac{\sum_{t=1}^T \big( \mathbb{1}[S_t = s, A_t = a] \sum_{k=0}^{T-t-1} \gamma^k R_{t+k+1} \big)}{\sum_{t=1}^T \mathbb{1}[S_t = s, A_t = a]}$</li>
 </ol>
 <h2 id="temporal-difference-learning">Temporal-Difference Learning<a hidden class="anchor" aria-hidden="true" href="#temporal-difference-learning">#</a></h2>
@@ -637,7 +637,7 @@ $$
 <p>&ldquo;SARSA&rdquo; refers to the procedure of updaing Q-value by following a sequence of $\dots, S_t, A_t, R_{t+1}, S_{t+1}, A_{t+1}, \dots$. The idea follows the same route of <a href="#policy-iteration">GPI</a>. Within one episode, it works as follows:</p>
 <ol>
 <li>Initialize $t=0$.</li>
-<li>Start with $S_0$ and choose action $A_0 = \arg\max_{a \in \mathcal{A}} Q(S_0, a)$, where <a href="https://lilianweng.github.io/posts/2018-01-23-multi-armed-bandit/#%ce%b5-greedy-algorithm">$\epsilon$-greedy</a> is commonly applied.</li>
+<li>Start with $S_0$ and choose action $A_0 = \arg\max_{a \in \mathcal{A}} Q(S_0, a)$, where <a href="https://yikhuen.github.io/posts/2018-01-23-multi-armed-bandit/#%ce%b5-greedy-algorithm">$\epsilon$-greedy</a> is commonly applied.</li>
 <li>At time $t$, after applying action $A_t$, we observe reward $R_{t+1}$ and get into the next state $S_{t+1}$.</li>
 <li>Then pick the next action in the same way as in step 2: $A_{t+1} = \arg\max_{a \in \mathcal{A}} Q(S_{t+1}, a)$.</li>
 <li>Update the Q-value function: $ Q(S_t, A_t) \leftarrow Q(S_t, A_t) + \alpha (R_{t+1} + \gamma Q(S_{t+1}, A_{t+1}) - Q(S_t, A_t)) $.</li>
@@ -749,7 +749,7 @@ $$
 	<figcaption>Comparison of the backup diagrams of Monte-Carlo, Temporal-Difference learning, and Dynamic Programming for state value functions. (Image source: David Silver's RL course <a href="http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/MC-TD.pdf" target="_blank">lecture 4</a>: "Model-Free Prediction")</figcaption>
 </figure>
 <h2 id="policy-gradient">Policy Gradient<a hidden class="anchor" aria-hidden="true" href="#policy-gradient">#</a></h2>
-<p>All the methods we have introduced above aim to learn the state/action value function and then to select actions accordingly. Policy Gradient methods instead learn the policy directly with a parameterized function respect to $\theta$, $\pi(a \vert s; \theta)$. Let&rsquo;s define the reward function (opposite of loss function) as <em>the expected return</em> and train the algorithm with the goal to maximize the reward function. My <a href="https://lilianweng.github.io/posts/2018-04-08-policy-gradient/">next post</a> described why the policy gradient theorem works (proof) and introduced a number of policy gradient algorithms.</p>
+<p>All the methods we have introduced above aim to learn the state/action value function and then to select actions accordingly. Policy Gradient methods instead learn the policy directly with a parameterized function respect to $\theta$, $\pi(a \vert s; \theta)$. Let&rsquo;s define the reward function (opposite of loss function) as <em>the expected return</em> and train the algorithm with the goal to maximize the reward function. My <a href="https://yikhuen.github.io/posts/2018-04-08-policy-gradient/">next post</a> described why the policy gradient theorem works (proof) and introduced a number of policy gradient algorithms.</p>
 <p>In discrete space:</p>
 <div>
 $$
@@ -911,17 +911,17 @@ $$
 </ul>
 <h1 id="known-problems">Known Problems<a hidden class="anchor" aria-hidden="true" href="#known-problems">#</a></h1>
 <h2 id="exploration-exploitation-dilemma">Exploration-Exploitation Dilemma<a hidden class="anchor" aria-hidden="true" href="#exploration-exploitation-dilemma">#</a></h2>
-<p>The problem of exploration vs exploitation dilemma has been discussed in my previous <a href="https://lilianweng.github.io/posts/2018-01-23-multi-armed-bandit/#exploitation-vs-exploration">post</a>. When the RL problem faces an unknown environment, this issue is especially a key to finding a good solution: without enough exploration, we cannot learn the environment well enough; without enough exploitation, we cannot complete our reward optimization task.</p>
-<p>Different RL algorithms balance between exploration and exploitation in different ways. In <a href="#monte-carlo-methods">MC</a> methods, <a href="#q-learning-off-policy-td-control">Q-learning</a> or many on-policy algorithms, the exploration is commonly implemented by <a href="https://lilianweng.github.io/posts/2018-01-23-multi-armed-bandit/#%CE%B5-greedy-algorithm">ε-greedy</a>; In <a href="#evolution-strategies">ES</a>, the exploration is captured by the policy parameter perturbation. Please keep this into consideration when developing a new RL algorithm.</p>
+<p>The problem of exploration vs exploitation dilemma has been discussed in my previous <a href="https://yikhuen.github.io/posts/2018-01-23-multi-armed-bandit/#exploitation-vs-exploration">post</a>. When the RL problem faces an unknown environment, this issue is especially a key to finding a good solution: without enough exploration, we cannot learn the environment well enough; without enough exploitation, we cannot complete our reward optimization task.</p>
+<p>Different RL algorithms balance between exploration and exploitation in different ways. In <a href="#monte-carlo-methods">MC</a> methods, <a href="#q-learning-off-policy-td-control">Q-learning</a> or many on-policy algorithms, the exploration is commonly implemented by <a href="https://yikhuen.github.io/posts/2018-01-23-multi-armed-bandit/#%CE%B5-greedy-algorithm">ε-greedy</a>; In <a href="#evolution-strategies">ES</a>, the exploration is captured by the policy parameter perturbation. Please keep this into consideration when developing a new RL algorithm.</p>
 <h2 id="deadly-triad-issue">Deadly Triad Issue<a hidden class="anchor" aria-hidden="true" href="#deadly-triad-issue">#</a></h2>
 <p>We do seek the efficiency and flexibility of TD methods that involve bootstrapping. However, when off-policy, nonlinear function approximation, and bootstrapping are combined in one RL algorithm, the training could be unstable and hard to converge. This issue is known as the <strong>deadly triad</strong> (Sutton &amp; Barto, 2017). Many architectures using deep learning models were proposed to resolve the problem, including DQN to stabilize the training with experience replay and occasionally frozen target network.</p>
 <h1 id="case-study-alphago-zero">Case Study: AlphaGo Zero<a hidden class="anchor" aria-hidden="true" href="#case-study-alphago-zero">#</a></h1>
-<p>The game of <a href="https://en.wikipedia.org/wiki/Go_(game)">Go</a> has been an extremely hard problem in the field of Artificial Intelligence for decades until recent years. AlphaGo and AlphaGo Zero are two programs developed by a team at DeepMind. Both involve deep Convolutional Neural Networks (<a href="https://lilianweng.github.io/posts/2017-12-15-object-recognition-part-2/#cnn-for-image-classification">CNN</a>) and Monte Carlo Tree Search (MCTS) and both have been approved to achieve the level of professional human Go players. Different from AlphaGo that relied on supervised learning from expert human moves, AlphaGo Zero used only reinforcement learning and self-play without human knowledge beyond the basic rules.</p>
+<p>The game of <a href="https://en.wikipedia.org/wiki/Go_(game)">Go</a> has been an extremely hard problem in the field of Artificial Intelligence for decades until recent years. AlphaGo and AlphaGo Zero are two programs developed by a team at DeepMind. Both involve deep Convolutional Neural Networks (<a href="https://yikhuen.github.io/posts/2017-12-15-object-recognition-part-2/#cnn-for-image-classification">CNN</a>) and Monte Carlo Tree Search (MCTS) and both have been approved to achieve the level of professional human Go players. Different from AlphaGo that relied on supervised learning from expert human moves, AlphaGo Zero used only reinforcement learning and self-play without human knowledge beyond the basic rules.</p>
 <figure>
 	<img src="go_config.png"  />
 	<figcaption>The board of Go. Two players play black and white stones alternatively on the vacant intersections of a board with 19 x 19 lines. A group of stones must have at least one open point (an intersection, called a "liberty") to remain on the board and must have at least two or more enclosed liberties (called "eyes") to stay "alive". No stone shall repeat a previous position.</figcaption>
 </figure>
-<p>With all the knowledge of RL above, let&rsquo;s take a look at how AlphaGo Zero works. The main component is a deep <a href="https://lilianweng.github.io/posts/2017-12-15-object-recognition-part-2/#cnn-for-image-classification">CNN</a> over the game board configuration (precisely, a <a href="https://lilianweng.github.io/posts/2017-12-15-object-recognition-part-2/#resnet-he-et-al-2015">ResNet</a> with batch normalization and ReLU). This network outputs two values:</p>
+<p>With all the knowledge of RL above, let&rsquo;s take a look at how AlphaGo Zero works. The main component is a deep <a href="https://yikhuen.github.io/posts/2017-12-15-object-recognition-part-2/#cnn-for-image-classification">CNN</a> over the game board configuration (precisely, a <a href="https://yikhuen.github.io/posts/2017-12-15-object-recognition-part-2/#resnet-he-et-al-2015">ResNet</a> with batch normalization and ReLU). This network outputs two values:</p>
 <div>
 $$
 (p, v) = f_\theta(s)
@@ -976,17 +976,17 @@ $$
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://lilianweng.github.io/tags/reinforcement-learning/">Reinforcement-Learning</a></li>
-      <li><a href="https://lilianweng.github.io/tags/long-read/">Long-Read</a></li>
-      <li><a href="https://lilianweng.github.io/tags/math-heavy/">Math-Heavy</a></li>
+      <li><a href="https://yikhuen.github.io/tags/reinforcement-learning/">Reinforcement-Learning</a></li>
+      <li><a href="https://yikhuen.github.io/tags/long-read/">Long-Read</a></li>
+      <li><a href="https://yikhuen.github.io/tags/math-heavy/">Math-Heavy</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://lilianweng.github.io/posts/2018-04-08-policy-gradient/">
+  <a class="prev" href="https://yikhuen.github.io/posts/2018-04-08-policy-gradient/">
     <span class="title">« </span>
     <br>
     <span>Policy Gradient Algorithms</span>
   </a>
-  <a class="next" href="https://lilianweng.github.io/posts/2018-01-23-multi-armed-bandit/">
+  <a class="next" href="https://yikhuen.github.io/posts/2018-01-23-multi-armed-bandit/">
     <span class="title"> »</span>
     <br>
     <span>The Multi-Armed Bandit Problem and Its Solutions</span>
@@ -1044,7 +1044,7 @@ $$
     </main>
     
 <footer class="footer">
-    <span>&copy; 2025 <a href="https://lilianweng.github.io/">YK's Log</a></span>
+    <span>&copy; 2025 <a href="https://yikhuen.github.io/">YK's Log</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

@@ -11,18 +11,18 @@
 Professor Naftali Tishby passed away in 2021. Hope the post can introduce his cool idea of information bottleneck to more people.
 Recently I watched the talk &ldquo;Information Theory in Deep Learning&rdquo; by Prof Naftali Tishby and found it very interesting. He presented how to apply the information theory to study the growth and transformation of deep neural networks during training. Using the Information Bottleneck (IB) method, he proposed a new learning bound for deep neural networks (DNN), as the traditional learning theory fails due to the exponentially large number of parameters. Another keen observation is that DNN training involves two distinct phases: First, the network is trained to fully represent the input data and minimize the generalization error; then, it learns to forget the irrelevant details by compressing the representation of the input.">
 <meta name="author" content="Lilian Weng">
-<link rel="canonical" href="https://lilianweng.github.io/posts/2017-09-28-information-bottleneck/" />
+<link rel="canonical" href="https://yikhuen.github.io/posts/2017-09-28-information-bottleneck/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.51b2420ff5ea1215cdf584af7ba59d5fea94201c33f25109d6448c7271631316.css" integrity="sha256-UbJCD/XqEhXN9YSve6WdX&#43;qUIBwz8lEJ1kSMcnFjExY=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.2eadbb982468c11a433a3e291f01326f2ba43f065e256bf792dbd79640a92316.js" integrity="sha256-Lq27mCRowRpDOj4pHwEybyukPwZeJWv3ktvXlkCpIxY="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://lilianweng.github.io/favicon_wine.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://lilianweng.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://lilianweng.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://lilianweng.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://lilianweng.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="https://yikhuen.github.io/favicon_wine.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://yikhuen.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://yikhuen.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://yikhuen.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://yikhuen.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://lilianweng.github.io/posts/2017-09-28-information-bottleneck/" />
+<link rel="alternate" hreflang="en" href="https://yikhuen.github.io/posts/2017-09-28-information-bottleneck/" />
 <noscript>
     <style>
         #theme-toggle,
@@ -183,7 +183,7 @@ Recently I watched the talk &ldquo;Information Theory in Deep Learning&rdquo; by
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://lilianweng.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
+            <a href="https://yikhuen.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -211,27 +211,27 @@ Recently I watched the talk &ldquo;Information Theory in Deep Learning&rdquo; by
         </div>
         <ul id="menu">
             <li>
-                <a href="https://lilianweng.github.io/" title="Posts">
+                <a href="https://yikhuen.github.io/" title="Posts">
                     <span>Posts</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/archives" title="Archive">
+                <a href="https://yikhuen.github.io/archives" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="https://yikhuen.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/tags/" title="Tags">
+                <a href="https://yikhuen.github.io/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/faq" title="FAQ">
+                <a href="https://yikhuen.github.io/faq" title="FAQ">
                     <span>FAQ</span>
                 </a>
             </li>
@@ -293,7 +293,7 @@ Recently I watched the talk &ldquo;Information Theory in Deep Learning&rdquo; by
   <div class="post-content"><!-- This post is a summary of Prof Naftali Tishby's recent talk on "Information Theory in Deep Learning". It presented how to apply the information theory to study the growth and transformation of deep neural networks during training. -->
 <p><span class="update">Professor Naftali Tishby passed away in 2021. Hope the post can introduce his cool idea of information bottleneck to more people.</span></p>
 <p>Recently I watched the talk <a href="https://youtu.be/bLqJHjXihK8">&ldquo;Information Theory in Deep Learning&rdquo;</a> by Prof Naftali Tishby and found it very interesting. He presented how to apply the information theory to study the growth and transformation of deep neural networks during training. Using the <a href="https://arxiv.org/pdf/physics/0004057.pdf">Information Bottleneck (IB)</a> method, he proposed a new learning bound for deep neural networks (DNN), as the traditional learning theory fails due to the exponentially large number of parameters. Another keen observation is that DNN training involves two distinct phases: First, the network is trained to fully represent the input data and minimize the generalization error; then, it learns to forget the irrelevant details by compressing the representation of the input.</p>
-<p>Most of the materials in this post are from Prof Tishby’s talk and <a href="https://lilianweng.github.io/posts/2017-09-28-information-bottleneck/#references">related papers</a>.</p>
+<p>Most of the materials in this post are from Prof Tishby’s talk and <a href="https://yikhuen.github.io/posts/2017-09-28-information-bottleneck/#references">related papers</a>.</p>
 <h1 id="basic-concepts">Basic Concepts<a hidden class="anchor" aria-hidden="true" href="#basic-concepts">#</a></h1>
 <p><a href="https://en.wikipedia.org/wiki/Markov_chain"><strong>Markov Chain</strong></a></p>
 <p>A Markov process is a <a href="http://mathworld.wolfram.com/Memoryless.html">&ldquo;memoryless&rdquo;</a> (also called &ldquo;Markov Property&rdquo;) stochastic process. A Markov chain is a type of Markov process containing multiple discrete states. That is being said, the conditional probability of future states of the process is only determined by the current state and does not depend on the past states.</p>
@@ -437,16 +437,16 @@ $$
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://lilianweng.github.io/tags/information-theory/">Information-Theory</a></li>
-      <li><a href="https://lilianweng.github.io/tags/foundation/">Foundation</a></li>
+      <li><a href="https://yikhuen.github.io/tags/information-theory/">Information-Theory</a></li>
+      <li><a href="https://yikhuen.github.io/tags/foundation/">Foundation</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://lilianweng.github.io/posts/2017-10-15-word-embedding/">
+  <a class="prev" href="https://yikhuen.github.io/posts/2017-10-15-word-embedding/">
     <span class="title">« </span>
     <br>
     <span>Learning Word Embedding</span>
   </a>
-  <a class="next" href="https://lilianweng.github.io/posts/2017-08-20-gan/">
+  <a class="next" href="https://yikhuen.github.io/posts/2017-08-20-gan/">
     <span class="title"> »</span>
     <br>
     <span>From GAN to WGAN</span>
@@ -504,7 +504,7 @@ $$
     </main>
     
 <footer class="footer">
-    <span>&copy; 2025 <a href="https://lilianweng.github.io/">YK's Log</a></span>
+    <span>&copy; 2025 <a href="https://yikhuen.github.io/">YK's Log</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

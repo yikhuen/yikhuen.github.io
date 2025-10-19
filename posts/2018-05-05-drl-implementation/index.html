@@ -11,18 +11,18 @@
 The full implementation is available in lilianweng/deep-reinforcement-learning-gym
 In the previous two posts, I have introduced the algorithms of many deep reinforcement learning models. Now it is the time to get our hands dirty and practice how to implement the models in the wild. The implementation is gonna be built in Tensorflow and OpenAI gym environment. The full version of the code in this tutorial is available in [lilian/deep-reinforcement-learning-gym].">
 <meta name="author" content="Lilian Weng">
-<link rel="canonical" href="https://lilianweng.github.io/posts/2018-05-05-drl-implementation/" />
+<link rel="canonical" href="https://yikhuen.github.io/posts/2018-05-05-drl-implementation/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.51b2420ff5ea1215cdf584af7ba59d5fea94201c33f25109d6448c7271631316.css" integrity="sha256-UbJCD/XqEhXN9YSve6WdX&#43;qUIBwz8lEJ1kSMcnFjExY=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.2eadbb982468c11a433a3e291f01326f2ba43f065e256bf792dbd79640a92316.js" integrity="sha256-Lq27mCRowRpDOj4pHwEybyukPwZeJWv3ktvXlkCpIxY="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://lilianweng.github.io/favicon_wine.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://lilianweng.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://lilianweng.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://lilianweng.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://lilianweng.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="https://yikhuen.github.io/favicon_wine.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://yikhuen.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://yikhuen.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://yikhuen.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://yikhuen.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://lilianweng.github.io/posts/2018-05-05-drl-implementation/" />
+<link rel="alternate" hreflang="en" href="https://yikhuen.github.io/posts/2018-05-05-drl-implementation/" />
 <noscript>
     <style>
         #theme-toggle,
@@ -183,7 +183,7 @@ In the previous two posts, I have introduced the algorithms of many deep reinfor
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://lilianweng.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
+            <a href="https://yikhuen.github.io/" accesskey="h" title="YK's Log (Alt + H)">YK's Log</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -211,27 +211,27 @@ In the previous two posts, I have introduced the algorithms of many deep reinfor
         </div>
         <ul id="menu">
             <li>
-                <a href="https://lilianweng.github.io/" title="Posts">
+                <a href="https://yikhuen.github.io/" title="Posts">
                     <span>Posts</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/archives" title="Archive">
+                <a href="https://yikhuen.github.io/archives" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="https://yikhuen.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/tags/" title="Tags">
+                <a href="https://yikhuen.github.io/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
             <li>
-                <a href="https://lilianweng.github.io/faq" title="FAQ">
+                <a href="https://yikhuen.github.io/faq" title="FAQ">
                     <span>FAQ</span>
                 </a>
             </li>
@@ -341,7 +341,7 @@ In the previous two posts, I have introduced the algorithms of many deep reinfor
 <li>Gets back the new observation <code>ob_next</code> (env.observation_space), a reward (float), a <code>done</code> flag (bool), and other meta information (dict). If <code>done=True</code>, the episode is complete and we should reset the env to restart. Read more <a href="https://gym.openai.com/docs/#observations">here</a>.</li>
 </ul>
 <h1 id="naive-q-learning">Naive Q-Learning<a hidden class="anchor" aria-hidden="true" href="#naive-q-learning">#</a></h1>
-<p><a href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/#q-learning-off-policy-td-control">Q-learning</a> (Watkins &amp; Dayan, 1992) learns the action value (&ldquo;Q-value&rdquo;) and update it according to the <a href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/#bellman-equations">Bellman equation</a>. The key point is while estimating what is the next action, it does not follow the current policy but rather adopt the best Q value (the part in red) independently.</p>
+<p><a href="https://yikhuen.github.io/posts/2018-02-19-rl-overview/#q-learning-off-policy-td-control">Q-learning</a> (Watkins &amp; Dayan, 1992) learns the action value (&ldquo;Q-value&rdquo;) and update it according to the <a href="https://yikhuen.github.io/posts/2018-02-19-rl-overview/#bellman-equations">Bellman equation</a>. The key point is while estimating what is the next action, it does not follow the current policy but rather adopt the best Q value (the part in red) independently.</p>
 <div>
 $$
 Q(s, a) \leftarrow (1 - \alpha) Q(s, a) + \alpha (r + \gamma \color{red}{\max_{a' \in \mathcal{A}} Q(s', a')})
@@ -429,7 +429,7 @@ $$
 </span></span><span style="display:flex;"><span>        ob <span style="color:#f92672">=</span> ob_next
 </span></span></code></pre></div><p>Often we start with a high <code>epsilon</code> and gradually decrease it during the training, known as &ldquo;epsilon annealing&rdquo;. The full code of <code>QLearningPolicy</code> is available <a href="https://github.com/lilianweng/deep-reinforcement-learning-gym/blob/master/playground/policies/qlearning.py">here</a>.</p>
 <h1 id="deep-q-network">Deep Q-Network<a hidden class="anchor" aria-hidden="true" href="#deep-q-network">#</a></h1>
-<p><a href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/#deep-q-network">Deep Q-network</a> is a seminal piece of work to make the training of Q-learning more stable and more data-efficient, when the Q value is approximated with a nonlinear function. Two key ingredients are experience replay and a separately updated target network.</p>
+<p><a href="https://yikhuen.github.io/posts/2018-02-19-rl-overview/#deep-q-network">Deep Q-network</a> is a seminal piece of work to make the training of Q-learning more stable and more data-efficient, when the Q value is approximated with a nonlinear function. Two key ingredients are experience replay and a separately updated target network.</p>
 <p>The main loss function looks like the following,</p>
 <div>
 $$
@@ -534,7 +534,7 @@ $$
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># batch_data is a dict with keys, ‘s&#39;, ‘a&#39;, ‘r&#39;, ‘s_next&#39; and ‘done&#39;, containing a batch of transitions.</span>
 </span></span><span style="display:flex;"><span>actions_next <span style="color:#f92672">=</span> sess<span style="color:#f92672">.</span>run(actions_selected_by_q, {states: batch_data[<span style="color:#e6db74">&#39;s_next&#39;</span>]})
 </span></span></code></pre></div><h2 id="dueling-q-network">Dueling Q-Network<a hidden class="anchor" aria-hidden="true" href="#dueling-q-network">#</a></h2>
-<p>The dueling Q-network (<a href="https://arxiv.org/pdf/1511.06581.pdf">Wang et al., 2016</a>) is equipped with an enhanced network architecture: the output layer branches out into two heads, one for predicting state value, V, and the other for <a href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/#value-function">advantage</a>, A. The Q-value is then reconstructed, $Q(s, a) = V(s) + A(s, a)$.</p>
+<p>The dueling Q-network (<a href="https://arxiv.org/pdf/1511.06581.pdf">Wang et al., 2016</a>) is equipped with an enhanced network architecture: the output layer branches out into two heads, one for predicting state value, V, and the other for <a href="https://yikhuen.github.io/posts/2018-02-19-rl-overview/#value-function">advantage</a>, A. The Q-value is then reconstructed, $Q(s, a) = V(s) + A(s, a)$.</p>
 <div>
 $$
 \begin{aligned}
@@ -563,7 +563,7 @@ $$
 </figure>
 <p>Check the <a href="https://github.com/lilianweng/deep-reinforcement-learning-gym/blob/master/playground/policies/dqn.py">code</a> for the complete flow.</p>
 <h1 id="monte-carlo-policy-gradient">Monte-Carlo Policy Gradient<a hidden class="anchor" aria-hidden="true" href="#monte-carlo-policy-gradient">#</a></h1>
-<p>I reviewed a number of popular policy gradient methods in my <a href="https://lilianweng.github.io/posts/2018-04-08-policy-gradient/">last post</a>. Monte-Carlo policy gradient, also known as <a href="https://lilianweng.github.io/posts/2018-04-08-policy-gradient/#reinforce">REINFORCE</a>, is a classic on-policy method that learns the policy model explicitly. It uses the return estimated from a full on-policy trajectory and updates the policy parameters with policy gradient.</p>
+<p>I reviewed a number of popular policy gradient methods in my <a href="https://yikhuen.github.io/posts/2018-04-08-policy-gradient/">last post</a>. Monte-Carlo policy gradient, also known as <a href="https://yikhuen.github.io/posts/2018-04-08-policy-gradient/#reinforce">REINFORCE</a>, is a classic on-policy method that learns the policy model explicitly. It uses the return estimated from a full on-policy trajectory and updates the policy parameters with policy gradient.</p>
 <p>The returns are computed during rollouts and then fed into the Tensorflow graph as inputs.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Inputs</span>
 </span></span><span style="display:flex;"><span>states <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>placeholder(tf<span style="color:#f92672">.</span>float32, shape<span style="color:#f92672">=</span>(<span style="color:#66d9ef">None</span>, obs_size), name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;state&#39;</span>)
@@ -622,7 +622,7 @@ $$
 </span></span><span style="display:flex;"><span>    })
 </span></span></code></pre></div><p>The full implementation of REINFORCE is <a href="https://github.com/lilianweng/deep-reinforcement-learning-gym/blob/master/playground/policies/reinforce.py">here</a>.</p>
 <h1 id="actor-critic">Actor-Critic<a hidden class="anchor" aria-hidden="true" href="#actor-critic">#</a></h1>
-<p>The <a href="https://lilianweng.github.io/posts/2018-04-08-policy-gradient/#actor-critic">actor-critic</a> algorithm learns two models at the same time, the actor for learning the best policy and the critic for estimating the state value.</p>
+<p>The <a href="https://yikhuen.github.io/posts/2018-04-08-policy-gradient/#actor-critic">actor-critic</a> algorithm learns two models at the same time, the actor for learning the best policy and the critic for estimating the state value.</p>
 <ol>
 <li>Initialize the actor network, $\pi(a \vert s)$ and the critic, $V(s)$</li>
 <li>Collect a new transition (s, a, r, s&rsquo;): Sample the action $a \sim \pi(a \vert s)$ for the current state s, and get the reward r and the next state s'.</li>
@@ -674,17 +674,17 @@ $$
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://lilianweng.github.io/tags/tutorial/">Tutorial</a></li>
-      <li><a href="https://lilianweng.github.io/tags/tensorflow/">Tensorflow</a></li>
-      <li><a href="https://lilianweng.github.io/tags/reinforcement-learning/">Reinforcement-Learning</a></li>
+      <li><a href="https://yikhuen.github.io/tags/tutorial/">Tutorial</a></li>
+      <li><a href="https://yikhuen.github.io/tags/tensorflow/">Tensorflow</a></li>
+      <li><a href="https://yikhuen.github.io/tags/reinforcement-learning/">Reinforcement-Learning</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://lilianweng.github.io/posts/2018-06-24-attention/">
+  <a class="prev" href="https://yikhuen.github.io/posts/2018-06-24-attention/">
     <span class="title">« </span>
     <br>
     <span>Attention? Attention!</span>
   </a>
-  <a class="next" href="https://lilianweng.github.io/posts/2018-04-08-policy-gradient/">
+  <a class="next" href="https://yikhuen.github.io/posts/2018-04-08-policy-gradient/">
     <span class="title"> »</span>
     <br>
     <span>Policy Gradient Algorithms</span>
@@ -742,7 +742,7 @@ $$
     </main>
     
 <footer class="footer">
-    <span>&copy; 2025 <a href="https://lilianweng.github.io/">YK's Log</a></span>
+    <span>&copy; 2025 <a href="https://yikhuen.github.io/">YK's Log</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
